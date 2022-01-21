@@ -1,0 +1,22 @@
+version: '3.3'
+
+services:
+  api:
+    command: ['npm', 'run', 'dev']
+    volumes:
+      - './:/app'
+
+  twitch-chat:
+    command: ['npm', 'run', 'dev']
+    volumes:
+      - './:/app'
+
+  # greeter:
+  #   command: ['npm', 'run', 'dev']
+  #   volumes:
+  #     - './:/app'
+
+  # products:
+  #   command: ['npm', 'run', 'dev']
+  #   volumes:
+  #     - './:/app'

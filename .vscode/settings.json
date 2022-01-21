@@ -1,0 +1,24 @@
+{
+  "censitive.enable": true,
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#ac7d26",
+    "activityBar.activeBorder": "#48d7a5",
+    "activityBar.background": "#ac7d26",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#48d7a5",
+    "activityBarBadge.foreground": "#15202b",
+    "sash.hoverBorder": "#ac7d26",
+    "statusBar.background": "#825f1d",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#ac7d26",
+    "statusBarItem.remoteBackground": "#825f1d",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "titleBar.activeBackground": "#825f1d",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#825f1d99",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  },
+  "peacock.remoteColor": "825f1d",
+  "thunder-client.loadFromProject": true
+}

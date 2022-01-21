@@ -1,0 +1,1 @@
+{"default":true,"data":[{"name":"host","value":"http://localhost:3000"},{"name":"api","value":"{{host}}/api"},{"name":"myChannelName","value":"nfgCodex"}],"sortNum":10000,"name":"Development","created":"2022-01-21T04:04:34.836Z","modified":"2022-01-21T04:32:01.432Z","_id":"7e3116b3-fa86-447e-a35d-500fbcef2479"}

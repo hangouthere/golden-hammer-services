@@ -1,0 +1,5 @@
+# Hide the following variables in .env files
+.env*:.*
+
+# Hide all passwords and api tokens in js and ts files
+*.{js,ts}:apitoken,.*password
