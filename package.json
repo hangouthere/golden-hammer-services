@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "My Moleculer-based microservices project",
   "scripts": {
+    "predev": "npm install",
     "dev": "node --inspect=0.0.0.0:9229 node_modules/moleculer/bin/moleculer-runner --repl --hot",
     "start": "moleculer-runner",
     "cli": "moleculer connect NATS",

@@ -68,8 +68,8 @@ services:
   traefik:
     image: traefik:v2.1
     command:
-      - --log.level=DEBUG
-      - '--api.insecure=true' # Don't do that in production!
+      - '--log.level=DEBUG'
+      # - '--api.insecure=true' # Don't do that in production!
       - '--providers.docker=true'
       - '--providers.docker.exposedbydefault=false'
     ports:
