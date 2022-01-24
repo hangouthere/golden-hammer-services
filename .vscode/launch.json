@@ -5,38 +5,40 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Attach 9229",
+      "name": "Attach api-gateway (9229)",
       "port": 9229,
       "request": "attach",
-      "skipFiles": ["<node_internals>/**", "*node_modules*", "node:internal*"],
+      "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node",
       "remoteRoot": "/app/"
     },
     {
-      "name": "Attach 9230",
-      "port": 9230,
+      "name": "Attach gh-chat (9240)",
+      "port": 9240,
       "request": "attach",
-      "skipFiles": ["<node_internals>/**", "*node_modules*", "node:internal*"],
+      "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node",
       "remoteRoot": "/app/"
     },
+    {
+      "name": "Attach twitch-chat (9241)",
+      "port": 9241,
+      "request": "attach",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "remoteRoot": "/app/"
+    }
+  ],
 
+  "compounds": [
     {
-      "type": "node",
-      "request": "launch",
-      "name": "Debug",
-      "program": "${workspaceRoot}/node_modules/moleculer/bin/moleculer-runner.js",
-      "cwd": "${workspaceRoot}",
-      "args": ["services"]
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Jest",
-      "program": "${workspaceRoot}/node_modules/jest-cli/bin/jest.js",
-      "args": ["--runInBand"],
-      "cwd": "${workspaceRoot}",
-      "runtimeArgs": ["--nolazy"]
+      "name": "Chat Systems",
+      "configurations": ["Attach gh-chat (9240)", "Attach twitch-chat (9241)"],
+      "presentation": {
+        "hidden": false,
+        "group": "clusters",
+        "order": 1
+      }
     }
   ]
 }

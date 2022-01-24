@@ -84,7 +84,7 @@ module.exports = {
 
   actions: {
     joinChannel: {
-      rest: 'POST /joinChannel',
+      // rest: 'POST /joinChannel',
       params: {
         channelName: 'string'
       },
@@ -107,7 +107,7 @@ module.exports = {
     },
 
     partChannel: {
-      rest: 'POST /partChannel',
+      // rest: 'POST /partChannel',
       params: {
         channelName: 'string'
       },
@@ -133,7 +133,8 @@ module.exports = {
   methods: {
     isConnected: () => 'OPEN' === this.tmijs.readyState(),
 
-    delegateIRCEvent(eventName, channel, ...rest) {
+    //! FIXME - Handle errors when calling other services!
+    async delegateIRCEvent(eventName, channel, ...rest) {
       let userName, userState, message, isSelf;
 
       switch (eventName) {
@@ -146,6 +147,12 @@ module.exports = {
         case 'chat':
           [userState, message, self] = rest;
           this.logger.info(`${userState['display-name']} -> ${message}`);
+
+          // const normalized = await this.broker.call('gh-chat.normalize', {
+          //   type: 'twitch',
+          //   originalChatEventData: { message, userState }
+          // });
+
           break;
 
         default:

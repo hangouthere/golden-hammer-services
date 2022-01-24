@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "My Moleculer-based microservices project",
   "scripts": {
-    "dev": "node --inspect=0.0.0.0:9229 node_modules/moleculer/bin/moleculer-runner --repl --hot services/**/*.service.js -- --inspect-brk",
+    "dev": "node --inspect=0.0.0.0:9229 node_modules/moleculer/bin/moleculer-runner --repl --hot",
     "start": "moleculer-runner",
     "cli": "moleculer connect NATS",
     "ci": "jest --watch",
@@ -26,6 +26,7 @@
     "moleculer": "^0.14.16",
     "moleculer-db": "^0.8.15",
     "moleculer-db-adapter-mongo": "^0.4.13",
+    "moleculer-io": "^2.0.0",
     "moleculer-web": "^0.10.2",
     "nats": "^2.2.0",
     "tmi.js": "^1.8.5"

@@ -15,8 +15,8 @@ services:
       - redis
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.api-gw.rule=PathPrefix(`/`)'
-      - 'traefik.http.services.api-gw.loadbalancer.server.port=3000'
+      - 'traefik.http.routers.api.rule=PathPrefix(`/`)'
+      - 'traefik.http.services.api.loadbalancer.server.port=3000'
     networks:
       - internal
 
@@ -34,34 +34,19 @@ services:
     networks:
       - internal
 
-  # greeter:
-  #   build:
-  #     context: .
-  #   image: golden-hammer
-  #   restart: unless-stopped
-  #   env_file: .env
-  #   environment:
-  #     SERVICES: greeter
-  #   depends_on:
-  #     - nats
-  #     - redis
-  #   networks:
-  #     - internal
-
-  # products:
-  #   build:
-  #     context: .
-  #   image: golden-hammer
-  #   restart: unless-stopped
-  #   env_file: .env
-  #   environment:
-  #     SERVICES: products
-  #   depends_on:
-  #     - mongo
-  #     - nats
-  #     - redis
-  #   networks:
-  #     - internal
+  gh-chat:
+    build:
+      context: .
+    image: golden-hammer
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      SERVICES: gh-chat
+    depends_on:
+      - nats
+      - redis
+    networks:
+      - internal
 
   mongo:
     image: mongo:4
@@ -83,6 +68,7 @@ services:
   traefik:
     image: traefik:v2.1
     command:
+      - --log.level=DEBUG
       - '--api.insecure=true' # Don't do that in production!
       - '--providers.docker=true'
       - '--providers.docker.exposedbydefault=false'
