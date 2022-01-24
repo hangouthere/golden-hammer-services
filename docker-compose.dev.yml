@@ -5,11 +5,15 @@ services:
     command: ['npm', 'run', 'dev']
     volumes:
       - './:/app'
+    ports:
+      - '9229:9229'
 
   twitch-chat:
     command: ['npm', 'run', 'dev']
     volumes:
       - './:/app'
+    ports:
+      - '9230:9229'
 
   # greeter:
   #   command: ['npm', 'run', 'dev']
