@@ -1,35 +1,33 @@
-version: '3.3'
+version: '3.7'
+
+x-debug-mode: &debug-mode
+  command: ['npm', 'run', 'dev']
+  stdin_open: true
+  tty: true
+  environment:
+    - NODE_ENV=development
+  volumes:
+    - './:/app'
+  ports:
+    - '9229:9229'
 
 services:
   api:
-    command: ['npm', 'run', 'dev']
-    stdin_open: true
-    tty: true
-    environment:
-      - NODE_ENV=development
-    volumes:
-      - './:/app'
+    <<: *debug-mode
     ports:
       - '9229:9229'
 
+  gh-pubsub:
+    <<: *debug-mode
+    ports:
+      - '9230:9229'
+
   gh-chat:
-    command: ['npm', 'run', 'dev']
-    stdin_open: true
-    tty: true
-    environment:
-      - NODE_ENV=development
-    volumes:
-      - './:/app'
+    <<: *debug-mode
     ports:
       - '9240:9229'
 
   twitch-chat:
-    command: ['npm', 'run', 'dev']
-    stdin_open: true
-    tty: true
-    environment:
-      - NODE_ENV=development
-    volumes:
-      - './:/app'
+    <<: *debug-mode
     ports:
       - '9241:9229'

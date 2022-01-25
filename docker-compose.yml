@@ -1,52 +1,46 @@
-version: '3.3'
+version: '3.7'
+
+x-moleculer-microservice: &moleculer-microservice
+  build:
+    context: .
+  image: golden-hammer
+  restart: unless-stopped
+  env_file: .env
+  depends_on:
+    - nats
+    - redis
+    - api
+  networks:
+    - internal
 
 services:
   api:
-    build:
-      context: .
-    image: golden-hammer
-    restart: unless-stopped
-    env_file: .env
-    environment:
-      SERVICES: api
-      PORT: 3000
+    <<: *moleculer-microservice
     depends_on:
       - nats
       - redis
+    environment:
+      SERVICES: api
+      PORT: 3000
     labels:
       - 'traefik.enable=true'
       - 'traefik.http.routers.api.rule=PathPrefix(`/`)'
       - 'traefik.http.services.api.loadbalancer.server.port=3000'
-    networks:
-      - internal
 
-  twitch-chat:
-    build:
-      context: .
-    image: golden-hammer
-    restart: unless-stopped
-    env_file: .env
+  gh-pubsub:
+    <<: *moleculer-microservice
     environment:
-      SERVICES: twitch-chat
-    depends_on:
-      - nats
-      - redis
-    networks:
-      - internal
+      SERVICES: gh-pubsub
 
   gh-chat:
-    build:
-      context: .
-    image: golden-hammer
-    restart: unless-stopped
-    env_file: .env
+    <<: *moleculer-microservice
     environment:
       SERVICES: gh-chat
-    depends_on:
-      - nats
-      - redis
-    networks:
-      - internal
+
+  twitch-chat:
+    <<: *moleculer-microservice
+    environment:
+      SERVICES: twitch-chat
 
   mongo:
     image: mongo:4
@@ -72,7 +66,6 @@ services:
       - '--providers.docker.exposedbydefault=false'
     ports:
       - 3000:80
-      - 3001:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:

@@ -15,7 +15,7 @@
 
 # Project: Golden Hammer
 
-![hammer](./assets/logo.png)
+![hammer](./docs/assets/logo.png)
 
 This is a [Moleculer](https://moleculer.services/)-based microservices project. Generated with the [Moleculer CLI](https://moleculer.services/docs/0.14/moleculer-cli.html), and adapted to my own liking.
 
@@ -106,3 +106,10 @@ Simply target the `prod` config to overlay the base:
 ```
 docker-compose -f ./docker-compose.yml -f ./docker-compose.prod.yml
 ```
+
+## Infrastructure
+
+### Microservice Layout/Access
+
+![hammer](./docs/container-layout.drawio.svg)
+
