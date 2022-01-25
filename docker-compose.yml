@@ -68,8 +68,6 @@ services:
   traefik:
     image: traefik:v2.1
     command:
-      - '--log.level=DEBUG'
-      # - '--api.insecure=true' # Don't do that in production!
       - '--providers.docker=true'
       - '--providers.docker.exposedbydefault=false'
     ports:
@@ -80,6 +78,13 @@ services:
     networks:
       - internal
       - default
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - '9999:16686'
+    networks:
+      - internal
 
 networks:
   internal:
