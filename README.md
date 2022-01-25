@@ -59,7 +59,7 @@ The over-arching goal is to normalize inputs from various platforms, and deliver
 
 ### Development Mode
 
-The development phase of this project is meant to mimic that of the production environment, so all run-times are kept within Docker containers. To choose the runtime you expect to target, simply overly the appropriate `docker-compose.*.yml` file over the base config to compliment and finalize the environment config.
+The development phase of this project is meant to mimic that of the production environment, so all run-times are kept within Docker containers. To choose the runtime you expect to target, simply overlay the appropriate `docker-compose.*.yml` file over the base config to compliment and finalize the environment config.
 
 Simply target the `dev` config to overlay the base:
 
@@ -99,7 +99,9 @@ Note we're targeting `golden-hammer_api_1`, the API gateway, to attach our conso
 
 ### Production Mode
 
-Simply target the `dev` config to overlay the base:
+> FIXME: More exploration/details to come once we get to a production build and pipeline.
+
+Simply target the `prod` config to overlay the base:
 
 ```
 docker-compose -f ./docker-compose.yml -f ./docker-compose.prod.yml

@@ -9,17 +9,21 @@ module.exports = {
           call: {
             mappingPolicy: 'restrict'
           },
-          listenToChannel(incomingValue, next) {
-            debugger;
-
+          async listenToChannel({ channelName }, next) {
             const span = this.$service.broker.tracer.startSpan('PubSub: Channel Listen - Register', {
               service: 'pub-sub:chat',
               tags: {
-                socket: { id: this.client.conn.id, remoteAddress: this.client.conn.remoteAddress }
+                channelName,
+                socket: {
+                  id: this.client.conn.id,
+                  remoteAddress: this.client.conn.remoteAddress
+                }
               }
             });
 
-            console.log('Incoming Value:', incomingValue);
+            await this.$service.broker.call('twitch-chat.joinChannel', { channelName });
+
+            this.$service.logger.info('PubSub to Channel:', channelName);
 
             span.finish();
 
