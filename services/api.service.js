@@ -1,26 +1,16 @@
-'use strict';
-
 const ApiGateway = require('moleculer-web');
 const SocketGateway = require('moleculer-io');
-const configWeb = require('./config-web');
-const configIo = require('./config-io');
-
-/**
- * @typedef {import('moleculer').Context} Context Moleculer's Context
- * @typedef {import('http').IncomingMessage} IncomingRequest Incoming HTTP Request
- * @typedef {import('http').ServerResponse} ServerResponse HTTP Server Response
- */
+const ConfigMoleculerWeb = require('./mixins/config-web');
+const ConfigMoleculerIO = require('./mixins/config-io');
 
 module.exports = {
   name: 'api',
-  mixins: [ApiGateway, SocketGateway],
+  mixins: [ConfigMoleculerWeb, ConfigMoleculerIO, ApiGateway, SocketGateway],
 
   // More info about settings: https://moleculer.services/docs/0.14/moleculer-web.html
   settings: {
     // Exposed port
-    port: process.env.PORT || 3000,
-    ...configWeb,
-    ...configIo
+    port: process.env.PORT || 3000
   },
 
   methods: {
@@ -28,13 +18,6 @@ module.exports = {
      * Authenticate the request. It check the `Authorization` token value in the request header.
      * Check the token value & resolve the user by the token.
      * The resolved user will be available in `ctx.meta.user`
-     *
-     * PLEASE NOTE, IT'S JUST AN EXAMPLE IMPLEMENTATION. DO NOT USE IN PRODUCTION!
-     *
-     * @param {Context} ctx
-     * @param {Object} route
-     * @param {IncomingRequest} req
-     * @returns {Promise}
      */
     async authenticate(ctx, route, req) {
       // Read the token from header
@@ -60,13 +43,6 @@ module.exports = {
 
     /**
      * Authorize the request. Check that the authenticated user has right to access the resource.
-     *
-     * PLEASE NOTE, IT'S JUST AN EXAMPLE IMPLEMENTATION. DO NOT USE IN PRODUCTION!
-     *
-     * @param {Context} ctx
-     * @param {Object} route
-     * @param {IncomingRequest} req
-     * @returns {Promise}
      */
     async authorize(ctx, route, req) {
       // Get the authenticated user.
@@ -76,6 +52,13 @@ module.exports = {
       if (req.$action.auth == 'required' && !user) {
         throw new ApiGateway.Errors.UnAuthorizedError('NO_RIGHTS');
       }
+    }
+  },
+
+  events: {
+    '$node.disconnected'(ctx) {
+      debugger;
+      console.log('!!!!!!!! Node Disconnected!', ctx.params, ctx.meta);
     }
   }
 };

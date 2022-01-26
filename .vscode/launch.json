@@ -13,6 +13,14 @@
       "remoteRoot": "/app/"
     },
     {
+      "name": "Attach gh-pubsub (9230)",
+      "port": 9230,
+      "request": "attach",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "remoteRoot": "/app/"
+    },
+    {
       "name": "Attach gh-chat (9240)",
       "port": 9240,
       "request": "attach",
@@ -33,7 +41,7 @@
   "compounds": [
     {
       "name": "Chat Systems",
-      "configurations": ["Attach gh-chat (9240)", "Attach twitch-chat (9241)"],
+      "configurations": ["Attach gh-pubsub (9230)", "Attach gh-chat (9240)", "Attach twitch-chat (9241)"],
       "presentation": {
         "hidden": false,
         "group": "clusters",

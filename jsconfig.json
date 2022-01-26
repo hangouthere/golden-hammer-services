@@ -1,0 +1,8 @@
+{
+  "_Comment": "This is customized for this project, specifically for linting/hinting purposes. Otherwise, this is a purely vanilla JS project",
+
+  "compilerOptions": {
+    "checkJs": true
+  },
+  "exclude": ["node_modules"]
+}

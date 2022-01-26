@@ -1,4 +1,5 @@
 const tmijs = require('tmi.js');
+const { NormalizeMessageTwitch } = require('../src/NormalizeMessageTwitch');
 
 const IRC_EVENTS = [
   'action',
@@ -62,6 +63,8 @@ module.exports = {
     });
 
     this.tmijs = client;
+
+    this.normalizer = new NormalizeMessageTwitch();
   },
 
   async started() {
@@ -127,38 +130,49 @@ module.exports = {
           channelName
         };
       }
+    },
+
+    normalize: {
+      params: {
+        platformEventName: 'string',
+        platformEventData: 'any'
+      },
+      handler(ctx) {
+        const { platformEventName, platformEventData } = ctx.params;
+
+        return this.normalizer.normalize(platformEventName, platformEventData);
+      }
     }
   },
 
   methods: {
-    isConnected: () => 'OPEN' === this.tmijs.readyState(),
-
-    //! FIXME - Handle errors when calling other services!
-    async delegateIRCEvent(eventName, channel, ...rest) {
-      let userName, userState, message, isSelf;
+    delegateIRCEvent(eventName, channel, ...rest) {
+      let proxyEventData, userName, userState, message, isSelf;
 
       switch (eventName) {
         case 'join':
         case 'part':
           [userName, isSelf] = rest;
-          if (isSelf) break;
-          this.logger.info(`${userName} ${eventName}ed`);
+          if (isSelf) return;
+
+          proxyEventData = { userName };
           break;
         case 'chat':
-          [userState, message, self] = rest;
-          this.logger.info(`${userState['display-name']} -> ${message}`);
-
-          // const normalized = await this.broker.call('gh-chat.normalize', {
-          //   type: 'twitch',
-          //   originalChatEventData: { message, userState }
-          // });
-
+          [userState, message, isSelf] = rest;
+          proxyEventData = { userState, message, isSelf };
           break;
 
         default:
           this.logger.info(`No mapping: (${eventName}) ${channel} ->`, rest);
 
           break;
+      }
+
+      if (proxyEventData) {
+        this.broker.emit('twitch-chat.evented', {
+          platformEventName: eventName,
+          platformEventData: proxyEventData
+        });
       }
     }
   }

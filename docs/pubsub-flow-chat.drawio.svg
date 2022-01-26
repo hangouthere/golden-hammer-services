@@ -1,0 +1,777 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="762px" height="2622px" viewBox="-0.5 -0.5 762 2622" content="&lt;mxfile scale=&quot;2&quot; border=&quot;0&quot;&gt;&lt;diagram id=&quot;MiLGC0pCuv5J1yequ-IN&quot; name=&quot;Page-1&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <rect x="0" y="0" width="760" height="2620" fill="#2b2b2b" stroke="rgb(0, 0, 0)" stroke-width="2" pointer-events="all"/>
+        <rect x="119" y="2530" width="240" height="60" rx="10" ry="10" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-dasharray="6 6" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1272px; margin-left: 120px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 15px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: nowrap;">
+                                socket.io client
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="120" y="1287" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="15px" text-anchor="middle">
+                    socket.io client
+                </text>
+            </switch>
+        </g>
+        <path d="M 237.83 2471.48 L 238.44 2517.27" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 238.57 2527.76 L 231.39 2513.86 L 238.44 2517.27 L 245.39 2513.67 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1251px; margin-left: 119px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 6px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; background-color: rgb(255, 255, 255); white-space: nowrap;">
+                                gh-chat.evented, { normalizedEvent }
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="119" y="1252" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="6px" text-anchor="middle">
+                    gh-chat.evented, { normalizedEvent }
+                </text>
+            </switch>
+        </g>
+        <rect x="120" y="100" width="240" height="60" rx="10" ry="10" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-dasharray="6 6" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 57px; margin-left: 120px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 15px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: nowrap;">
+                                socket.io client
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="120" y="72" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="15px" text-anchor="middle">
+                    socket.io client
+                </text>
+            </switch>
+        </g>
+        <rect x="135" y="260" width="180" height="40" rx="6" ry="6" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 88px; height: 1px; padding-top: 140px; margin-left: 69px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 8px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                api (via moleculer-io)
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="113" y="142" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="8px" text-anchor="middle">
+                    api (via moleculer-io)
+                </text>
+            </switch>
+        </g>
+        <path d="M 236.54 160 L 226.46 247.35" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 225.26 257.78 L 219.91 243.07 L 226.46 247.35 L 233.81 244.67 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 105px; margin-left: 115px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 6px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; background-color: rgb(255, 255, 255); white-space: nowrap;">
+                                call, gh-pubsub.register, { platform, platformEvents, channelName }
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="115" y="107" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="6px" text-anchor="middle">
+                    call, gh-pubsub.register, { platform, platformEvents, channelName }
+                </text>
+            </switch>
+        </g>
+        <rect x="160" y="380" width="130" height="40" rx="6" ry="6" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 63px; height: 1px; padding-top: 200px; margin-left: 81px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 8px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                gh-pubsub
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="113" y="202" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="8px" text-anchor="middle">
+                    gh-pubsub
+                </text>
+            </switch>
+        </g>
+        <path d="M 223.85 300 L 219.88 369.28" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 219.28 379.77 L 213.09 365.39 L 219.88 369.28 L 227.07 366.19 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 170px; margin-left: 111px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 6px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; background-color: rgb(255, 255, 255); white-space: nowrap;">
+                                gh-pubsub.register, { platform, platformEvents, channelName }
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="111" y="172" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="6px" text-anchor="middle">
+                    gh-pubsub.register, { platform, platformEvents, channelName }
+                </text>
+            </switch>
+        </g>
+        <rect x="160" y="500" width="130" height="40" rx="6" ry="6" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 63px; height: 1px; padding-top: 260px; margin-left: 81px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 8px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                twitch-chat
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="113" y="262" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="8px" text-anchor="middle">
+                    twitch-chat
+                </text>
+            </switch>
+        </g>
+        <path d="M 225.83 420 L 228.76 490.04" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 229.2 500.53 L 221.62 486.83 L 228.76 490.04 L 235.61 486.25 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 231px; margin-left: 114px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 6px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; background-color: rgb(255, 255, 255); white-space: nowrap;">
+                                twitch-chat.joinChannel, { channelName }
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="114" y="233" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="6px" text-anchor="middle">
+                    twitch-chat.joinChannel, { channelName }
+                </text>
+            </switch>
+        </g>
+        <path d="M 191 620 C 166.2 620 160 640 179.84 644 C 160 652.8 182.32 672 198.44 664 C 209.6 680 246.8 680 259.2 664 C 284 664 284 648 268.5 640 C 284 624 259.2 608 237.5 616 C 222 604 197.2 604 191 620 Z" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 60px; height: 1px; padding-top: 320px; margin-left: 81px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 6px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                Twitch IRC
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="111" y="322" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="6px" text-anchor="middle">
+                    Twitch IRC
+                </text>
+            </switch>
+        </g>
+        <path d="M 228.45 540.11 L 226.8 600.11 M 218.8 599.89 L 220.45 539.89 M 218.8 599.89" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 284px; margin-left: 114px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 4px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; background-color: rgb(255, 255, 255); white-space: nowrap;">
+                                tmijs socket chatter
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="114" y="285" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="4px" text-anchor="middle">
+                    tmijs socket chatter
+                </text>
+            </switch>
+        </g>
+        <rect x="300" y="380" width="330" height="60" rx="9" ry="9" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" pointer-events="none"/>
+        <image x="304.5" y="389.5" width="20" height="20" xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MC4zIDYwLjIiPjxjaXJjbGUgY3g9IjMwLjEiIGN5PSIzMC4xIiByPSIzMC4xIiBmaWxsPSIjZWNjMDFiIi8+PHBhdGggZD0iTTM5LjkgMzAuNEwzOC40IDMybDMuNiAzLjZoLTYuMVYyMi40bC04LjgtOC44SDEzLjl2MzIuOWgyMS45di04LjhINDJsLTMuNiAzLjYgMS41IDEuNSA2LjMtNi4zLTYuMy02LjF6bS02LjIgMTMuOUgxNi4xVjE1LjhIMjZ2Ny43aDcuN3YxMi4xSDI2djIuMmg3Ljd2Ni41eiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 148px; height: 1px; padding-top: 197px; margin-left: 165px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: left;">
+                            <div style="display: inline-block; font-size: 6px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                At this point, gh-pubsub will remember the platform, channelName, and events for the socketId
+                                <br/>
+                                associated with the client
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="165" y="203" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="6px">
+                    At this point, gh-pubsub will remember the platfo...
+                </text>
+            </switch>
+        </g>
+        <rect x="300" y="500" width="330" height="60" rx="9" ry="9" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" pointer-events="none"/>
+        <image x="304.5" y="509.5" width="20" height="20" xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MC4zIDYwLjIiPjxjaXJjbGUgY3g9IjMwLjEiIGN5PSIzMC4xIiByPSIzMC4xIiBmaWxsPSIjZWNjMDFiIi8+PHBhdGggZD0iTTM5LjkgMzAuNEwzOC40IDMybDMuNiAzLjZoLTYuMVYyMi40bC04LjgtOC44SDEzLjl2MzIuOWgyMS45di04LjhINDJsLTMuNiAzLjYgMS41IDEuNSA2LjMtNi4zLTYuMy02LjF6bS02LjIgMTMuOUgxNi4xVjE1LjhIMjZ2Ny43aDcuN3YxMi4xSDI2djIuMmg3Ljd2Ni41eiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 148px; height: 1px; padding-top: 257px; margin-left: 165px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: left;">
+                            <div style="display: inline-block; font-size: 6px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                twitch-chat will connect to the desired channelName's IRC, and relay all desirable events via the system broker. This lets the system determine what to listen to!
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="165" y="263" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="6px">
+                    twitch-chat will connect to the desired channelNa...
+                </text>
+            </switch>
+        </g>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 338px; height: 1px; padding-top: 25px; margin-left: 12px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: left;">
+                            <div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                PubSub: Registration - Chat
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="12" y="30" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="18px">
+                    PubSub: Registration - Chat
+                </text>
+            </switch>
+        </g>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 338px; height: 1px; padding-top: 965px; margin-left: 12px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: left;">
+                            <div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                PubSub: Eventing - Chat, Bottom Up View
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="12" y="970" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="18px">
+                    PubSub: Eventing - Chat, Bottom Up View
+                </text>
+            </switch>
+        </g>
+        <rect x="180" y="2120" width="130" height="40" rx="6" ry="6" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 63px; height: 1px; padding-top: 1070px; margin-left: 91px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 8px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                twitch-chat
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="123" y="1072" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="8px" text-anchor="middle">
+                    twitch-chat
+                </text>
+            </switch>
+        </g>
+        <path d="M 238.01 2120 L 238 2080 M 246 2080 L 246.01 2120 M 246 2080" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1051px; margin-left: 119px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 4px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; background-color: rgb(255, 255, 255); white-space: nowrap;">
+                                tmijs socket chatter
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="119" y="1052" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="4px" text-anchor="middle">
+                    tmijs socket chatter
+                </text>
+            </switch>
+        </g>
+        <path d="M 211 2020 C 186.2 2020 180 2040 199.84 2044 C 180 2052.8 202.32 2072 218.44 2064 C 229.6 2080 266.8 2080 279.2 2064 C 304 2064 304 2048 288.5 2040 C 304 2024 279.2 2008 257.5 2016 C 242 2004 217.2 2004 211 2020 Z" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 60px; height: 1px; padding-top: 1020px; margin-left: 91px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 6px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                Twitch IRC
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="121" y="1022" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="6px" text-anchor="middle">
+                    Twitch IRC
+                </text>
+            </switch>
+        </g>
+        <path d="M 263.67 2300 L 372.27 2391.78" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 380.29 2398.56 L 365.08 2394.87 L 372.27 2391.78 L 374.12 2384.17 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <rect x="175" y="2260" width="130" height="40" rx="6" ry="6" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 63px; height: 1px; padding-top: 1140px; margin-left: 89px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 8px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                gh-chat
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="120" y="1142" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="8px" text-anchor="middle">
+                    gh-chat
+                </text>
+            </switch>
+        </g>
+        <path d="M 244.17 2160 L 240.28 2253.27" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" stroke-dasharray="2 2" pointer-events="none"/>
+        <path d="M 240.09 2257.77 L 237.35 2251.65 L 240.28 2253.27 L 243.34 2251.9 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1105px; margin-left: 121px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 6px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; background-color: rgb(255, 255, 255); white-space: nowrap;">
+                                twitch-chat.evented, { platformEventName, platformEventData }
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="121" y="1107" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="6px" text-anchor="middle">
+                    twitch-chat.evented, { platformEventName, platformEventData }
+                </text>
+            </switch>
+        </g>
+        <rect x="174" y="2430" width="130" height="40" rx="6" ry="6" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 63px; height: 1px; padding-top: 1225px; margin-left: 88px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 8px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                gh-pubsub
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="120" y="1227" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="8px" text-anchor="middle">
+                    gh-pubsub
+                </text>
+            </switch>
+        </g>
+        <path d="M 240 2300 L 238.31 2420.58" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" stroke-dasharray="2 2" pointer-events="none"/>
+        <path d="M 238.25 2425.08 L 235.34 2419.04 L 238.31 2420.58 L 241.33 2419.13 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1202px; margin-left: 119px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 6px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; background-color: rgb(255, 255, 255); white-space: nowrap;">
+                                gh-chat.evented, { normalizedEvent }
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="119" y="1203" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="6px" text-anchor="middle">
+                    gh-chat.evented, { normalizedEvent }
+                </text>
+            </switch>
+        </g>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 308px; height: 1px; padding-top: 395px; margin-left: 12px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: left;">
+                            <div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                PubSub: Unregistration - Chat
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="12" y="400" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="18px">
+                    PubSub: Unregistration - Chat
+                </text>
+            </switch>
+        </g>
+        <rect x="120" y="840" width="240" height="60" rx="10" ry="10" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-dasharray="6 6" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 427px; margin-left: 120px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 15px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: nowrap;">
+                                socket.io client
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="120" y="442" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="15px" text-anchor="middle">
+                    socket.io client
+                </text>
+            </switch>
+        </g>
+        <path d="M 240 900 L 240.45 964.58" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 240.52 975.08 L 233.43 961.13 L 240.45 964.58 L 247.43 961.04 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 469px; margin-left: 120px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 6px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; background-color: rgb(255, 255, 255); white-space: nowrap;">
+                                call, gh-pubsub.unregister, { platform, channelName }
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="120" y="471" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="6px" text-anchor="middle">
+                    call, gh-pubsub.unregister, { platform, channelName }
+                </text>
+            </switch>
+        </g>
+        <rect x="150" y="980" width="180" height="40" rx="6" ry="6" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 88px; height: 1px; padding-top: 500px; margin-left: 76px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 8px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                api (via moleculer-io)
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="120" y="502" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="8px" text-anchor="middle">
+                    api (via moleculer-io)
+                </text>
+            </switch>
+        </g>
+        <rect x="320" y="1600" width="340" height="100" rx="15" ry="15" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" pointer-events="none"/>
+        <image x="324.5" y="1605.75" width="12.5" height="12.5" xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MC4zIDYwLjIiPjxjaXJjbGUgY3g9IjMwLjEiIGN5PSIzMC4xIiByPSIzMC4xIiBmaWxsPSIjZWNjMDFiIi8+PHBhdGggZD0iTTM5LjkgMzAuNEwzOC40IDMybDMuNiAzLjZoLTYuMVYyMi40bC04LjgtOC44SDEzLjl2MzIuOWgyMS45di04LjhINDJsLTMuNiAzLjYgMS41IDEuNSA2LjMtNi4zLTYuMy02LjF6bS02LjIgMTMuOUgxNi4xVjE1LjhIMjZ2Ny43aDcuN3YxMi4xSDI2djIuMmg3Ljd2Ni41eiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 146px; height: 1px; padding-top: 807px; margin-left: 175px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: left;">
+                            <div style="display: inline-block; font-size: 6px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                Upon initial connection, api automatically set up a disconnect handler for every incoming connection, and will event io.disconnected so the system can act on it. In our case, we'll see gh-pubsub clean up references related to the socketId
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="175" y="813" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="6px">
+                    Upon initial connection, api automatically set u...
+                </text>
+            </switch>
+        </g>
+        <rect x="175" y="1080" width="130" height="40" rx="6" ry="6" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 63px; height: 1px; padding-top: 550px; margin-left: 89px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 8px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                gh-pubsub
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="120" y="552" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="8px" text-anchor="middle">
+                    gh-pubsub
+                </text>
+            </switch>
+        </g>
+        <path d="M 240 1020 L 240 1073.26" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 240 1077.76 L 237 1071.76 L 240 1073.26 L 243 1071.76 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 525px; margin-left: 120px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 6px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; background-color: rgb(255, 255, 255); white-space: nowrap;">
+                                gh-pubsub.unregister, { platform, channelName }
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="120" y="527" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="6px" text-anchor="middle">
+                    gh-pubsub.unregister, { platform, channelName }
+                </text>
+            </switch>
+        </g>
+        <rect x="320" y="1080" width="330" height="120" rx="18" ry="18" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" pointer-events="none"/>
+        <image x="325.5" y="1091.5" width="20" height="20" xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MC4zIDYwLjIiPjxjaXJjbGUgY3g9IjMwLjEiIGN5PSIzMC4xIiByPSIzMC4xIiBmaWxsPSIjZWNjMDFiIi8+PHBhdGggZD0iTTM5LjkgMzAuNEwzOC40IDMybDMuNiAzLjZoLTYuMVYyMi40bC04LjgtOC44SDEzLjl2MzIuOWgyMS45di04LjhINDJsLTMuNiAzLjYgMS41IDEuNSA2LjMtNi4zLTYuMy02LjF6bS02LjIgMTMuOUgxNi4xVjE1LjhIMjZ2Ny43aDcuN3YxMi4xSDI2djIuMmg3Ljd2Ni41eiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 148px; height: 1px; padding-top: 547px; margin-left: 175px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: left;">
+                            <div style="display: inline-block; font-size: 6px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                gh-pubsub will clear the remembered platform, channelName, and events for the socketId
+                                <br/>
+                                associated with the client.
+                                <br/>
+                                <br/>
+                                If there aren't any more sockets waiting to hear about the supplied channelName, the event twitch-chat.partChannel will be emitted for detached parting.
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="175" y="553" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="6px">
+                    gh-pubsub will clear the remembered platform, cha...
+                </text>
+            </switch>
+        </g>
+        <rect x="80" y="1220" width="130" height="40" rx="6" ry="6" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 63px; height: 1px; padding-top: 620px; margin-left: 41px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 8px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                twitch-chat
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="73" y="622" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="8px" text-anchor="middle">
+                    twitch-chat
+                </text>
+            </switch>
+        </g>
+        <path d="M 224.08 1120 L 146.21 1217.81" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" stroke-dasharray="2 2" pointer-events="none"/>
+        <path d="M 143.4 1221.33 L 144.79 1214.77 L 146.21 1217.81 L 149.49 1218.51 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 586px; margin-left: 92px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 6px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; background-color: rgb(255, 255, 255); white-space: nowrap;">
+                                twitch-chat.partChannel, { channelName }
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="92" y="587" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="6px" text-anchor="middle">
+                    twitch-chat.partChannel, { channelName }
+                </text>
+            </switch>
+        </g>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 308px; height: 1px; padding-top: 695px; margin-left: 12px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: left;">
+                            <div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                PubSub: Disconnection
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="12" y="700" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="18px">
+                    PubSub: Disconnection
+                </text>
+            </switch>
+        </g>
+        <rect x="80" y="1440" width="240" height="60" rx="10" ry="10" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-dasharray="6 6" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 727px; margin-left: 100px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 15px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: nowrap;">
+                                socket.io client
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="100" y="742" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="15px" text-anchor="middle">
+                    socket.io client
+                </text>
+            </switch>
+        </g>
+        <path d="M 200 1500 L 200.47 1584.58" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" stroke-dasharray="2 8" pointer-events="none"/>
+        <path d="M 200.53 1595.08 L 193.45 1581.12 L 200.47 1584.58 L 207.45 1581.05 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 774px; margin-left: 100px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 6px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; background-color: rgb(255, 255, 255); white-space: nowrap;">
+                                disconnection
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="100" y="776" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="6px" text-anchor="middle">
+                    disconnection
+                </text>
+            </switch>
+        </g>
+        <rect x="110" y="1600" width="180" height="40" rx="6" ry="6" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 88px; height: 1px; padding-top: 810px; margin-left: 56px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 8px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                api (via moleculer-io)
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="100" y="812" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="8px" text-anchor="middle">
+                    api (via moleculer-io)
+                </text>
+            </switch>
+        </g>
+        <rect x="135" y="1740" width="130" height="40" rx="6" ry="6" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 63px; height: 1px; padding-top: 880px; margin-left: 69px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 8px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                gh-pubsub
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="100" y="882" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="8px" text-anchor="middle">
+                    gh-pubsub
+                </text>
+            </switch>
+        </g>
+        <path d="M 200 1640 L 200 1727.26" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" stroke-dasharray="2 2" pointer-events="none"/>
+        <path d="M 200 1737.76 L 193 1723.76 L 200 1727.26 L 207 1723.76 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 845px; margin-left: 100px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 6px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; background-color: rgb(255, 255, 255); white-space: nowrap;">
+                                gh-pubsub.unregisterAll, { socketId }
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="100" y="847" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="6px" text-anchor="middle">
+                    gh-pubsub.unregisterAll, { socketId }
+                </text>
+            </switch>
+        </g>
+        <rect x="320" y="1740" width="340" height="60" rx="9" ry="9" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 146px; height: 1px; padding-top: 877px; margin-left: 175px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: left;">
+                            <div style="display: inline-block; font-size: 6px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                gh-pubsub will act on this disconnect event, and clean up ALL references among all PubSub channels.
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="175" y="883" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="6px">
+                    gh-pubsub will act on this disconnect event, and...
+                </text>
+            </switch>
+        </g>
+        <image x="332" y="1751.25" width="12.5" height="12.5" xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MC4zIDYwLjIiPjxjaXJjbGUgY3g9IjMwLjEiIGN5PSIzMC4xIiByPSIzMC4xIiBmaWxsPSIjZWNjMDFiIi8+PHBhdGggZD0iTTM5LjkgMzAuNEwzOC40IDMybDMuNiAzLjZoLTYuMVYyMi40bC04LjgtOC44SDEzLjl2MzIuOWgyMS45di04LjhINDJsLTMuNiAzLjYgMS41IDEuNSA2LjMtNi4zLTYuMy02LjF6bS02LjIgMTMuOUgxNi4xVjE1LjhIMjZ2Ny43aDcuN3YxMi4xSDI2djIuMmg3Ljd2Ni41eiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==" pointer-events="none"/>
+        <path d="M 512 2400 L 549.26 2400" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 559.76 2400 L 545.76 2407 L 549.26 2400 L 545.76 2393 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <rect x="382" y="2380" width="130" height="40" rx="6" ry="6" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 63px; height: 1px; padding-top: 1200px; margin-left: 192px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 8px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                twitch-chat
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="224" y="1202" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="8px" text-anchor="middle">
+                    twitch-chat
+                </text>
+            </switch>
+        </g>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 96px; height: 1px; padding-top: 1173px; margin-left: 143px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 5px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                <span style="font-size: 5px">
+                                    twitch-chat.normalize, { platformEventName, platformEventData
+                                </span>
+                                <span style="font-size: 5px">
+                                    }
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="191" y="1174" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="5px" text-anchor="middle">
+                    twitch-chat.normalize, { platformEvent...
+                </text>
+            </switch>
+        </g>
+        <path d="M 542 2410 L 582 2390 L 700 2390 L 660 2410 Z" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 77px; height: 1px; padding-top: 1200px; margin-left: 272px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 4px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                NormalizeMessageTwitch
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="311" y="1201" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="4px" text-anchor="middle">
+                    NormalizeMessageTwitch
+                </text>
+            </switch>
+        </g>
+        <rect x="330" y="2260" width="330" height="60" rx="9" ry="9" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" pointer-events="none"/>
+        <image x="334.5" y="2267" width="15" height="15" xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MC4zIDYwLjIiPjxjaXJjbGUgY3g9IjMwLjEiIGN5PSIzMC4xIiByPSIzMC4xIiBmaWxsPSIjZWNjMDFiIi8+PHBhdGggZD0iTTM5LjkgMzAuNEwzOC40IDMybDMuNiAzLjZoLTYuMVYyMi40bC04LjgtOC44SDEzLjl2MzIuOWgyMS45di04LjhINDJsLTMuNiAzLjYgMS41IDEuNSA2LjMtNi4zLTYuMy02LjF6bS02LjIgMTMuOUgxNi4xVjE1LjhIMjZ2Ny43aDcuN3YxMi4xSDI2djIuMmg3Ljd2Ni41eiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(2)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 146px; height: 1px; padding-top: 1137px; margin-left: 180px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: left;">
+                            <div style="display: inline-block; font-size: 6px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                gh-chat will:
+                                <br/>
+                                * listen for twitch-chat.evented (among others)
+                                <br/>
+                                * delegate normalizing to a helper
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="180" y="1143" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="6px">
+                    gh-chat will:...
+                </text>
+            </switch>
+        </g>
+    </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Viewer does not support full SVG 1.1
+            </text>
+        </a>
+    </switch>
+</svg>

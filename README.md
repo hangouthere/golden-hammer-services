@@ -113,3 +113,8 @@ docker-compose -f ./docker-compose.yml -f ./docker-compose.prod.yml
 
 ![hammer](./docs/container-layout.drawio.svg)
 
+
+### PubSub Flow - Chat
+
+![hammer](./docs/pubsub-flow-chat.drawio.svg)
+

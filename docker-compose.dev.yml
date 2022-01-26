@@ -6,6 +6,7 @@ x-debug-mode: &debug-mode
   tty: true
   environment:
     - NODE_ENV=development
+    - REQUESTTIMEOUT=0
   volumes:
     - './:/app'
   ports:

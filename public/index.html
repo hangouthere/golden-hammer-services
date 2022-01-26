@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Golden Hammer - Simple Socket Client</title>
+    <script
+      src="https://cdn.socket.io/4.4.1/socket.io.min.js"
+      integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      html {
+        background: rgb(20, 20, 20);
+        color: rgb(228, 228, 228);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      #content {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      #commandName {
+        display: inline-flex;
+      }
+
+      .row {
+        display: inline-flex;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      form label {
+        min-width: 150px;
+      }
+
+      input[type='text'],
+      textarea {
+        color: rgb(177, 177, 177);
+        background-color: rgb(82, 82, 82);
+        border: 1px solid white;
+      }
+
+      #chatLog {
+        max-height: 500px;
+        overflow-y: auto;
+      }
+
+      .chatLogMessage img {
+        width: 24px;
+        vertical-align: middle;
+      }
+
+      .chatLogMessage {
+        font-size: 24px;
+        vertical-align: middle;
+        padding: 5px;
+        margin-bottom: 6px;
+      }
+
+      .chatLogMessage.platform-twitch {
+        border: 1px solid #29075c;
+        border-left: 10px solid #29075c;
+        background-color: #0f0816;
+        color: #ededed;
+      }
+
+      .chatLogMessage.platform-twitch a {
+        color: #3baac3;
+        text-decoration: none;
+      }
+      .chatLogMessage.platform-twitch a:hover {
+        color: #bbc349;
+        text-decoration: underline;
+      }
+
+      .chatLogMessage.platform-twitch.event-join,
+      .chatLogMessage.platform-twitch.event-part {
+        font-size: 15px;
+      }
+
+      .chatLogMessage.platform-twitch span.userName,
+      .chatLogMessage.platform-twitch span.userName {
+        color: #ca7ff9;
+      }
+    </style>
+
+    <script>
+      let socketClient;
+
+      const defaultData = JSON.stringify(
+        {
+          platform: 'twitch',
+          channelName: 'nfgCodex',
+          platformEventNames: ['chat', 'join', 'part']
+        },
+        null,
+        4
+      );
+
+      window.addEventListener('load', () => {
+        params.value = defaultData;
+      });
+
+      function toggleConnection(event, connect) {
+        event.preventDefault();
+
+        if (connect) {
+          connectToServer(event);
+        } else {
+          socketClient.disconnect();
+
+          socketClient.off();
+        }
+      }
+
+      function connectToServer(event) {
+        if (socketClient && socketClient.connected) {
+          toggleConnection(event, false);
+        }
+
+        socketClient = io({
+          transports: ['websocket']
+        });
+
+        socketClient.on('connect', () => {
+          log.value += 'Connected to API Socket\n';
+        });
+
+        socketClient.on('disconnect', () => {
+          log.value += 'Disconnected from API Socket\n';
+        });
+
+        socketClient.on('gh-chat.evented', ({ platform, eventName, eventData }) => {
+          let msgOut = '';
+
+          switch (eventName) {
+            case 'chat':
+              msgOut = _buildChatHTML(eventData);
+              break;
+
+            case 'join':
+            case 'part':
+              msgOut = _buildJoinPartHTML(eventName, eventData);
+              break;
+          }
+
+          const chatLogMsgDiv = document.createElement('div');
+
+          chatLogMsgDiv.classList.add('chatLogMessage');
+          chatLogMsgDiv.classList.add(`platform-${platform}`);
+          chatLogMsgDiv.classList.add(`event-${eventName}`);
+          chatLogMsgDiv.innerHTML = msgOut;
+
+          chatLog.append(chatLogMsgDiv);
+        });
+      }
+
+      function _buildChatHTML({ messageBuffers, userName }) {
+        let msgStr = messageBuffers.reduce((str, chunk) => {
+          let retStr = '';
+          switch (chunk.type) {
+            case 'word':
+              retStr = chunk.content;
+              break;
+            case 'uri':
+              retStr = `<a href="${chunk.content}">${chunk.content}</a>`;
+              break;
+            case 'emote':
+              retStr = `<img src="${chunk.meta.uri}" />`;
+              break;
+          }
+
+          return `${str} ${retStr}`;
+        }, '');
+
+        return `<span class="userName">${userName}</span>: ${msgStr}`;
+      }
+
+      function _buildJoinPartHTML(eventName, { userName }) {
+        return `<span class="userName">${userName}</span> has ${eventName}ed`;
+      }
+
+      function sendSocketMessage(cmd, params) {
+        return new Promise((resolve, reject) => {
+          socketClient.emit('call', cmd, params, (err, resp) => {
+            if (!err) {
+              resolve(resp);
+            } else {
+              reject(err);
+            }
+          });
+        });
+      }
+
+      async function onSubmit(event) {
+        event.preventDefault();
+
+        try {
+          const cmd = commandName.value;
+          const parsedParams = JSON.parse(params.value);
+
+          log.value += `Sending Command (${cmd}) - ${JSON.stringify(parsedParams)}\n`;
+
+          const response = await sendSocketMessage(cmd, parsedParams);
+
+          log.value = 'Response: ' + JSON.stringify(response) + '\n' + log.value;
+        } catch (error) {
+          log.value = 'ERROR:\n' + JSON.stringify(error, null, 2) + '\n' + log.value;
+        }
+      }
+
+      async function clearLog(event) {
+        event.preventDefault();
+        log.value = '';
+      }
+    </script>
+  </head>
+  <body>
+    <div id="content">
+      <h1>Golden Hammer - Simple Socket Client</h1>
+
+      <form onsubmit="onSubmit(event)">
+        <label for="commandName"> Command Name: </label>
+        <div class="row">
+          <button onclick="toggleConnection(event,true)">Connect</button>
+          <button onclick="toggleConnection(event,false)">Disconnect</button>
+          <input type="text" id="commandName" name="commandName" />
+          <button type="submit">Call</button>
+        </div>
+        <label for="params"> JSON Data: </label>
+        <textarea id="params" name="params" cols="30" rows="10"></textarea>
+        <div>
+          <label> Log: </label>
+          <button onclick="clearLog(event)">Clear Log</button>
+        </div>
+        <textarea id="log" name="log" cols="30" rows="10" readonly></textarea>
+      </form>
+
+      <h1>Chat Log</h1>
+      <div id="chatLog"></div>
+    </div>
+  </body>
+</html>

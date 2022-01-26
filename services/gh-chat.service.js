@@ -1,26 +1,28 @@
-const { TwitchMessageNormalizer } = require('../src/TwitchMessageNormalizer');
+/**
+ * @typedef {import('moleculer').Context} Context Moleculer's Context
+ */
+
+const CHAT_EVENTS = {
+  TWITCH: 'twitch-chat.evented'
+};
 
 module.exports = {
   name: 'gh-chat',
 
-  created() {
-    this.msgBuilder = new TwitchMessageNormalizer();
-  },
+  events: {
+    /** @param {Context} ctx  */
+    // Cleanup Twitch Chat event to Normalized Event, and re-event as `gh-chat.evented`
+    async [CHAT_EVENTS.TWITCH](ctx) {
+      const normalizeAction = ctx.eventName.replace('evented', 'normalize');
+      const { platformEventName, platformEventData } = ctx.params;
 
-  actions: {
-    normalize: {
-      // rest: 'POST /normalize',
-      params: {
-        type: { type: 'string', enum: ['twitch'] },
-        originalChatEventData: { type: 'any' }
-      },
-      async handler(ctx) {
-        const { _type, originalChatEventData } = ctx.params;
+      const eventData = await ctx.broker.call(normalizeAction, { platformEventName, platformEventData });
 
-        this.msgBuilder.normalize(originalChatEventData);
-      }
+      ctx.emit('gh-chat.evented', {
+        platform: 'twitch',
+        eventName: platformEventName,
+        eventData
+      });
     }
-  },
-
-  methods: {}
+  }
 };
