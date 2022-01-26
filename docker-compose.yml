@@ -42,12 +42,12 @@ services:
     environment:
       SERVICES: twitch-chat
 
-  mongo:
-    image: mongo:4
-    volumes:
-      - data:/data/db
-    networks:
-      - internal
+  #mongo:
+  #  image: mongo:4
+  #  volumes:
+  #    - data:/data/db
+  #  networks:
+  #    - internal
 
   nats:
     image: nats:2

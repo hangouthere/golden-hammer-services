@@ -82,7 +82,15 @@
 
       .chatLogMessage.platform-twitch.event-join,
       .chatLogMessage.platform-twitch.event-part {
-        font-size: 15px;
+        font-size: 10px;
+        border-left: 4px solid #29075c;
+        filter: opacity(0.5);
+        transition: filter 250ms;
+      }
+
+      .chatLogMessage.platform-twitch.event-join:hover,
+      .chatLogMessage.platform-twitch.event-part:hover {
+        filter: opacity(1);
       }
 
       .chatLogMessage.platform-twitch span.userName,
