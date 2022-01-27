@@ -172,7 +172,7 @@ module.exports = {
 
   // Enable built-in tracing function. More info: https://moleculer.services/docs/0.14/tracing.html
   tracing: {
-    enabled: true,
+    enabled: false,
     exporter: {
       type: 'Jaeger',
       options: {

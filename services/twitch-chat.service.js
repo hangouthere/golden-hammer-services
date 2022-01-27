@@ -51,7 +51,7 @@ module.exports = {
 
   created() {
     const client = new tmijs.Client({
-      options: { messagesLogLevel: 'info' },
+      options: { debug: true, messagesLogLevel: 'debug' },
       connection: {
         reconnect: true,
         secure: true
