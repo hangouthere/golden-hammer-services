@@ -57,8 +57,8 @@ module.exports = {
         secure: true
       },
       identity: {
-        username: process.env.TMIJS_USERNAME
-        // password: process.env.TMIJS_PASSWORD
+        username: process.env.TMIJS_USERNAME,
+        password: process.env.TMIJS_PASSWORD
       }
     });
 

@@ -136,7 +136,7 @@ async function onSubmit(event) {
 
     const response = await sendSocketMessage(type, cmd, parsedParams);
 
-    addLog('Response: ' + JSON.stringify(response));
+    addLog('Response: ' + JSON.stringify(response, null, 2));
   } catch (error) {
     addLog('ERROR:\n' + JSON.stringify(error, null, 2));
   }
