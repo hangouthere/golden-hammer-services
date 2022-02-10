@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const { match } = require('moleculer').Utils;
 
 module.exports = {
@@ -8,7 +7,6 @@ module.exports = {
         origin: '*'
       },
       namespaces: {
-        // ! FIXME Do we want MOAR namespaces???
         '/': {
           events: {
             call: {
@@ -16,6 +14,10 @@ module.exports = {
             },
             disconnect() {
               const socketId = this.id;
+
+              this.$service.logger.info(
+                `PubSub Client (${socketId}) - Disconnected, Attempting to Unregister all PubSubs!`
+              );
 
               this.$service.broker.emit('gh-pubsub.unregisterAll', { socketId });
             },

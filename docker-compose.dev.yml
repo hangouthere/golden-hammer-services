@@ -1,6 +1,6 @@
 version: '3.7'
 
-x-debug-mode: &debug-mode
+x-dev-mode: &dev-mode
   command: ['npm', 'run', 'dev']
   stdin_open: true
   tty: true
@@ -14,21 +14,21 @@ x-debug-mode: &debug-mode
 
 services:
   api:
-    <<: *debug-mode
+    <<: *dev-mode
     ports:
       - '9229:9229'
 
   gh-pubsub:
-    <<: *debug-mode
+    <<: *dev-mode
     ports:
       - '9230:9229'
 
   gh-chat:
-    <<: *debug-mode
+    <<: *dev-mode
     ports:
       - '9240:9229'
 
   twitch-chat:
-    <<: *debug-mode
+    <<: *dev-mode
     ports:
       - '9241:9229'

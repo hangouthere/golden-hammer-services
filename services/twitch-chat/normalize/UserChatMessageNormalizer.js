@@ -1,33 +1,42 @@
-// const REGEXP_WORD_SPLITTER = /\w*\s?/g;
+module.exports = class UserChatMessageNormalizer {
+  _ts = us => +us['tmi-sent-ts'];
 
-class NormalizeMessageTwitch {
-  buffers = [];
-
-  _ltrIdx = 0;
-  _curBuff;
-
-  normalize(chatEvent, chatEventData) {
-    //! FIXME Might need knowledge about platformEventName
-    //! (ie, "chat", would need this existing normalizer, but others might just need a remapping? ex: )
-    //! FIXME: Non-chat is just returned for now
-    if ('chat' !== chatEvent) {
-      return chatEventData;
-    }
-
-    const { userState } = chatEventData;
+  normalize = ({ incomingEventArguments }) => {
+    const [userState, message] = incomingEventArguments;
+    const { userName, roles } = this._extractUserAndRoles(userState);
 
     // Get URL Indices before any modification
-    userState.uriIndices = this._getUriRanges(chatEventData);
-    userState.emoteIndices = this._getEmoteRanges(chatEventData);
+    const uriIndices = this._getUriRanges(message);
+    const emoteIndices = this._getEmoteRanges(userState);
+
+    return {
+      timestamp: this._ts(userState),
+
+      /** @type {import('globals').UserChatEventData} */
+      normalizedData: {
+        userName,
+        roles,
+        userId: userState['user-id'],
+        messageId: userState.id,
+        messageBuffers: this._iterateMessage({ message, uriIndices, emoteIndices })
+      }
+    };
+  };
+
+  _extractUserAndRoles(userState) {
+    const roles = !!userState['user-type'] ? [userState['user-type']] : [];
+
+    if (userState.subscriber) {
+      roles.push('subscriber');
+    }
 
     return {
       userName: userState['display-name'],
-      messageBuffers: this._iterateMessage(chatEventData),
-      originalEventData: chatEventData
+      roles
     };
   }
 
-  _getUriRanges({ message }) {
+  _getUriRanges(message) {
     const UriSearch = /(https?:\/\/(www\.)?)?[a-z0-9\-\.]+\.[a-z]{2,5}(:[0-9]{1,5})?[/a-z0-9]+/g;
 
     const matches = message.match(UriSearch);
@@ -47,7 +56,7 @@ class NormalizeMessageTwitch {
     });
   }
 
-  _getEmoteRanges({ userState: { emotes } }) {
+  _getEmoteRanges({ emotes }) {
     if (!emotes) {
       return [];
     }
@@ -74,7 +83,7 @@ class NormalizeMessageTwitch {
     return emoteRanges;
   }
 
-  _iterateMessage({ userState, message }) {
+  _iterateMessage({ message, uriIndices, emoteIndices }) {
     const wordChunks = message.split(' ');
 
     // using Extended_Pictographic instead of Emoji to not match numbers, see: https://stackoverflow.com/a/64396666
@@ -89,7 +98,8 @@ class NormalizeMessageTwitch {
       msgIdx = message.indexOf(wordChunk);
 
       const chunkType = this._determineChunk({
-        userState,
+        uriIndices,
+        emoteIndices,
         msgIdx,
         charOffset,
         wordChunk
@@ -102,9 +112,9 @@ class NormalizeMessageTwitch {
     });
   }
 
-  _determineChunk({ userState, msgIdx, charOffset, wordChunk }) {
-    const emoteIdx = userState.emoteIndices.find(emoteIdx => emoteIdx.start === msgIdx - charOffset);
-    const uriIdx = !emoteIdx && userState.uriIndices.find(uriIdx => uriIdx.start === msgIdx);
+  _determineChunk({ uriIndices, emoteIndices, msgIdx, charOffset, wordChunk }) {
+    const emoteIdx = emoteIndices.find(emoteIdx => emoteIdx.start === msgIdx - charOffset);
+    const uriIdx = !emoteIdx && uriIndices.find(uriIdx => uriIdx.start === msgIdx);
 
     let retVal = {};
 
@@ -131,6 +141,4 @@ class NormalizeMessageTwitch {
 
     return retVal;
   }
-}
-
-exports.NormalizeMessageTwitch = NormalizeMessageTwitch;
+};

@@ -2,6 +2,7 @@
   "name": "golden-hammer",
   "version": "1.0.0",
   "description": "My Moleculer-based microservices project",
+  "types": "./globals.d.ts",
   "scripts": {
     "predev": "npm install",
     "dev": "node --inspect=0.0.0.0:9229 node_modules/moleculer/bin/moleculer-runner --repl --hot",

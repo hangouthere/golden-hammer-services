@@ -1,11 +1,14 @@
 const ApiGateway = require('moleculer-web');
-const SocketGateway = require('moleculer-io');
-const ConfigMoleculerWeb = require('./mixins/config-web');
-const ConfigMoleculerIO = require('./mixins/config-io');
 
 module.exports = {
   name: 'api',
-  mixins: [ConfigMoleculerWeb, ConfigMoleculerIO, ApiGateway, SocketGateway],
+  mixins: [
+    ApiGateway,
+    require('moleculer-io'),
+    require('./mixin-web'),
+    require('./mixin-io'),
+    require('../mixin-nodeRestartOnDisconnect')
+  ],
 
   // More info about settings: https://moleculer.services/docs/0.14/moleculer-web.html
   settings: {
@@ -32,6 +35,7 @@ module.exports = {
           return { id: 1, name: 'John Doe' };
         } else {
           // Invalid token
+          //@ts-ignore
           throw new ApiGateway.Errors.UnAuthorizedError(ApiGateway.Errors.ERR_INVALID_TOKEN);
         }
       } else {
@@ -50,15 +54,9 @@ module.exports = {
 
       // It check the `auth` property in action schema.
       if (req.$action.auth == 'required' && !user) {
+        //@ts-ignore
         throw new ApiGateway.Errors.UnAuthorizedError('NO_RIGHTS');
       }
-    }
-  },
-
-  events: {
-    '$node.disconnected'(ctx) {
-      debugger;
-      console.log('!!!!!!!! Node Disconnected!', ctx.params, ctx.meta);
     }
   }
 };

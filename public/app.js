@@ -1,152 +1,218 @@
-let socketClient;
+import AdministrationEventActor from './actors/AdministrationEventActor.js';
+import MonetizationEventActor from './actors/MonetizationEventActor.js';
+import AdministrationEventEntries from './logEntries/AdministrationEventEntries.js';
+import MonetizationEventEntries from './logEntries/MonetizationEventEntries.js';
+import UserChatEventEntries from './logEntries/UserChatEventEntries.js';
 
-const defaultData = JSON.stringify(
+const DEFAULT_DATA = JSON.stringify(
   {
-    platform: 'twitch',
-    channelName: 'nfgCodex',
-    platformEventNames: ['chat', 'join', 'part']
+    platformName: 'twitch',
+    connectTarget: 'nfgcodex',
+    eventCategories: ['UserChat', 'Monetization', 'Administration', 'System', 'PlatformSpecific']
   },
   null,
   4
 );
 
-window.addEventListener('load', () => {
-  params.value = defaultData;
-});
+const EventControllers = {
+  Administration: {
+    LogEntry: new AdministrationEventEntries(),
+    Actor: new AdministrationEventActor()
+  },
 
-function toggleConnection(event, connect) {
-  event.preventDefault();
+  Monetization: {
+    LogEntry: new MonetizationEventEntries(),
+    Actor: new MonetizationEventActor()
+  },
 
-  if (connect) {
-    connectToServer(event);
-  } else {
-    socketClient.disconnect();
-
-    socketClient.off();
+  UserChat: {
+    LogEntry: new UserChatEventEntries(),
+    Actor: null
   }
-}
+};
 
-function connectToServer(event) {
-  if (socketClient && socketClient.connected) {
-    toggleConnection(event, false);
+export default class App {
+  socketClient;
+
+  socketParams = /** @type {HTMLTextAreaElement} */ (document.getElementById('socketParams'));
+  commandName = /** @type {HTMLInputElement} */ (document.getElementById('commandName'));
+  addAtTop = /** @type {HTMLInputElement} */ (document.getElementById('addAtTop'));
+  scrollWithEventLog = /** @type {HTMLInputElement} */ (document.getElementById('scrollWithEventLog'));
+  socketLog = /** @type {HTMLTextAreaElement} */ (document.getElementById('socketLog'));
+  eventLog = /** @type {HTMLElement} */ (document.getElementById('eventLog'));
+  totalEstimatedValued = /** @type {HTMLElement} */ (document.getElementById('totalEstimatedValued'));
+
+  get isConnected() {
+    return this.socketClient && this.socketClient.connected;
   }
 
-  socketClient = io({
-    transports: ['websocket']
-  });
+  constructor() {
+    // Set default data
+    this.socketParams.value = DEFAULT_DATA;
+    this.totalEstimatedValued.innerText = (0).toFixed(2);
+  }
 
-  socketClient.on('connect', () => {
-    addLog('Connected to API Socket');
-  });
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  socketClient.on('disconnect', () => {
-    addLog('Disconnected from API Socket');
-  });
+  toggleConnection(event, connect) {
+    event.preventDefault();
 
-  socketClient.on('gh-chat.evented', ({ platform, eventName, eventData }) => {
-    let msgOut = '';
+    if (connect) {
+      this._connectToServer(event);
+    } else if (this.socketClient) {
+      this.socketClient.disconnect();
+      this.socketClient.off();
+    }
+  }
 
-    switch (eventName) {
-      case 'chat':
-        msgOut = _buildChatHTML(eventData);
-        break;
+  async onSubmit(event) {
+    event.preventDefault();
 
-      case 'join':
-      case 'part':
-        msgOut = _buildJoinPartHTML(eventName, eventData);
-        break;
+    if (!this.isConnected) {
+      this._addLog('Not Connected yet!');
+      return;
     }
 
-    const chatLogMsgDiv = document.createElement('div');
+    const cmd = this.commandName.value;
+    const type = event.submitter.name;
 
-    chatLogMsgDiv.classList.add('chatLogMessage');
-    chatLogMsgDiv.classList.add(`platform-${platform}`);
-    chatLogMsgDiv.classList.add(`event-${eventName}`);
-    chatLogMsgDiv.innerHTML = msgOut;
-
-    if (addAtTop.checked) {
-      chatLog.prepend(chatLogMsgDiv);
-    } else {
-      chatLog.append(chatLogMsgDiv);
-    }
-  });
-}
-
-function _buildChatHTML({ messageBuffers, userName }) {
-  let msgStr = messageBuffers.reduce((str, chunk) => {
-    let retStr = '';
-    switch (chunk.type) {
-      case 'word':
-        retStr = chunk.content;
-        break;
-      case 'uri':
-        retStr = `<a href="${chunk.content}">${chunk.content}</a>`;
-        break;
-      case 'emote':
-        retStr = `<img src="${chunk.meta.uri}" />`;
-        break;
+    if (!cmd) {
+      this._addLog('You must specify a command!\n\tTry api.');
+      return;
     }
 
-    return `${str} ${retStr}`;
-  }, '');
+    try {
+      const parsedParams = JSON.parse(this.socketParams.value);
 
-  return `<span class="userName">${userName}</span>: ${msgStr}`;
-}
+      this._addLog(`Sending Command (${cmd}) - ${JSON.stringify(parsedParams)}\n`);
 
-function _buildJoinPartHTML(eventName, { userName }) {
-  return `<span class="userName">${userName}</span> has ${eventName}ed`;
-}
+      const response = await this._sendSocketMessage(type, cmd, parsedParams);
 
-function sendSocketMessage(type, cmd, params) {
-  return new Promise((resolve, reject) => {
-    const args = 'call' === type ? ['call', cmd, params] : [cmd, params];
+      this._addLog('Response: ' + JSON.stringify(response, null, 2));
+    } catch (error) {
+      this._addLog('ERROR:\n' + JSON.stringify(error, null, 2));
+    }
+  }
 
-    args.push((err, resp) => {
-      if (!err) {
-        resolve(resp);
-      } else {
-        reject(err);
-      }
+  clearLog(event) {
+    event.preventDefault();
+    this.socketLog.value = '';
+  }
+
+  clearEvents() {
+    this.eventLog.innerText = '';
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  _onConnect = () => {
+    this._addLog('Connected to API Socket');
+  };
+
+  _onDisconnect = () => {
+    this._addLog('Disconnected from API Socket');
+  };
+
+  /**
+   * @param {import('globals').NormalizedEvent} normalizedEvent
+   */
+  _onPubSubMessaging = normalizedEvent => {
+    const chosenEventControllers = this._getControllersForEventCategory(normalizedEvent.eventClassification.category);
+
+    this._generateAndInsertEventLogEntry(chosenEventControllers.LogEntry, normalizedEvent);
+    this._actionOnEventClassification(chosenEventControllers.Actor, normalizedEvent);
+  };
+
+  _connectToServer(event) {
+    // If already connected, disconnect FIRST
+    if (this.isConnected) {
+      this.toggleConnection(event, false);
+    }
+
+    this.socketClient = globalThis.io({
+      transports: ['websocket']
     });
 
-    socketClient.emit.apply(socketClient, args);
-  });
-}
-
-async function onSubmit(event) {
-  event.preventDefault();
-
-  if (!socketClient || !socketClient.connected) {
-    addLog('Not Connected yet!');
-    return;
+    this.socketClient.on('connect', this._onConnect);
+    this.socketClient.on('disconnect', this._onDisconnect);
+    this.socketClient.on('gh-chat.evented', this._onPubSubMessaging);
   }
 
-  const cmd = commandName.value;
-  const type = event.submitter.name;
+  _sendSocketMessage(type, cmd, params) {
+    return new Promise((resolve, reject) => {
+      // Build args to "apply" to socket.emit
+      // If we want to "call", we use it as the event, otherwise the command is the event
+      const args = 'call' === type ? ['call', cmd, params] : [cmd, params];
 
-  if (!cmd) {
-    addLog('You must specify a command!\n\tTry api.');
-    return;
+      args.push((err, resp) => {
+        if (!err) {
+          resolve(resp);
+        } else {
+          reject(err);
+        }
+      });
+
+      this.socketClient.emit.apply(this.socketClient, args);
+    });
   }
 
-  try {
-    const parsedParams = JSON.parse(params.value);
-
-    addLog(`Sending Command (${cmd}) - ${JSON.stringify(parsedParams)}`);
-
-    const response = await sendSocketMessage(type, cmd, parsedParams);
-
-    addLog('Response: ' + JSON.stringify(response, null, 2));
-  } catch (error) {
-    addLog('ERROR:\n' + JSON.stringify(error, null, 2));
+  _addLog(msg) {
+    this.socketLog.value = `${msg}\n${this.socketLog.value}`;
   }
-}
 
-function clearLog(event) {
-  event.preventDefault();
-  log.value = '';
-}
+  _getControllersForEventCategory(eventCategory) {
+    const chosenEventControllers = EventControllers[eventCategory];
 
-function addLog(msg) {
-  log.value = `${msg}\n${log.value}`;
+    if (!chosenEventControllers) {
+      return this._addLog(`Error: ${eventCategory} is not a supported EventCategory in this client!`);
+    }
+
+    return chosenEventControllers;
+  }
+
+  _generateAndInsertEventLogEntry(LogEntry, { eventClassification, platform, connectTarget, eventData }) {
+    const insertEventLogDiv = LogEntry.buildEntry({
+      platform,
+      eventClassification,
+      connectTarget,
+      eventData
+    });
+
+    // Assign general classes for styling and selecting via CSS and Actors respectively
+    insertEventLogDiv.classList.add(`eventlog-entry`);
+    insertEventLogDiv.classList.add(`eventCategory-${eventClassification.category}`);
+    insertEventLogDiv.classList.add(`eventSubCategory-${eventClassification.subCategory}`);
+    insertEventLogDiv.classList.add(`platform-${platform.name}`);
+    insertEventLogDiv.classList.add(`platform-event-${platform.eventName}`);
+
+    this.eventLog.append(insertEventLogDiv);
+
+    this._manageEventLogScroll();
+  }
+
+  _actionOnEventClassification(Actor, { eventClassification, platform, connectTarget, eventData }) {
+    if (!Actor) {
+      return;
+    }
+
+    Actor.act({
+      platform,
+      eventClassification,
+      connectTarget,
+      eventData,
+      elems: this
+    });
+  }
+
+  _manageEventLogScroll() {
+    // Add at top or bottom based on settings, and scrollock if enabled
+    this.eventLog.style.flexDirection = this.addAtTop.checked ? 'column-reverse' : 'column';
+
+    // Scroll Event Log if necessary
+    if (this.scrollWithEventLog.checked) {
+      // Because of how we're using flex-display, we always set the scrollTop to the scrollHeight,
+      // However, based on reverse or not, we want to invert the height value
+      this.eventLog.scrollTop = this.eventLog.scrollHeight * (this.addAtTop.checked ? -1 : 1);
+    }
+  }
 }

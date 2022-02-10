@@ -2,7 +2,12 @@
   "_Comment": "This is customized for this project, specifically for linting/hinting purposes. Otherwise, this is a purely vanilla JS project",
 
   "compilerOptions": {
-    "checkJs": true
+    "paths": {
+      "globals": ["./globals.d.ts"]
+    },
+    "checkJs": true,
+    "target": "ES2021",
+    "moduleResolution": "node"
   },
   "exclude": ["node_modules"]
 }

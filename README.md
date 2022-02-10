@@ -30,6 +30,7 @@ The over-arching goal is to normalize inputs from various platforms, and deliver
 > In the end, this is a fun project for me, and I will stream the entirety of building it on my Twitch channel until it's completed!
 >
 > http://twitch.tv/nfgCodex
+> https://trello.com/b/YVw6e2yC/project-golden-hammer
 
 ## Usage
 
@@ -42,20 +43,21 @@ The over-arching goal is to normalize inputs from various platforms, and deliver
 
 ### Environment Variables
 
-| Variable Name        | Description                                           |
-| -------------------- | ----------------------------------------------------- |
-| TMIJS_USER           | TMIJS Username                                        |
-| TMIJS_PASSWORD       | [TMIJS Password](https://twitchapps.com/tmi/)         |
-| TWITCH_CLIENT_ID     | Twitch OAuth App Client ID                            |
-| TWITCH_CLIENT_SECRET | Twitch OAuth App Client Secret                        |
-| ---                  | -----                                                 |
-| NAMESPACE            | FIXME: Moleculer Stuff, should be namespaced env vars |
-| LOGGER               | FIXME: Moleculer Stuff, should be namespaced env vars |
-| LOGLEVEL             | FIXME: Moleculer Stuff, should be namespaced env vars |
-| SERVICEDIR           | FIXME: Moleculer Stuff, should be namespaced env vars |
-| TRANSPORTER          | FIXME: Moleculer Stuff, should be namespaced env vars |
-| CACHER               | FIXME: Moleculer Stuff, should be namespaced env vars |
-| MONGO_URI            | FIXME: Moleculer Stuff, should be namespaced env vars |
+| Variable Name        | Description                                                                                                                |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| TMIJS_USER           | TMIJS Username                                                                                                             |
+| TMIJS_PASSWORD       | [TMIJS Password](https://twitchapps.com/tmi/)                                                                              |
+| TWITCH_CLIENT_ID     | Twitch OAuth App Client ID                                                                                                 |
+| TWITCH_CLIENT_SECRET | Twitch OAuth App Client Secret                                                                                             |
+| ---                  | -----                                                                                                                      |
+| NAMESPACE            | Moleculerjs variable: [See Official Documentation](https://moleculer.services/docs/0.14/runner.html#Environment-variables) |
+| LOGGER               | Moleculerjs variable: [See Official Documentation](https://moleculer.services/docs/0.14/runner.html#Environment-variables) |
+| LOGLEVEL             | Moleculerjs variable: [See Official Documentation](https://moleculer.services/docs/0.14/runner.html#Environment-variables) |
+| SERVICEDIR           | Moleculerjs variable: [See Official Documentation](https://moleculer.services/docs/0.14/runner.html#Environment-variables) |
+| TRANSPORTER          | Moleculerjs variable: [See Official Documentation](https://moleculer.services/docs/0.14/runner.html#Environment-variables) |
+| CACHER               | Moleculerjs variable: [See Official Documentation](https://moleculer.services/docs/0.14/runner.html#Environment-variables) |
+| ---                  | -----                                                                                                                      |
+| MONGO_URI            | TODO: Namespace mongo for service. IE, MONGO_URI_USERS                                                                     |
 
 ### Development Mode
 
