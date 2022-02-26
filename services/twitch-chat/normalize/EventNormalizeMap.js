@@ -16,7 +16,7 @@ const JoinPart = {
     return {
       timestamp: Date.now(),
 
-      /** @type {import('globals').UserChatEventData} */
+      /** @type {import('golden-hammer-shared').UserChatEventData} */
       normalizedData: {
         userName,
         presence

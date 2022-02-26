@@ -114,7 +114,7 @@ export default class App {
   };
 
   /**
-   * @param {import('globals').NormalizedEvent} normalizedEvent
+   * @param { import('golden-hammer-shared').NormalizedMessagingEvent } normalizedEvent
    */
   _onPubSubMessaging = normalizedEvent => {
     const chosenEventControllers = this._getControllersForEventCategory(normalizedEvent.eventClassification.category);

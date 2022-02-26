@@ -9,7 +9,7 @@ module.exports = class MonetizationNormalizer {
     return {
       timestamp: this._ts(userState),
 
-      /** @type {import('globals').MonetizationEventData} */
+      /** @type {import('golden-hammer-shared').MonetizationEventData} */
       normalizedData: {
         message,
         sourceUserName,
@@ -26,7 +26,7 @@ module.exports = class MonetizationNormalizer {
     return {
       timestamp: this._ts(userState),
 
-      /** @type {import('globals').MonetizationEventData} */
+      /** @type {import('golden-hammer-shared').MonetizationEventData} */
       normalizedData: {
         duration,
         sourceUserName,
@@ -43,7 +43,7 @@ module.exports = class MonetizationNormalizer {
     return {
       timestamp: this._ts(userState),
 
-      /** @type {import('globals').MonetizationEventData} */
+      /** @type {import('golden-hammer-shared').MonetizationEventData} */
       normalizedData: {
         duration,
         sourceUserName,
@@ -61,7 +61,7 @@ module.exports = class MonetizationNormalizer {
     return {
       timestamp: this._ts(userState),
 
-      /** @type {import('globals').MonetizationEventData} */
+      /** @type {import('golden-hammer-shared').MonetizationEventData} */
       normalizedData: {
         message,
         sourceUserName,
@@ -78,7 +78,7 @@ module.exports = class MonetizationNormalizer {
     return {
       timestamp: this._ts(userState),
 
-      /** @type {import('globals').MonetizationEventData} */
+      /** @type {import('golden-hammer-shared').MonetizationEventData} */
       normalizedData: {
         message,
         sourceUserName,

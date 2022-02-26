@@ -7,7 +7,7 @@ module.exports = class AdministrationNormalizer {
     return {
       timestamp: this._ts(userState),
 
-      /** @type {import('globals').AdministrationEventData} */
+      /** @type {import('golden-hammer-shared').AdministrationEventData} */
       normalizedData: {
         userName,
         duration,
@@ -22,7 +22,7 @@ module.exports = class AdministrationNormalizer {
     return {
       timestamp: this._ts(userState),
 
-      /** @type {import('globals').AdministrationEventData} */
+      /** @type {import('golden-hammer-shared').AdministrationEventData} */
       normalizedData: {
         userName,
         targetId: userState['target-user-id']
@@ -36,7 +36,7 @@ module.exports = class AdministrationNormalizer {
     return {
       timestamp: this._ts(userState),
 
-      /** @type {import('globals').AdministrationEventData} */
+      /** @type {import('golden-hammer-shared').AdministrationEventData} */
       normalizedData: {
         userName,
         removedMessage: message,

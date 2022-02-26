@@ -12,7 +12,7 @@ module.exports = class UserChatMessageNormalizer {
     return {
       timestamp: this._ts(userState),
 
-      /** @type {import('globals').UserChatEventData} */
+      /** @type {import('golden-hammer-shared').UserChatEventData} */
       normalizedData: {
         userName,
         roles,

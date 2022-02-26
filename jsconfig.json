@@ -1,13 +1,17 @@
 {
-  "_Comment": "This is customized for this project, specifically for linting/hinting purposes. Otherwise, this is a purely vanilla JS project",
-
   "compilerOptions": {
     "paths": {
-      "globals": ["./globals.d.ts"]
+      "-/*": ["./src/*"]
     },
+    "outDir": "./dist",
     "checkJs": true,
     "target": "ES2021",
-    "moduleResolution": "node"
+    "module": "ES2020",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "resolveJsonModule": true
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist", "test"]
 }

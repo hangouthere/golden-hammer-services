@@ -2,7 +2,7 @@ const EventNormalizeMap = require('./EventNormalizeMap');
 
 module.exports = class Normalizer {
   normalize(incomingEventName, incomingEventArguments) {
-    /** @type {import('globals').EventDataTypes} */
+    /** @type {import('golden-hammer-shared').EventDataTypes} */
     let normalizedData, timestamp;
 
     // Get our Classification mapping and build the object

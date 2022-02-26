@@ -3,7 +3,7 @@ version: '3.7'
 x-moleculer-microservice: &moleculer-microservice
   build:
     context: .
-  image: golden-hammer
+  image: golden-hammer-service
   restart: unless-stopped
   env_file: .env
   depends_on:

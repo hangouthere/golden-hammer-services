@@ -10,6 +10,7 @@ module.exports = {
 
   created() {
     const client = new tmijs.Client({
+      // @ts-ignore
       options: { skipUpdatingEmotesets: true, messagesLogLevel: 'info', logLevel: 'info' },
       connection: {
         reconnect: true,
@@ -106,9 +107,10 @@ module.exports = {
 
       const { timestamp, eventClassification, normalizedData } = normalizedContext;
 
-      /** @type {import('globals').NormalizedEvent} */
+      /** @type {import('golden-hammer-shared').NormalizedMessagingEvent} */
       const normalizedEvent = {
         timestamp,
+        pubSubMsgId: 'INVALID_MSG_ID',
         eventClassification,
         connectTarget: channel.replace('#', ''),
         eventData: normalizedData,

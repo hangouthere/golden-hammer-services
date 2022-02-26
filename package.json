@@ -1,8 +1,7 @@
 {
-  "name": "golden-hammer",
+  "name": "golden-hammer-services",
   "version": "1.0.0",
   "description": "My Moleculer-based microservices project",
-  "types": "./globals.d.ts",
   "scripts": {
     "predev": "npm install",
     "dev": "node --inspect=0.0.0.0:9229 node_modules/moleculer/bin/moleculer-runner --repl --hot",
@@ -18,24 +17,29 @@
   ],
   "author": "",
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "jest": "^27.1.0",
-    "jest-cli": "^27.1.0",
-    "moleculer-repl": "^0.6.6"
+    "@types/socket.io-client": "^3.0.0",
+    "@types/tmi.js": "^1.8.1",
+    "@types/uuid": "^8.3.4",
+    "eslint": "^8.9.0",
+    "golden-hammer-shared": "bitbucket:nerdfoundrygaming/golden-hammer-shared",
+    "jest": "^27.5.1",
+    "jest-cli": "^27.5.1",
+    "moleculer-repl": "^0.7.0"
   },
   "dependencies": {
-    "ioredis": "^4.27.9",
+    "ioredis": "^4.28.5",
     "jaeger-client": "^3.19.0",
-    "moleculer": "^0.14.16",
-    "moleculer-db": "^0.8.15",
-    "moleculer-db-adapter-mongo": "^0.4.13",
+    "moleculer": "^0.14.19",
+    "moleculer-db": "^0.8.17",
+    "moleculer-db-adapter-mongo": "^0.4.14",
     "moleculer-io": "^2.0.0",
-    "moleculer-web": "^0.10.2",
-    "nats": "^2.2.0",
-    "tmi.js": "^1.8.5"
+    "moleculer-web": "^0.10.4",
+    "nats": "^2.6.1",
+    "tmi.js": "^1.8.5",
+    "uuid": "^8.3.2"
   },
   "engines": {
-    "node": ">= 12.x.x"
+    "node": ">= 16.x.x"
   },
   "jest": {
     "coverageDirectory": "../coverage",

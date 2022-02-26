@@ -1,3 +1,4 @@
+const { v4: uuidv4 } = require('uuid');
 const { Context } = require('moleculer');
 const {
   getConnectTargetInfoOnPlatformForSocketId,
@@ -228,7 +229,7 @@ module.exports = {
       },
 
       /**
-       * @param {Context<import('globals').NormalizedEvent>} ctx
+       * @param {Context<import('golden-hammer-shared').NormalizedMessagingEvent>} ctx
        */
 
       handler(ctx) {
@@ -259,7 +260,7 @@ module.exports = {
 
         ctx.broker.call('api.broadcast', {
           event: 'gh-chat.evented',
-          args: [ctx.params],
+          args: [{ ...ctx.params, pubSubMsgId: uuidv4() }],
           rooms: socketIdsAwaitingThisEvent
         });
       }
