@@ -1,3 +1,5 @@
+const { EventClassifications } = require('golden-hammer-shared');
+
 const { v4: uuidv4 } = require('uuid');
 const { Context } = require('moleculer');
 const {
@@ -219,7 +221,7 @@ module.exports = {
           $$type: 'object',
           category: {
             type: 'string',
-            enum: ['UserChat', 'Monetization', 'Administration', 'System', 'PlatformSpecific']
+            enum: EventClassifications
           },
           subCategory: 'string'
         },

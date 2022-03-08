@@ -8,7 +8,7 @@ const DEFAULT_DATA = JSON.stringify(
   {
     platformName: 'twitch',
     connectTarget: 'nfgcodex',
-    eventCategories: ['UserChat', 'Monetization', 'Administration', 'System', 'PlatformSpecific']
+    eventCategories: ['UserChat', 'Monetization', 'Administration', 'PlatformSpecific']
   },
   null,
   4

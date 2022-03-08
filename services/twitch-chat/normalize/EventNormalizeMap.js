@@ -81,6 +81,7 @@ module.exports = {
 
   //! ///////////////////////////////////////////////////////
   //! Administration
+  // ! FIXME - Needs rolechange event of some sort (should give entire role-set to not be confused)
   /**
   mod: {
     EventClassification: {
@@ -133,19 +134,6 @@ module.exports = {
     },
     Normalizer: AdministrationNormalizer.normalizeMessageRemoval
   }
-
-  //! ///////////////////////////////////////////////////////
-  //! System
-  // 'connecting',
-  // 'logon',
-  // 'raw_message',
-  // 'connected',
-  // 'disconnected',
-  // 'notice',
-  // 'ping',
-  // 'pong',
-  // 'reconnect',
-  // 'serverchange'
 
   //! ///////////////////////////////////////////////////////
   //! PlatformSpecific
