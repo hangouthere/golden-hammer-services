@@ -5,6 +5,7 @@
   "scripts": {
     "predev": "npm install",
     "dev": "node --inspect=0.0.0.0:9229 node_modules/moleculer/bin/moleculer-runner --repl --hot",
+    "dev-brk": "node --inspect-brk=0.0.0.0:9229 node_modules/moleculer/bin/moleculer-runner --repl --hot",
     "start": "moleculer-runner",
     "cli": "moleculer connect NATS",
     "ci": "jest --watch",

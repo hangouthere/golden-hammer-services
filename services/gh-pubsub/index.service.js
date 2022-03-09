@@ -29,6 +29,7 @@ module.exports = {
         connectTarget: 'string',
         eventCategories: 'string[]'
       },
+      /** @param {Context} ctx */
       async handler(ctx) {
         const socketId = ctx.meta.$socketId;
 
@@ -80,6 +81,8 @@ module.exports = {
         this.logger.info(
           `PubSub Client (${socketId}) - Registered ${platformName}->${connectTarget}: ${eventCategories.join(', ')}`
         );
+
+        ctx.broker.emit('api.socket-used', { socketId });
 
         // Return sub success!
         return {

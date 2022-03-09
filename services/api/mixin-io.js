@@ -1,4 +1,8 @@
+const { v4: uuidv4 } = require('uuid');
 const { match } = require('moleculer').Utils;
+
+const TTL_SOCKET_UNREGISTERED = 15 * 1000;
+const TimeoutMap = {};
 
 module.exports = {
   settings: {
@@ -8,6 +12,11 @@ module.exports = {
       },
       namespaces: {
         '/': {
+          middlewares: [
+            function () {
+              this.SocketAutoTimeoutMiddleware(...arguments);
+            }
+          ],
           events: {
             call: {
               whitelist: ['gh-pubsub.*']
@@ -34,6 +43,44 @@ module.exports = {
           }
         }
       }
+    }
+  },
+
+  events: {
+    // Socket is considered used, remove from autoTimeout feature
+    'api.socket-used': {
+      params: {
+        socketId: 'string'
+      },
+      handler: async ctx => {
+        const { socketId } = ctx.params;
+        const timeoutId = TimeoutMap[socketId];
+
+        clearTimeout(timeoutId);
+        delete TimeoutMap[socketId];
+      }
+    }
+  },
+
+  methods: {
+    SocketAutoTimeoutMiddleware(socket, next) {
+      // Set to autoTimeout
+      TimeoutMap[socket.id] = setTimeout(this.disconnectSocket.bind(this, socket), TTL_SOCKET_UNREGISTERED);
+
+      return next();
+    },
+
+    disconnectSocket(socket) {
+      const _this = this;
+      _this.logger.info(`Auto Disconnecting Socket Due to Inactivity: ${socket.id}`);
+
+      _this.broker.call('api.broadcast', {
+        event: 'gh-pubsub.rejected',
+        args: [{ reason: 'Did not register for any PubSub services within the alloted time', pubSubMsgId: uuidv4() }],
+        rooms: [socket.id]
+      });
+
+      socket.disconnect(true);
     }
   }
 };
