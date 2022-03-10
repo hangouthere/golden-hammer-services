@@ -4,7 +4,9 @@
   "description": "My Moleculer-based microservices project",
   "scripts": {
     "predev": "npm install",
-    "dev": "node --inspect=0.0.0.0:9229 node_modules/moleculer/bin/moleculer-runner --repl --hot",
+    "dev": "NODE_ENV=development concurrently -r 'npm:dev-concurrently*'",
+    "dev-concurrently:watchShared": "echo \"Monitoring /golden-hammer-shared for replication...\" && nodemon --watch /golden-hammer-shared -e js,jsx,ts,tsx,json --exec \"cp -fR /golden-hammer-shared ./node_modules/ 2>&1 > /dev/null\" 2>&1 > /dev/null",
+    "dev-concurrently:moleculer": "node --inspect=0.0.0.0:9229 node_modules/moleculer/bin/moleculer-runner --repl --hot",
     "dev-brk": "node --inspect-brk=0.0.0.0:9229 node_modules/moleculer/bin/moleculer-runner --repl --hot",
     "start": "moleculer-runner",
     "cli": "moleculer connect NATS",
@@ -21,8 +23,9 @@
     "@types/socket.io-client": "^3.0.0",
     "@types/tmi.js": "^1.8.1",
     "@types/uuid": "^8.3.4",
+    "concurrently": "^7.0.0",
     "eslint": "^8.9.0",
-    "golden-hammer-shared": "bitbucket:nerdfoundrygaming/golden-hammer-shared",
+    "golden-hammer-shared": "github:nerdfoundry/golden-hammer-shared",
     "jest": "^27.5.1",
     "jest-cli": "^27.5.1",
     "moleculer-repl": "^0.7.0"

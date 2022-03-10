@@ -9,6 +9,7 @@ x-dev-mode: &dev-mode
     - REQUESTTIMEOUT=0
   volumes:
     - './:/app'
+    - ../golden-hammer-shared:/golden-hammer-shared
   ports:
     - '9229:9229'
 
