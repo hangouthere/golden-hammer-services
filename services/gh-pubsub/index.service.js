@@ -201,6 +201,29 @@ module.exports = {
 
         this.logger.info(`Unregistered ALL PubSubs for Socket ID: ${ctx.params.socketId}`);
       }
+    },
+
+    simulate: {
+      params: {
+        platformName: VALIDATOR_PLATFORMS,
+        connectTarget: 'string',
+        platformEventName: 'string',
+        platformEventData: 'any'
+      },
+
+      async handler(ctx) {
+        const { platformName, connectTarget, platformEventName, platformEventData } = ctx.params;
+
+        const delegateService = {
+          twitch: 'twitch-chat'
+        }[platformName];
+
+        if (!delegateService) {
+          throw new Error('Invalid Platform: ${platformName}');
+        }
+
+        this.broker.emit(`${delegateService}.simulate`, { connectTarget, platformEventName, platformEventData });
+      }
     }
   },
 
@@ -226,11 +249,11 @@ module.exports = {
             type: 'string',
             enum: EventClassifications
           },
-          subCategory: 'string'
+          subCategory: 'string|optional'
         },
         connectTarget: 'string',
         timestamp: 'number',
-        eventData: 'any'
+        eventData: 'any|optional'
       },
 
       /**

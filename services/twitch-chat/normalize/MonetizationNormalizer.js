@@ -83,6 +83,7 @@ module.exports = class MonetizationNormalizer {
         message,
         sourceUserName,
         targetUserName: userName,
+        duration,
         estimatedValue: this._estimateValue(userState['msg-param-sub-plan'], duration)
       }
     };

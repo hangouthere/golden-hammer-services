@@ -1,9 +1,11 @@
 const AdministrationNormalizerClass = require('./AdministrationNormalizer');
 const MonetizationNormalizerClass = require('./MonetizationNormalizer');
+const ProxyNormalizerClass = require('./ProxyNormalizer');
 const UserChatMessageNormalizer = require('./UserChatMessageNormalizer');
 
 const AdministrationNormalizer = new AdministrationNormalizerClass();
 const MonetizationNormalizer = new MonetizationNormalizerClass();
+const ProxyNormalizer = new ProxyNormalizerClass();
 
 const JoinPart = {
   EventClassification: {
@@ -133,20 +135,63 @@ module.exports = {
       subCategory: 'MessageRemoval'
     },
     Normalizer: AdministrationNormalizer.normalizeMessageRemoval
-  }
+  },
 
   //! ///////////////////////////////////////////////////////
   //! PlatformSpecific
   // 'emotesets', // Don't need for bot system
   // hosting // might be if bot host
   // unhost // might be if bot host
-  // clearchat
-  // r9kbeta:
-  // emoteonly
-  // followersonly
-  // subscribers
-  // slowmode
-  // hosted
-  // raided
-  // roomstate
+  clearchat: {
+    EventClassification: {
+      category: 'PlatformSpecific'
+    },
+    Normalizer: ProxyNormalizer.normalize
+  },
+
+  emoteonly: {
+    EventClassification: {
+      category: 'PlatformSpecific'
+    },
+    Normalizer: ProxyNormalizer.normalize
+  },
+  subscribers: {
+    EventClassification: {
+      category: 'PlatformSpecific'
+    },
+    Normalizer: ProxyNormalizer.normalize
+  },
+
+  followersonly: {
+    EventClassification: {
+      category: 'PlatformSpecific'
+    },
+    Normalizer: ProxyNormalizer.normalize
+  },
+  slowmode: {
+    EventClassification: {
+      category: 'PlatformSpecific'
+    },
+    Normalizer: ProxyNormalizer.normalize
+  },
+
+  r9kbeta: {
+    EventClassification: {
+      category: 'PlatformSpecific'
+    },
+    Normalizer: ProxyNormalizer.normalize
+  },
+
+  hosted: {
+    EventClassification: {
+      category: 'PlatformSpecific'
+    },
+    Normalizer: ProxyNormalizer.normalize
+  },
+  raided: {
+    EventClassification: {
+      category: 'PlatformSpecific'
+    },
+    Normalizer: ProxyNormalizer.normalize
+  }
 };

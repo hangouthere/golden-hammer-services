@@ -95,6 +95,22 @@ module.exports = {
     }
   },
 
+  events: {
+    'twitch-chat.simulate': {
+      params: {
+        connectTarget: 'string',
+        platformEventName: 'string',
+        platformEventData: 'any'
+      },
+
+      async handler(ctx) {
+        const { connectTarget, platformEventName, platformEventData } = ctx.params;
+
+        this.delegateIRCEvent.call(this, platformEventName, `#${connectTarget}`, ...platformEventData);
+      }
+    }
+  },
+
   methods: {
     // Note: because of *what* events we're listening to, we can assume the first param is `channel`
     // TODO: Verify this is safe ^^^^
