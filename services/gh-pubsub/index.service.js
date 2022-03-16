@@ -234,8 +234,8 @@ module.exports = {
       await this.actions.unregisterAll(ctx.params);
     },
 
-    // On gh-chat.evented, proxy to known socketIds as socket.io rooms
-    'gh-chat.evented': {
+    // On gh-messaging.evented, proxy to known socketIds as socket.io rooms
+    'gh-messaging.evented': {
       params: {
         platform: {
           $$type: 'object',
@@ -287,7 +287,7 @@ module.exports = {
         );
 
         ctx.broker.call('api.broadcast', {
-          event: 'gh-chat.evented',
+          event: 'gh-messaging.evented',
           args: [{ ...ctx.params, pubSubMsgId: uuidv4() }],
           rooms: socketIdsAwaitingThisEvent
         });

@@ -32,10 +32,10 @@ services:
     environment:
       SERVICES: gh-pubsub
 
-  gh-chat:
+  gh-messaging:
     <<: *moleculer-microservice
     environment:
-      SERVICES: gh-chat
+      SERVICES: gh-messaging
 
   twitch-chat:
     <<: *moleculer-microservice

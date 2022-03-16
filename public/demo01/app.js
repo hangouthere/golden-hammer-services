@@ -135,7 +135,7 @@ export default class App {
 
     this.socketClient.on('connect', this._onConnect);
     this.socketClient.on('disconnect', this._onDisconnect);
-    this.socketClient.on('gh-chat.evented', this._onPubSubMessaging);
+    this.socketClient.on('gh-messaging.evented', this._onPubSubMessaging);
   }
 
   _sendSocketMessage(type, cmd, params) {

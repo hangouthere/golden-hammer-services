@@ -24,7 +24,7 @@ services:
     ports:
       - '9230:9229'
 
-  gh-chat:
+  gh-messaging:
     <<: *dev-mode
     ports:
       - '9240:9229'

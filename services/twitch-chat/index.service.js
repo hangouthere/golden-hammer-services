@@ -137,8 +137,8 @@ module.exports = {
         }
       };
 
-      // Emit the normalized data as a generic `gh-chat.evented` message!
-      this.broker.emit('gh-chat.evented', normalizedEvent);
+      // Emit the normalized data as a generic `gh-messaging.evented` message!
+      this.broker.emit('gh-messaging.evented', normalizedEvent);
     }
   }
 };

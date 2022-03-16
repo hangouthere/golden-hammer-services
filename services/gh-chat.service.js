@@ -3,7 +3,7 @@
  */
 
 module.exports = {
-  name: 'gh-chat',
+  name: 'gh-messaging',
 
   mixins: [require('./mixin-nodeRestartOnDisconnect')],
 
