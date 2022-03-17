@@ -1,3 +1,5 @@
+const genEmoteId = emoteId => `https://static-cdn.jtvnw.net/emoticons/v2/${emoteId}/default/dark/3.0`;
+
 module.exports = class UserChatMessageNormalizer {
   _ts = us => +us['tmi-sent-ts'];
 
@@ -124,7 +126,7 @@ module.exports = class UserChatMessageNormalizer {
         content: wordChunk,
         meta: {
           emoteId: emoteIdx.emoteId,
-          uri: `https://static-cdn.jtvnw.net/emoticons/v2/${emoteIdx.emoteId}/default/dark/3.0`
+          uri: genEmoteId(emoteIdx.emoteId)
         }
       };
     } else if (uriIdx) {

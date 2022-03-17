@@ -59,6 +59,17 @@ services:
     networks:
       - internal
 
+  redis-gui:
+    image: rediscommander/redis-commander
+    stdin_open: true
+    tty: true
+    networks:
+      - internal
+    environment:
+      - REDIS_HOSTS=gh:redis:6379
+    ports:
+      - '8500:8081'
+
   traefik:
     image: traefik:v2.1
     command:

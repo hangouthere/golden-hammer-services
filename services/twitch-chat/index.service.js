@@ -1,12 +1,14 @@
+const { Context, ServiceBroker } = require('moleculer');
 const tmijs = require('tmi.js');
 
 const TMIjsEventCategoryMap = require('./normalize/EventNormalizeMap');
 const Normalizer = require('./normalize');
+const SERVICE_META = require('./service.meta');
 
 module.exports = {
   name: 'twitch-chat',
 
-  mixins: [require('../mixin-nodeRestartOnDisconnect')],
+  mixins: [require('../mixin-nodeRestartOnDisconnect'), SERVICE_META.MIXIN],
 
   created() {
     const client = new tmijs.Client({
@@ -57,9 +59,7 @@ module.exports = {
 
   actions: {
     joinChannel: {
-      params: {
-        connectTarget: 'string'
-      },
+      /** @param {Context<{connectTarget:string}>} ctx */
       async handler(ctx) {
         const { connectTarget } = ctx.params;
 
@@ -76,9 +76,7 @@ module.exports = {
     },
 
     partChannel: {
-      params: {
-        connectTarget: 'string'
-      },
+      /** @param {Context<{connectTarget:string}>} ctx */
       async handler(ctx) {
         const { connectTarget } = ctx.params;
 
@@ -97,12 +95,12 @@ module.exports = {
 
   events: {
     'twitch-chat.simulate': {
-      params: {
-        connectTarget: 'string',
-        platformEventName: 'string',
-        platformEventData: 'any'
-      },
+      ...SERVICE_META.EVENTS['gh-messaging.twitch-chat.simulate'],
 
+      /**
+       * @this ServiceBroker
+       * @param {Context<{connectTarget:string, platformEventName:string, platformEventData:string}>} ctx
+       */
       async handler(ctx) {
         const { connectTarget, platformEventName, platformEventData } = ctx.params;
 
@@ -112,10 +110,9 @@ module.exports = {
   },
 
   methods: {
-    // Note: because of *what* events we're listening to, we can assume the first param is `channel`
-    // TODO: Verify this is safe ^^^^
-    // TODO: Look at wrapping in a middleware (https://moleculer.services/docs/0.14/middlewares.html#localMethod-next-method)
+    // TODO: Look at wrapping in a middleware via abstracted mixin (service.meta maybe?)
     //       Middleware will validate with REDIS if we need to normalize at all, or break out!
+    // (https://moleculer.services/docs/0.14/middlewares.html#localMethod-next-method)
     delegateIRCEvent(eventName, channel, ...incomingEventArguments) {
       this.logger.info(`Incoming Data: (${eventName}) ${channel} ->`, incomingEventArguments);
 

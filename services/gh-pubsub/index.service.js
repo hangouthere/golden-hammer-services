@@ -1,50 +1,43 @@
-const { EventClassifications } = require('golden-hammer-shared');
-
 const { v4: uuidv4 } = require('uuid');
-const { Context } = require('moleculer');
+const { Cachers, Context, ServiceBroker } = require('moleculer');
+const SERVICE_META = require('./service.meta');
 const {
-  getConnectTargetInfoOnPlatformForSocketId,
-  unregisterSocketFromConnectTargetAndPlatformName,
-  registerSocketIdToPlatformNameAndConnectTarget,
-  getSocketIdsForEventCategoryOnPlatformNameForConnectTarget,
-  getConnectTargetMapForSocketId,
-  getSocketIdsForConnectTargetOnPlatform
-} = require('./pubsubCacher');
-
-const VALIDATOR_PLATFORMS = { type: 'string', enum: ['twitch'] };
+  KEY_REGISTERED,
+  getRegistrationsForTargetByKey,
+  getSocketsAwaitingEventForConnectTarget,
+  checkIfSocketRegisteredForTarget,
+  uncacheTargetForSocket,
+  cacheTargetForSocket
+} = require('./RegisterCache');
 
 module.exports = {
   name: 'gh-pubsub',
 
-  mixins: [require('../mixin-nodeRestartOnDisconnect')],
+  mixins: [require('../mixin-nodeRestartOnDisconnect'), SERVICE_META.MIXIN],
 
   actions: {
     register: {
-      tags: {
-        params: true,
-        meta: true
-      },
-      params: {
-        platformName: VALIDATOR_PLATFORMS,
-        connectTarget: 'string',
-        eventCategories: 'string[]'
-      },
-      /** @param {Context} ctx */
+      /**
+       * @this ServiceBroker
+       * @param {Context<import('golden-hammer-shared').PubSubMessagingInfo>} ctx
+       */
       async handler(ctx) {
         const socketId = ctx.meta.$socketId;
 
-        let connectTarget = ctx.params.connectTarget.toLowerCase(),
+        const connectTarget = ctx.params.connectTarget.toLowerCase(),
           { platformName, eventCategories } = ctx.params;
 
-        const { platformSocketIds, connectTargetSocketIds } = getSocketIdsForConnectTargetOnPlatform(
-          platformName,
-          connectTarget
-        );
-
-        const hasPrevSockets = connectTargetSocketIds.size > 0;
+        /**@type {Cachers.Redis<import('ioredis').Redis>} */
+        const cacher = /**@type {Cachers.Redis<import('ioredis').Redis>} */ (ctx.broker.cacher);
+        const keyTarget = `${platformName}-${connectTarget}`;
+        const numConnected = await cacheTargetForSocket(cacher, {
+          target: keyTarget,
+          socketId,
+          eventClassifications: eventCategories
+        });
 
         // No sockets for the connectTarget yet, let's try to connect before we do anything else!
-        if (!hasPrevSockets) {
+        if (1 === numConnected) {
           try {
             await this.connectToTarget(platformName, connectTarget);
 
@@ -69,20 +62,12 @@ module.exports = {
           }
         }
 
-        registerSocketIdToPlatformNameAndConnectTarget({
-          socketId,
-          platformName,
-          connectTarget,
-          eventCategories,
-          connectTargetSocketIds,
-          platformSocketIds
-        });
-
         this.logger.info(
           `PubSub Client (${socketId}) - Registered ${platformName}->${connectTarget}: ${eventCategories.join(', ')}`
         );
 
-        ctx.broker.emit('api.socket-used', { socketId });
+        // Announce that the socket is being used, to avoid expiry
+        await ctx.broker.emit('api.socket-used', { socketId });
 
         // Return sub success!
         return {
@@ -98,53 +83,35 @@ module.exports = {
     },
 
     unregister: {
-      tags: {
-        params: true,
-        meta: true
-      },
-      params: {
-        platformName: VALIDATOR_PLATFORMS,
-        connectTarget: 'string'
-      },
+      /**
+       * @this ServiceBroker
+       * @param {Context<import('golden-hammer-shared').PubSubMessagingInfo>} ctx
+       */
       async handler(ctx) {
         let { platformName, connectTarget } = ctx.params;
         const socketId = ctx.meta.$socketId;
 
         connectTarget = connectTarget.toLowerCase();
 
-        const { socketIdPlatformConnectTargetMap, socketIdConnectTargets } = getConnectTargetInfoOnPlatformForSocketId(
-          socketId,
-          platformName
-        );
+        const cacher = /**@type {Cachers.Redis<import('ioredis').Redis>} */ (ctx.broker.cacher);
+        const keyTarget = `${platformName}-${connectTarget}`;
 
-        // Can't unregister something we're not registered for!
-        if (false === socketIdConnectTargets.has(connectTarget)) {
-          const errMsg = `${platformName}->${connectTarget} was never registered for this client!`;
+        const unregisterError = await checkIfSocketRegisteredForTarget(cacher, {
+          platformName,
+          connectTarget,
+          socketId
+        });
 
-          this.logger.warn(errMsg);
-
-          return {
-            unregistered: false,
-            error: errMsg,
-            type: 'messaging',
-            pubsub: {
-              connectTarget,
-              platformName
-            }
-          };
+        if (unregisterError) {
+          this.logger.warn(unregisterError.error);
+          return unregisterError;
         }
 
-        const shouldDisconnect = unregisterSocketFromConnectTargetAndPlatformName({
-          platformName,
-          socketId,
-          connectTarget,
-          socketIdPlatformConnectTargetMap,
-          socketIdConnectTargets
-        });
+        const numConnected = await uncacheTargetForSocket(cacher, { target: keyTarget, socketId });
 
         this.logger.info(`PubSub Client (${socketId}) - Unregistered ${platformName}->${connectTarget}`);
 
-        if (shouldDisconnect) {
+        if (0 == numConnected) {
           await this.disconnectFromTarget(platformName, connectTarget);
 
           this.logger.info(
@@ -164,31 +131,25 @@ module.exports = {
     },
 
     unregisterAll: {
-      tags: {
-        params: true,
-        meta: true
-      },
-      params: {
-        socketId: 'string'
-      },
+      /**
+       * @this ServiceBroker
+       * @param {Context<{socketId:string}>} ctx
+       */
       async handler(ctx) {
+        const cacher = /**@type {Cachers.Redis<import('ioredis').Redis>} */ (ctx.broker.cacher);
         const socketId = ctx.params.socketId;
 
-        const socketIdPlatformMap = getConnectTargetMapForSocketId(socketId);
+        try {
+          const targetsForSocket = await getRegistrationsForTargetByKey(cacher, {
+            platformName: '',
+            connectTarget: '',
+            searchKey: `${cacher.prefix}${KEY_REGISTERED}:*-${socketId}`
+          });
 
-        const socketIdPlatforms = socketIdPlatformMap.keys();
-
-        if (0 === socketIdPlatformMap.size) {
-          return this.logger.info(`No PubSubs Registered for Socket ID: ${ctx.params.socketId}, nothing to clean up!`);
-        }
-
-        // Iterate each platformName
-        for (let platformName of socketIdPlatforms) {
-          const connectionTargets = socketIdPlatformMap.get(platformName);
-
-          // Iterate each connectionTarget on platformName
-          for (let connectTarget of connectionTargets) {
-            // Delegate unregister to our Action!
+          let sData, platformName, connectTarget;
+          for (let x = 0; x < targetsForSocket.length; x++) {
+            sData = targetsForSocket[x];
+            [platformName, connectTarget] = sData.target.split('-');
 
             // prettier-ignore
             await ctx.call(
@@ -197,20 +158,19 @@ module.exports = {
               { meta: { $socketId: socketId } }
             );
           }
-        }
 
-        this.logger.info(`Unregistered ALL PubSubs for Socket ID: ${ctx.params.socketId}`);
+          this.logger.info(`Unregistered ALL PubSubs for Socket ID: ${socketId}`);
+        } catch (err) {
+          this.logger.error(`Could not Unregister ALL PubSubs for Socket ID: ${socketId}`);
+        }
       }
     },
 
     simulate: {
-      params: {
-        platformName: VALIDATOR_PLATFORMS,
-        connectTarget: 'string',
-        platformEventName: 'string',
-        platformEventData: 'any'
-      },
-
+      /**
+       * @this ServiceBroker
+       * @param {Context<import('golden-hammer-shared').PubSubMessagingInfo & {platformEventName:string, platformEventData:string}>} ctx
+       */
       async handler(ctx) {
         const { platformName, connectTarget, platformEventName, platformEventData } = ctx.params;
 
@@ -230,53 +190,38 @@ module.exports = {
   events: {
     // Unregister evented, usually from api socket.io gateway on detecting a disconnect
     // (see config-io.js)
+    /** @this ServiceBroker */
     async 'gh-pubsub.unregisterAll'(ctx) {
       await this.actions.unregisterAll(ctx.params);
     },
 
-    // On gh-messaging.evented, proxy to known socketIds as socket.io rooms
+    /**
+     * On gh-messaging.evented, proxy to `api.broadcast` for known socketIds
+     */
     'gh-messaging.evented': {
-      params: {
-        platform: {
-          $$type: 'object',
-          name: VALIDATOR_PLATFORMS,
-          eventName: 'string',
-          eventData: 'any'
-        },
-        eventClassification: {
-          $$type: 'object',
-          category: {
-            type: 'string',
-            enum: EventClassifications
-          },
-          subCategory: 'string|optional'
-        },
-        connectTarget: 'string',
-        timestamp: 'number',
-        eventData: 'any|optional'
-      },
+      ...SERVICE_META.EVENTS['gh-messaging.evented'],
 
       /**
+       * @this ServiceBroker
        * @param {Context<import('golden-hammer-shared').NormalizedMessagingEvent>} ctx
        */
-
-      handler(ctx) {
+      async handler(ctx) {
         const {
           connectTarget,
           eventClassification,
           platform: { name: platformName }
         } = ctx.params;
 
-        const socketIdsAwaitingThisEvent = getSocketIdsForEventCategoryOnPlatformNameForConnectTarget({
+        const socketIdsAwaitingThisEvent = await getSocketsAwaitingEventForConnectTarget(this.broker.cacher, {
           eventClassification,
           platformName,
           connectTarget
         });
 
         if (0 === socketIdsAwaitingThisEvent.length) {
-          // this.logger.info(
-          //   `No Clients listening for ${platformName}(${connectTarget})->${eventClassification.category}.${eventClassification.subCategory}`
-          // );
+          this.logger.info(
+            `No Clients listening for ${platformName}(${connectTarget})->${eventClassification.category}.${eventClassification.subCategory}`
+          );
 
           return;
         }

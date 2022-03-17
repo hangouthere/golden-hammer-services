@@ -33,3 +33,6 @@ services:
     <<: *dev-mode
     ports:
       - '9241:9229'
+
+networks:
+  internal:

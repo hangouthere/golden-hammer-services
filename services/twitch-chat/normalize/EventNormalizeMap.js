@@ -139,9 +139,6 @@ module.exports = {
 
   //! ///////////////////////////////////////////////////////
   //! PlatformSpecific
-  // 'emotesets', // Don't need for bot system
-  // hosting // might be if bot host
-  // unhost // might be if bot host
   clearchat: {
     EventClassification: {
       category: 'PlatformSpecific'
@@ -169,13 +166,6 @@ module.exports = {
     Normalizer: ProxyNormalizer.normalize
   },
   slowmode: {
-    EventClassification: {
-      category: 'PlatformSpecific'
-    },
-    Normalizer: ProxyNormalizer.normalize
-  },
-
-  r9kbeta: {
     EventClassification: {
       category: 'PlatformSpecific'
     },
