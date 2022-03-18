@@ -1,4 +1,4 @@
-const { EventClassifications } = require('golden-hammer-shared');
+const { EventClassifications, PossibleEventClassifications } = require('golden-hammer-shared');
 
 const VALIDATOR_PLATFORMS = { type: 'string', enum: ['twitch'] };
 
@@ -15,7 +15,7 @@ module.exports = {
         params: {
           platformName: VALIDATOR_PLATFORMS,
           connectTarget: 'string',
-          eventCategories: 'string[]'
+          eventClassifications: 'string[]'
         }
       },
 
@@ -55,12 +55,8 @@ module.exports = {
           eventData: 'any'
         },
         eventClassification: {
-          $$type: 'object',
-          category: {
-            type: 'string',
-            enum: EventClassifications
-          },
-          subCategory: 'string|optional'
+          type: 'string',
+          enum: PossibleEventClassifications
         },
         connectTarget: 'string',
         timestamp: 'number',

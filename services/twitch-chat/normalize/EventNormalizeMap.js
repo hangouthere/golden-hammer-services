@@ -8,10 +8,7 @@ const MonetizationNormalizer = new MonetizationNormalizerClass();
 const ProxyNormalizer = new ProxyNormalizerClass();
 
 const JoinPart = {
-  EventClassification: {
-    category: 'UserChat',
-    subCategory: 'Presence'
-  },
+  EventClassification: 'UserChat.Presence',
   Normalizer: ({ incomingEventName: presence, incomingEventArguments }) => {
     let [userName] = incomingEventArguments;
 
@@ -28,18 +25,8 @@ const JoinPart = {
 };
 
 const Message = {
-  EventClassification: {
-    category: 'UserChat',
-    subCategory: 'Message'
-  },
+  EventClassification: 'UserChat.Message',
   Normalizer: new UserChatMessageNormalizer().normalize
-};
-
-const MonetizationSubscriptionClassification = {
-  EventClassification: {
-    category: 'Monetization',
-    subCategory: 'Subscription'
-  }
 };
 
 module.exports = {
@@ -58,26 +45,23 @@ module.exports = {
   // giftpaidupgrade,
 
   cheer: {
-    EventClassification: {
-      category: 'Monetization',
-      subCategory: 'Tip'
-    },
+    EventClassification: 'Monetization.Tip',
     Normalizer: MonetizationNormalizer.normalizeCheer
   },
   subscription: {
-    ...MonetizationSubscriptionClassification,
+    EventClassification: 'Monetization.Subscription',
     Normalizer: MonetizationNormalizer.normalizeSubscription
   },
   resub: {
-    ...MonetizationSubscriptionClassification,
+    EventClassification: 'Monetization.Subscription',
     Normalizer: MonetizationNormalizer.normalizeResub
   },
   submysterygift: {
-    ...MonetizationSubscriptionClassification,
+    EventClassification: 'Monetization.Subscription',
     Normalizer: MonetizationNormalizer.normalizeSubgiftSend
   },
   subgift: {
-    ...MonetizationSubscriptionClassification,
+    EventClassification: 'Monetization.Subscription',
     Normalizer: MonetizationNormalizer.normalizeSubgiftRecieve
   },
 
@@ -86,102 +70,67 @@ module.exports = {
   // ! FIXME - Needs rolechange event of some sort (should give entire role-set to not be confused)
   /**
   mod: {
-    EventClassification: {
-      category: 'Administration',
-      subCategory: ''
-    },
+    EventClassification: 'Administration.RoleChange',
     Normalizer: () => {}
   },
   mods: {
-    EventClassification: {
-      category: 'Administration',
-      subCategory: ''
-    },
+    EventClassification: 'Administration.RoleChange',
     Normalizer: () => {}
   },
   unmod: {
-    EventClassification: {
-      category: 'Administration',
-      subCategory: ''
-    },
+    EventClassification: 'Administration.RoleChange',
     Normalizer: () => {}
   },
   vips: {
-    EventClassification: {
-      category: 'Administration',
-      subCategory: ''
-    },
+    EventClassification: 'Administration.RoleChange',
     Normalizer: () => {}
   },
 */
 
   timeout: {
-    EventClassification: {
-      category: 'Administration',
-      subCategory: 'Timeout'
-    },
+    EventClassification: 'Administration.Timeout',
     Normalizer: AdministrationNormalizer.normalizeTimeout
   },
   ban: {
-    EventClassification: {
-      category: 'Administration',
-      subCategory: 'Ban'
-    },
+    EventClassification: 'Administration.Ban',
     Normalizer: AdministrationNormalizer.normalizeBan
   },
   messagedeleted: {
-    EventClassification: {
-      category: 'Administration',
-      subCategory: 'MessageRemoval'
-    },
+    EventClassification: 'Administration.MessageRemoval',
     Normalizer: AdministrationNormalizer.normalizeMessageRemoval
   },
 
   //! ///////////////////////////////////////////////////////
   //! PlatformSpecific
   clearchat: {
-    EventClassification: {
-      category: 'PlatformSpecific'
-    },
+    EventClassification: 'PlatformSpecific',
     Normalizer: ProxyNormalizer.normalize
   },
 
   emoteonly: {
-    EventClassification: {
-      category: 'PlatformSpecific'
-    },
+    EventClassification: 'PlatformSpecific',
     Normalizer: ProxyNormalizer.normalize
   },
   subscribers: {
-    EventClassification: {
-      category: 'PlatformSpecific'
-    },
+    EventClassification: 'PlatformSpecific',
     Normalizer: ProxyNormalizer.normalize
   },
 
   followersonly: {
-    EventClassification: {
-      category: 'PlatformSpecific'
-    },
+    EventClassification: 'PlatformSpecific',
     Normalizer: ProxyNormalizer.normalize
   },
   slowmode: {
-    EventClassification: {
-      category: 'PlatformSpecific'
-    },
+    EventClassification: 'PlatformSpecific',
     Normalizer: ProxyNormalizer.normalize
   },
 
   hosted: {
-    EventClassification: {
-      category: 'PlatformSpecific'
-    },
+    EventClassification: 'PlatformSpecific',
     Normalizer: ProxyNormalizer.normalize
   },
   raided: {
-    EventClassification: {
-      category: 'PlatformSpecific'
-    },
+    EventClassification: 'PlatformSpecific',
     Normalizer: ProxyNormalizer.normalize
   }
 };

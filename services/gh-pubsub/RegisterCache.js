@@ -55,16 +55,13 @@ const getRegistrationsForTargetByKey = (cacher, { platformName, connectTarget, s
  * @param {object} options
  * @param {string} options.platformName
  * @param {string} options.connectTarget
- * @param {object} options.eventClassification
- * @param {string} options.eventClassification.category
- * @param {string} options.eventClassification.subCategory
+ * @param {string} options.eventClassification
  * @returns {Promise<SocketDataCache[]>}
  */
 const getSocketsAwaitingEventForConnectTarget = async (
   cacher,
-  { eventClassification: { category, subCategory }, platformName, connectTarget }
+  { eventClassification, platformName, connectTarget }
 ) => {
-  const fqcn = `${category}.${subCategory}`;
   const socketsForConnectTarget = await getRegistrationsForTargetByKey(cacher, {
     platformName,
     connectTarget,
@@ -72,7 +69,7 @@ const getSocketsAwaitingEventForConnectTarget = async (
   });
 
   return socketsForConnectTarget.reduce((sockets, sData) => {
-    if (sData.eventClassifications.includes(fqcn)) {
+    if (sData.eventClassifications.includes(eventClassification)) {
       sockets.push(sData.socketId);
     }
 
@@ -117,12 +114,11 @@ const checkIfSocketRegisteredForTarget = async (cacher, { connectTarget, platfor
  * @param {object} options
  * @param {string} options.target
  * @param {string} options.socketId
- * @param {string[]} options.eventClassifications
+ * @param {any} options.eventClassifications
  * @returns {Promise<number>}
  */
 const cacheTargetForSocket = async (cacher, { target, socketId, eventClassifications }) => {
   await cacher.set(`${KEY_REGISTERED}:${target}-${socketId}`, eventClassifications);
-
   await cacher.client.incr(`${cacher.prefix}${KEY_COUNTER_PLATFORM}:${target.split('-')[0]}`);
 
   return await cacher.client.incr(`${cacher.prefix}${KEY_COUNTER_TARGET}:${target}`);
@@ -136,9 +132,8 @@ const cacheTargetForSocket = async (cacher, { target, socketId, eventClassificat
  * @returns {Promise<number>}
  */
 const uncacheTargetForSocket = async (cacher, { target, socketId }) => {
-  await cacher.del(`${KEY_REGISTERED}:${target}-${socketId}`);
   const numLeft = await cacher.client.decr(`${cacher.prefix}${KEY_COUNTER_TARGET}:${target}`);
-
+  await cacher.del(`${KEY_REGISTERED}:${target}-${socketId}`);
   await cacher.client.decr(`${cacher.prefix}${KEY_COUNTER_PLATFORM}:${target.split('-')[0]}`);
 
   // Kill key if we don't have any other listeners

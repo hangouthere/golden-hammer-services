@@ -1,7 +1,7 @@
 const { Context, ServiceBroker } = require('moleculer');
 const tmijs = require('tmi.js');
 
-const TMIjsEventCategoryMap = require('./normalize/EventNormalizeMap');
+const TMIjsEventClassificationMap = require('./normalize/EventNormalizeMap');
 const Normalizer = require('./normalize');
 const SERVICE_META = require('./service.meta');
 
@@ -32,7 +32,7 @@ module.exports = {
   async started() {
     this.tmijs.connect().catch(console.error);
 
-    Object.keys(TMIjsEventCategoryMap).forEach(eventName => {
+    Object.keys(TMIjsEventClassificationMap).forEach(eventName => {
       this.tmijs.on(eventName, this.delegateIRCEvent.bind(this, eventName));
     });
 

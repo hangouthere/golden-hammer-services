@@ -25,7 +25,7 @@ module.exports = {
         const socketId = ctx.meta.$socketId;
 
         const connectTarget = ctx.params.connectTarget.toLowerCase(),
-          { platformName, eventCategories } = ctx.params;
+          { platformName, eventClassifications } = ctx.params;
 
         /**@type {Cachers.Redis<import('ioredis').Redis>} */
         const cacher = /**@type {Cachers.Redis<import('ioredis').Redis>} */ (ctx.broker.cacher);
@@ -33,7 +33,7 @@ module.exports = {
         const numConnected = await cacheTargetForSocket(cacher, {
           target: keyTarget,
           socketId,
-          eventClassifications: eventCategories
+          eventClassifications
         });
 
         // No sockets for the connectTarget yet, let's try to connect before we do anything else!
@@ -63,7 +63,8 @@ module.exports = {
         }
 
         this.logger.info(
-          `PubSub Client (${socketId}) - Registered ${platformName}->${connectTarget}: ${eventCategories.join(', ')}`
+          //prettier-ignore
+          `PubSub Client (${socketId}) - Registered ${platformName}->${connectTarget}: ${eventClassifications.join(', ')}`
         );
 
         // Announce that the socket is being used, to avoid expiry
@@ -76,7 +77,7 @@ module.exports = {
           pubsub: {
             platformName,
             connectTarget,
-            eventCategories
+            eventClassifications
           }
         };
       }
@@ -207,8 +208,8 @@ module.exports = {
        */
       async handler(ctx) {
         const {
-          connectTarget,
           eventClassification,
+          connectTarget,
           platform: { name: platformName }
         } = ctx.params;
 
@@ -219,15 +220,11 @@ module.exports = {
         });
 
         if (0 === socketIdsAwaitingThisEvent.length) {
-          this.logger.info(
-            `No Clients listening for ${platformName}(${connectTarget})->${eventClassification.category}.${eventClassification.subCategory}`
-          );
-
-          return;
+          return this.logger.info(`No Clients listening for ${platformName}(${connectTarget})->${eventClassification}`);
         }
 
         this.logger.info(
-          `Broadcasting to rooms (${platformName}(${connectTarget})->${eventClassification.category}.${eventClassification.subCategory}):`,
+          `Broadcasting to rooms (${platformName}(${connectTarget})->${eventClassification}):`,
           socketIdsAwaitingThisEvent
         );
 
