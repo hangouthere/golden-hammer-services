@@ -6,8 +6,8 @@
  */
 
 const MAX_KEY_FIND = 100; //!FIXME - Need to test limits in conjunction with APIs/integrations (ie, twitch has connectivity limits)
-const KEY_COUNTER_PLATFORM = 'connectedTTL';
-const KEY_COUNTER_TARGET = 'connectedTo';
+const KEY_COUNTER_PLATFORM = 'connectedPlatform';
+const KEY_COUNTER_TARGET = 'connectedTarget';
 const KEY_REGISTERED = 'registered';
 
 /**
@@ -129,19 +129,20 @@ const cacheTargetForSocket = async (cacher, { target, socketId, eventClassificat
  * @param {object} options
  * @param {string} options.target
  * @param {string} options.socketId
- * @returns {Promise<number>}
+ * @returns {Promise<{numConnected:number, eventClassifications: string[]}>}
  */
 const uncacheTargetForSocket = async (cacher, { target, socketId }) => {
-  const numLeft = await cacher.client.decr(`${cacher.prefix}${KEY_COUNTER_TARGET}:${target}`);
+  const numConnected = await cacher.client.decr(`${cacher.prefix}${KEY_COUNTER_TARGET}:${target}`);
+  const eventClassifications = /** @type {string[]} */ (await cacher.get(`${KEY_REGISTERED}:${target}-${socketId}`));
   await cacher.del(`${KEY_REGISTERED}:${target}-${socketId}`);
   await cacher.client.decr(`${cacher.prefix}${KEY_COUNTER_PLATFORM}:${target.split('-')[0]}`);
 
   // Kill key if we don't have any other listeners
-  if (0 === numLeft) {
+  if (0 === numConnected) {
     cacher.del(`${KEY_COUNTER_TARGET}:${target}`);
   }
 
-  return numLeft;
+  return { numConnected, eventClassifications };
 };
 
 // Exports!

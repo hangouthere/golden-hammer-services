@@ -1,9 +1,10 @@
-const { Context, ServiceBroker } = require('moleculer');
 const tmijs = require('tmi.js');
-
+const { Context, Service, Cachers } = require('moleculer');
 const TMIjsEventClassificationMap = require('./normalize/EventNormalizeMap');
 const Normalizer = require('./normalize');
 const SERVICE_META = require('./service.meta');
+const { toggleEventTypesByClassifications } = require('./RegisterCache');
+const { hasListener } = require('./RegisterCache');
 
 module.exports = {
   name: 'twitch-chat',
@@ -59,12 +60,13 @@ module.exports = {
 
   actions: {
     joinChannel: {
-      /** @param {Context<{connectTarget:string}>} ctx */
+      /** @param {Context<{connectTarget:string}, {eventClassifications:string[]}>} ctx */
       async handler(ctx) {
         const { connectTarget } = ctx.params;
 
         try {
           await this.tmijs.join(connectTarget);
+
           this.logger.info(`Joined Channel: ${connectTarget}`);
         } catch (err) {
           this.logger.error(err);
@@ -78,10 +80,12 @@ module.exports = {
     partChannel: {
       /** @param {Context<{connectTarget:string}>} ctx */
       async handler(ctx) {
+        const cacher = /**@type {Cachers.Redis<import('ioredis').Redis>} */ (ctx.broker.cacher);
         const { connectTarget } = ctx.params;
 
         try {
           await this.tmijs.part(connectTarget);
+
           this.logger.info(`Parted Channel: ${connectTarget}`);
         } catch (err) {
           this.logger.error(err);
@@ -89,6 +93,22 @@ module.exports = {
         }
 
         return true;
+      }
+    },
+
+    register: {
+      /** @param {Context<{connectTarget: string, eventClassifications: string[]}>} ctx */
+      async handler(ctx) {
+        const cacher = /**@type {Cachers.Redis<import('ioredis').Redis>} */ (ctx.broker.cacher);
+        return await toggleEventTypesByClassifications(cacher, ctx.params);
+      }
+    },
+
+    unregister: {
+      /** @param {Context<{connectTarget: string, eventClassifications: string[]}>} ctx */
+      async handler(ctx) {
+        const cacher = /**@type {Cachers.Redis<import('ioredis').Redis>} */ (ctx.broker.cacher);
+        return await toggleEventTypesByClassifications(cacher, ctx.params, false);
       }
     }
   },
@@ -98,7 +118,7 @@ module.exports = {
       ...SERVICE_META.EVENTS['gh-messaging.twitch-chat.simulate'],
 
       /**
-       * @this ServiceBroker
+       * @this Service
        * @param {Context<{connectTarget:string, platformEventName:string, platformEventData:string}>} ctx
        */
       async handler(ctx) {
@@ -110,13 +130,20 @@ module.exports = {
   },
 
   methods: {
-    // TODO: Look at wrapping in a middleware via abstracted mixin (service.meta maybe?)
-    //       Middleware will validate with REDIS if we need to normalize at all, or break out!
-    // (https://moleculer.services/docs/0.14/middlewares.html#localMethod-next-method)
-    delegateIRCEvent(eventName, channel, ...incomingEventArguments) {
-      this.logger.info(`Incoming Data: (${eventName}) ${channel} ->`, incomingEventArguments);
+    /** @this Service */
+    async delegateIRCEvent(nativeEventName, channel, ...incomingEventArguments) {
+      const cacher = /**@type {Cachers.Redis<import('ioredis').Redis>} */ (this.broker.cacher);
+      const connectTarget = channel.replace('#', '');
 
-      const normalizedContext = this.normalizer.normalize(eventName, incomingEventArguments);
+      const _hasListener = await hasListener(cacher, { connectTarget, nativeEventName });
+
+      if (!_hasListener) {
+        return this.logger.debug(`No Listeners for this event: (${nativeEventName}) ${connectTarget}`);
+      }
+
+      this.logger.debug(`Incoming Data: (${nativeEventName}) ${channel} ->`, incomingEventArguments);
+
+      const normalizedContext = this.normalizer.normalize(nativeEventName, incomingEventArguments);
 
       const { timestamp, eventClassification, normalizedData } = normalizedContext;
 
@@ -125,11 +152,11 @@ module.exports = {
         timestamp,
         pubSubMsgId: 'INVALID_MSG_ID',
         eventClassification,
-        connectTarget: channel.replace('#', ''),
+        connectTarget,
         eventData: normalizedData,
         platform: {
           name: 'twitch',
-          eventName,
+          eventName: nativeEventName,
           eventData: incomingEventArguments
         }
       };

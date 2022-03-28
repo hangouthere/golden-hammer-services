@@ -1,5 +1,5 @@
 const { v4: uuidv4 } = require('uuid');
-const { Cachers, Context, ServiceBroker } = require('moleculer');
+const { Cachers, Context, Service } = require('moleculer');
 const SERVICE_META = require('./service.meta');
 const {
   KEY_REGISTERED,
@@ -18,7 +18,7 @@ module.exports = {
   actions: {
     register: {
       /**
-       * @this ServiceBroker
+       * @this Service
        * @param {Context<import('golden-hammer-shared').PubSubMessagingInfo>} ctx
        */
       async handler(ctx) {
@@ -39,6 +39,7 @@ module.exports = {
         // No sockets for the connectTarget yet, let's try to connect before we do anything else!
         if (1 === numConnected) {
           try {
+            // Delegate Connecting if there aren't any previous clients connected
             await this.connectToTarget(platformName, connectTarget);
 
             this.logger.info(
@@ -46,7 +47,8 @@ module.exports = {
             );
           } catch (err) {
             this.logger.error(
-              `No previous Clients, Unable to connect to ConnectTarget: ${platformName}->${connectTarget}`
+              `No previous Clients, Unable to connect to ConnectTarget: ${platformName}->${connectTarget}`,
+              err
             );
 
             // Return sub failure!
@@ -70,6 +72,9 @@ module.exports = {
         // Announce that the socket is being used, to avoid expiry
         await ctx.broker.emit('api.socket-used', { socketId });
 
+        // Delegate the registration with the underlying service
+        await this.registerWithPlatform(platformName, connectTarget, eventClassifications);
+
         // Return sub success!
         return {
           registered: true,
@@ -85,7 +90,7 @@ module.exports = {
 
     unregister: {
       /**
-       * @this ServiceBroker
+       * @this Service
        * @param {Context<import('golden-hammer-shared').PubSubMessagingInfo>} ctx
        */
       async handler(ctx) {
@@ -98,21 +103,28 @@ module.exports = {
         const keyTarget = `${platformName}-${connectTarget}`;
 
         const unregisterError = await checkIfSocketRegisteredForTarget(cacher, {
-          platformName,
           connectTarget,
+          platformName,
           socketId
         });
 
         if (unregisterError) {
-          this.logger.warn(unregisterError.error);
+          this.logger.debug(unregisterError.error);
           return unregisterError;
         }
 
-        const numConnected = await uncacheTargetForSocket(cacher, { target: keyTarget, socketId });
+        const { numConnected, eventClassifications } = await uncacheTargetForSocket(cacher, {
+          target: keyTarget,
+          socketId
+        });
 
         this.logger.info(`PubSub Client (${socketId}) - Unregistered ${platformName}->${connectTarget}`);
 
+        // Delegate the unregistration with the underlying service
+        await this.unregisterWithPlatform(platformName, connectTarget, eventClassifications);
+
         if (0 == numConnected) {
+          // Delegate disconnecting if there aren't any more clients connected
           await this.disconnectFromTarget(platformName, connectTarget);
 
           this.logger.info(
@@ -133,7 +145,7 @@ module.exports = {
 
     unregisterAll: {
       /**
-       * @this ServiceBroker
+       * @this Service
        * @param {Context<{socketId:string}>} ctx
        */
       async handler(ctx) {
@@ -162,14 +174,14 @@ module.exports = {
 
           this.logger.info(`Unregistered ALL PubSubs for Socket ID: ${socketId}`);
         } catch (err) {
-          this.logger.error(`Could not Unregister ALL PubSubs for Socket ID: ${socketId}`);
+          this.logger.error(`Could not Unregister ALL PubSubs for Socket ID: ${socketId}`, err);
         }
       }
     },
 
     simulate: {
       /**
-       * @this ServiceBroker
+       * @this Service
        * @param {Context<import('golden-hammer-shared').PubSubMessagingInfo & {platformEventName:string, platformEventData:string}>} ctx
        */
       async handler(ctx) {
@@ -191,7 +203,7 @@ module.exports = {
   events: {
     // Unregister evented, usually from api socket.io gateway on detecting a disconnect
     // (see config-io.js)
-    /** @this ServiceBroker */
+    /** @this Service */
     async 'gh-pubsub.unregisterAll'(ctx) {
       await this.actions.unregisterAll(ctx.params);
     },
@@ -203,7 +215,7 @@ module.exports = {
       ...SERVICE_META.EVENTS['gh-messaging.evented'],
 
       /**
-       * @this ServiceBroker
+       * @this Service
        * @param {Context<import('golden-hammer-shared').NormalizedMessagingEvent>} ctx
        */
       async handler(ctx) {
@@ -213,17 +225,21 @@ module.exports = {
           platform: { name: platformName }
         } = ctx.params;
 
-        const socketIdsAwaitingThisEvent = await getSocketsAwaitingEventForConnectTarget(this.broker.cacher, {
+        const cacher = /**@type {Cachers.Redis<import('ioredis').Redis>} */ (ctx.broker.cacher);
+
+        const socketIdsAwaitingThisEvent = await getSocketsAwaitingEventForConnectTarget(cacher, {
           eventClassification,
           platformName,
           connectTarget
         });
 
         if (0 === socketIdsAwaitingThisEvent.length) {
-          return this.logger.info(`No Clients listening for ${platformName}(${connectTarget})->${eventClassification}`);
+          return this.logger.debug(
+            `No Clients listening for ${platformName}(${connectTarget})->${eventClassification}`
+          );
         }
 
-        this.logger.info(
+        this.logger.debug(
           `Broadcasting to rooms (${platformName}(${connectTarget})->${eventClassification}):`,
           socketIdsAwaitingThisEvent
         );
@@ -238,20 +254,41 @@ module.exports = {
   },
 
   methods: {
+    /** @this Service */
     async connectToTarget(platformName, connectTarget) {
-      switch (platformName) {
-        case 'twitch':
-          await this.broker.call('twitch-chat.joinChannel', { connectTarget });
-          break;
-      }
+      //!FIXME Change `joinChannel` to match pubsub name (ie, connectToTarget)
+      const serviceCall = {
+        twitch: 'twitch-chat.joinChannel'
+      }[platformName];
+
+      await this.broker.call(`${serviceCall}`, { connectTarget });
     },
 
+    /** @this Service */
     async disconnectFromTarget(platformName, connectTarget) {
-      switch (platformName) {
-        case 'twitch':
-          await this.broker.call('twitch-chat.partChannel', { connectTarget });
-          break;
-      }
+      const serviceCall = {
+        twitch: 'twitch-chat.partChannel'
+      }[platformName];
+
+      await this.broker.call(`${serviceCall}`, { connectTarget });
+    },
+
+    /** @this Service */
+    async registerWithPlatform(platformName, connectTarget, eventClassifications) {
+      const serviceName = {
+        twitch: 'twitch-chat'
+      }[platformName];
+
+      await this.broker.call(`${serviceName}.register`, { connectTarget, eventClassifications });
+    },
+
+    /** @this Service */
+    async unregisterWithPlatform(platformName, connectTarget, eventClassifications) {
+      const serviceName = {
+        twitch: 'twitch-chat'
+      }[platformName];
+
+      await this.broker.call(`${serviceName}.unregister`, { connectTarget, eventClassifications });
     }
   }
 };
