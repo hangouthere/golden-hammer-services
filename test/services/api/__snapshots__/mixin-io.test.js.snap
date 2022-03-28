@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Service: API Gateway - Mixin: IO Methods Socket Disconnect Detection should broadcast to the socket api for the associated socket ID 1`] = `
+Array [
+  Array [
+    "api.broadcast",
+    Object {
+      "args": Array [
+        Object {
+          "pubSubMsgId": undefined,
+          "reason": "Did not register for any PubSub services within the alloted time",
+        },
+      ],
+      "event": "gh-pubsub.rejected",
+      "rooms": Array [
+        "fakeRandomSocketId",
+      ],
+    },
+  ],
+]
+`;

@@ -10,8 +10,8 @@
     "dev-brk": "node --inspect-brk=0.0.0.0:9229 node_modules/moleculer/bin/moleculer-runner --repl --hot",
     "start": "moleculer-runner",
     "cli": "moleculer connect NATS",
-    "ci": "jest --watch",
-    "test": "jest --coverage",
+    "test": "node --inspect=0.0.0.0:9229 ./node_modules/.bin/jest --watch --coverage",
+    "testBrk": "node --inspect-brk=0.0.0.0:9229 ./node_modules/.bin/jest --runInBand --watch --coverage",
     "lint": "eslint services"
   },
   "keywords": [
@@ -21,6 +21,7 @@
   "author": "",
   "devDependencies": {
     "@types/ioredis": "^4.28.8",
+    "@types/jest": "^27.4.1",
     "@types/socket.io-client": "^3.0.0",
     "@types/tmi.js": "^1.8.1",
     "@types/uuid": "^8.3.4",
@@ -47,11 +48,12 @@
     "node": ">= 16.x.x"
   },
   "jest": {
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node",
-    "rootDir": "./services",
-    "roots": [
-      "../test"
+    "moduleNameMapper": {
+      "@/(.*)$": "<rootDir>/$1"
+    },
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/test/helpers",
+      "<rootDir>/node_modules/"
     ]
   }
 }
