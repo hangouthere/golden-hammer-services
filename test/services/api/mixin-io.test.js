@@ -13,8 +13,6 @@ describe('Service: API Gateway - Mixin: IO', () => {
 
   // Clone the mixin for each test
   beforeEach(() => {
-    jest.resetAllMocks();
-    jest.resetModules();
     jest.clearAllTimers();
 
     rootNS = mixin.settings.io.namespaces['/'];

@@ -18,7 +18,7 @@ const KEY_REGISTERED = 'registered';
  * @param {string} options.searchKey
  * @returns {Promise<SocketDataCache[]>}
  */
-const getRegistrationsForTargetByKey = (cacher, { platformName, connectTarget, searchKey }) => {
+const getRegistrationsForTargetByKey = async (cacher, { platformName, connectTarget, searchKey }) => {
   return new Promise((resolve, reject) => {
     const sockets = [];
     const stream = cacher.client.scanStream({
@@ -27,27 +27,38 @@ const getRegistrationsForTargetByKey = (cacher, { platformName, connectTarget, s
     });
 
     stream.on('error', reject);
-    stream.on('data', (keys = []) => sockets.push(...keys));
-    stream.on('end', async function () {
-      let socketId;
-      for (let x = 0; x < sockets.length; x++) {
-        socketId = sockets[x]
-          .replace(cacher.prefix, '')
-          .replace(`${KEY_REGISTERED}:`, '')
-          .replace(`${platformName}-${connectTarget}-`, '');
-
-        sockets[x] = {
-          socketId,
-          // Retrieve the actual data for the key
-          eventClassifications: await cacher.client.get(sockets[x]),
-          // Strip all meta/junk except the {platform-target} text
-          target: sockets[x].replace(cacher.prefix, '').replace(`${KEY_REGISTERED}:`, '').replace(`-${socketId}`, '')
-        };
-      }
-
-      resolve(sockets);
-    });
+    stream.on('data', (...args) => sockets.push(...args));
+    // prettier-ignore
+    stream.on('end', () => resolve(
+      _onScanComplete(
+        cacher,
+        sockets,
+        { platformName, connectTarget }
+      )
+    ));
   });
+};
+
+const _onScanComplete = async (cacher, socketKeys, { platformName, connectTarget }) => {
+  const sockets = [];
+
+  // Async, cannot map
+  for (let x = 0; x < socketKeys.length; x++) {
+    let socketId = socketKeys[x]
+      .replace(cacher.prefix, '')
+      .replace(`${KEY_REGISTERED}:`, '')
+      .replace(`${platformName}-${connectTarget}-`, '');
+
+    sockets.push({
+      socketId,
+      // Retrieve the actual data for the key
+      eventClassifications: await cacher.client.get(socketKeys[x]),
+      // Strip all meta/junk except the {platform-target} text
+      target: socketKeys[x].replace(cacher.prefix, '').replace(`${KEY_REGISTERED}:`, '').replace(`-${socketId}`, '')
+    });
+  }
+
+  return sockets;
 };
 
 /**
@@ -56,11 +67,13 @@ const getRegistrationsForTargetByKey = (cacher, { platformName, connectTarget, s
  * @param {string} options.platformName
  * @param {string} options.connectTarget
  * @param {string} options.eventClassification
+ * @param {function} getRegistrationsForTargetByKey
  * @returns {Promise<SocketDataCache[]>}
  */
-const getSocketsAwaitingEventForConnectTarget = async (
+const getSocketDataCacheAwaitingEventForConnectTarget = async (
   cacher,
-  { eventClassification, platformName, connectTarget }
+  { eventClassification, platformName, connectTarget },
+  getRegistrationsForTargetByKey
 ) => {
   const socketsForConnectTarget = await getRegistrationsForTargetByKey(cacher, {
     platformName,
@@ -151,6 +164,6 @@ module.exports = {
   cacheTargetForSocket,
   checkIfSocketRegisteredForTarget,
   getRegistrationsForTargetByKey,
-  getSocketsAwaitingEventForConnectTarget,
+  getSocketDataCacheAwaitingEventForConnectTarget,
   uncacheTargetForSocket
 };

@@ -16,6 +16,7 @@ x-dev-mode: &dev-mode
 services:
   test:
     <<: *dev-mode
+    restart: unless-stopped
     image: golden-hammer-service
     command: ['npm', 'run', 'test']
     ports:

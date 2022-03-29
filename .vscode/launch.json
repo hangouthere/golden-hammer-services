@@ -5,6 +5,14 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Attach testing (11111)",
+      "port": 11111,
+      "request": "attach",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "remoteRoot": "/app/"
+    },
+    {
       "name": "Attach api-gateway (9229)",
       "port": 9229,
       "request": "attach",

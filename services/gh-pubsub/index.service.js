@@ -4,7 +4,7 @@ const SERVICE_META = require('./service.meta');
 const {
   KEY_REGISTERED,
   getRegistrationsForTargetByKey,
-  getSocketsAwaitingEventForConnectTarget,
+  getSocketDataCacheAwaitingEventForConnectTarget,
   checkIfSocketRegisteredForTarget,
   uncacheTargetForSocket,
   cacheTargetForSocket
@@ -227,11 +227,15 @@ module.exports = {
 
         const cacher = /**@type {Cachers.Redis<import('ioredis').Redis>} */ (ctx.broker.cacher);
 
-        const socketIdsAwaitingThisEvent = await getSocketsAwaitingEventForConnectTarget(cacher, {
-          eventClassification,
-          platformName,
-          connectTarget
-        });
+        const socketIdsAwaitingThisEvent = await getSocketDataCacheAwaitingEventForConnectTarget(
+          cacher,
+          {
+            eventClassification,
+            platformName,
+            connectTarget
+          },
+          getRegistrationsForTargetByKey
+        );
 
         if (0 === socketIdsAwaitingThisEvent.length) {
           return this.logger.debug(

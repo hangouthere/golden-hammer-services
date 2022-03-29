@@ -10,8 +10,8 @@
     "dev-brk": "node --inspect-brk=0.0.0.0:9229 node_modules/moleculer/bin/moleculer-runner --repl --hot",
     "start": "moleculer-runner",
     "cli": "moleculer connect NATS",
-    "test": "node --inspect=0.0.0.0:9229 ./node_modules/.bin/jest --watch --coverage",
-    "testBrk": "node --inspect-brk=0.0.0.0:9229 ./node_modules/.bin/jest --runInBand --watch --coverage",
+    "test": "sleep 10 && node ./node_modules/.bin/jest --watch --coverage",
+    "testBrk": "sleep 10 && node --inspect-brk=0.0.0.0:9229 ./node_modules/.bin/jest --runInBand --watch --coverage",
     "lint": "eslint services"
   },
   "keywords": [
@@ -48,6 +48,8 @@
     "node": ">= 16.x.x"
   },
   "jest": {
+    "resetModules": true,
+    "resetMocks": true,
     "moduleNameMapper": {
       "@/(.*)$": "<rootDir>/$1"
     },
@@ -55,5 +57,8 @@
       "<rootDir>/test/helpers",
       "<rootDir>/node_modules/"
     ]
+  },
+  "alias": {
+    "@/": "./"
   }
 }
