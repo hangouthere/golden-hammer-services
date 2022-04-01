@@ -27,7 +27,7 @@ const getRegistrationsForTargetByKey = async (cacher, { platformName, connectTar
     });
 
     stream.on('error', reject);
-    stream.on('data', (...args) => sockets.push(...args));
+    stream.on('data', (args = []) => sockets.push(...args));
     // prettier-ignore
     stream.on('end', () => resolve(
       _onScanComplete(
