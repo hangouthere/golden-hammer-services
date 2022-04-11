@@ -53,9 +53,10 @@
     "moduleNameMapper": {
       "@/(.*)$": "<rootDir>/$1"
     },
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/test/helpers",
-      "<rootDir>/node_modules/"
+    "collectCoverageFrom": [
+      "<rootDir>/services/**/*.{js,jsx}",
+      "!<rootDir>/test/helpers/**",
+      "!<rootDir>/node_modules/**"
     ]
   },
   "alias": {

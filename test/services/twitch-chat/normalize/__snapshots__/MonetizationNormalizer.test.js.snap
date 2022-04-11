@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Twitch Chat: Normalizer - Monetization Normalizing Durations from input should fallback to 1 if no msg-param-months 1`] = `
+Object {
+  "normalizedData": Object {
+    "duration": 1,
+    "estimatedValue": 4.2,
+    "message": "Sub Message",
+    "sourceUserName": "userSubscribed",
+  },
+  "timestamp": 1649705365314,
+}
+`;
+
+exports[`Twitch Chat: Normalizer - Monetization Normalizing Durations from input should fallback to 1 if no msg-param-months 2`] = `
+Object {
+  "normalizedData": Object {
+    "duration": 1,
+    "estimatedValue": 4.2,
+    "message": "ReSub message",
+    "sourceUserName": "userReSubscribed",
+  },
+  "timestamp": 1649705365314,
+}
+`;
+
+exports[`Twitch Chat: Normalizer - Monetization Normalizing Durations from input should test for msg-param-months 1`] = `
+Object {
+  "normalizedData": Object {
+    "duration": 4,
+    "estimatedValue": 4.2,
+    "message": "Sub Message",
+    "sourceUserName": "userSubscribed",
+  },
+  "timestamp": 1649705365314,
+}
+`;
+
+exports[`Twitch Chat: Normalizer - Monetization Normalizing Durations from input should test for msg-param-months 2`] = `
+Object {
+  "normalizedData": Object {
+    "duration": 4,
+    "estimatedValue": 4.2,
+    "message": "ReSub message",
+    "sourceUserName": "userReSubscribed",
+  },
+  "timestamp": 1649705365314,
+}
+`;
+
+exports[`Twitch Chat: Normalizer - Monetization Normalizing should normalize a Cheer 1`] = `
+Object {
+  "normalizedData": Object {
+    "estimatedValue": 50,
+    "message": "Cheer Message",
+    "sourceUserName": "userCheer",
+  },
+  "timestamp": 1649705365314,
+}
+`;
+
+exports[`Twitch Chat: Normalizer - Monetization Normalizing should normalize a Resub 1`] = `
+Object {
+  "normalizedData": Object {
+    "duration": 1,
+    "estimatedValue": 4.2,
+    "message": "ReSub message",
+    "sourceUserName": "userReSubscribed",
+  },
+  "timestamp": 1649705365314,
+}
+`;
+
+exports[`Twitch Chat: Normalizer - Monetization Normalizing should normalize a SubGift Recieve 1`] = `
+Object {
+  "normalizedData": Object {
+    "duration": 1,
+    "estimatedValue": 4.2,
+    "message": "Sub Recieve Msg",
+    "sourceUserName": "userSendingGift",
+    "targetUserName": "userRecievingGift",
+  },
+  "timestamp": 1649705365314,
+}
+`;
+
+exports[`Twitch Chat: Normalizer - Monetization Normalizing should normalize a SubGift Send 1`] = `
+Object {
+  "normalizedData": Object {
+    "estimatedValue": 4.2,
+    "message": "Sub Gift Msg",
+    "sourceUserName": "userSendingGift",
+  },
+  "timestamp": 1649705365314,
+}
+`;
+
+exports[`Twitch Chat: Normalizer - Monetization Normalizing should normalize a Subscription 1`] = `
+Object {
+  "normalizedData": Object {
+    "duration": 1,
+    "estimatedValue": 4.2,
+    "message": "Sub Message",
+    "sourceUserName": "userSubscribed",
+  },
+  "timestamp": 1649705365314,
+}
+`;

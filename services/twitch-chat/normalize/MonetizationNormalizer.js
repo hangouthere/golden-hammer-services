@@ -19,7 +19,7 @@ module.exports = class MonetizationNormalizer {
   };
 
   normalizeSubscription = ({ incomingEventArguments }) => {
-    const [sourceUserName, planInfo, _, userState] = incomingEventArguments;
+    const [sourceUserName, planInfo, message, userState] = incomingEventArguments;
     const duration = (planInfo.prime ? 1 : +userState['msg-param-months']) || 1;
     const subPlan = userState['msg-param-sub-plan'];
 
@@ -30,6 +30,7 @@ module.exports = class MonetizationNormalizer {
       normalizedData: {
         duration,
         sourceUserName,
+        message,
         estimatedValue: this._estimateValue(subPlan, duration)
       }
     };

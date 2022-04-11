@@ -39,7 +39,8 @@ module.exports = class UserChatMessageNormalizer {
   }
 
   _getUriRanges(message) {
-    const UriSearch = /(https?:\/\/(www\.)?)?[a-z0-9\-\.]+\.[a-z]{2,5}(:[0-9]{1,5})?[/a-z0-9]+/g;
+    const UriSearch =
+      /(?:(https?):\/\/(?:www\.)?|www\.)((?:(?:[-\w]+\.)+)[-\w]+)(?::\d+)?(?:\/((?:[-a-zA-Z;./\d#:_?=&,+%]*)))?/g;
 
     const matches = message.match(UriSearch);
 
