@@ -141,7 +141,7 @@ describe('Service: gh-pubsub: RegisterCache', () => {
         cacher.client.get.mockReturnValue(['class1', 'class3']);
 
         // Fake-trigger events to process before resolving
-        cbMap.data('test-registered:testPlatform-testConnectTarget-fakeSocketId');
+        cbMap.data(['test-registered:testPlatform-testConnectTarget-fakeSocketId']);
         cbMap.end();
         // Finally resolve, and eval tests
         await promise;
