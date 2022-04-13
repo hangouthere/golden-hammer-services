@@ -16,18 +16,16 @@ module.exports = class Normalizer {
 
     const { EventClassification, Normalizer } = MappingInfo;
 
-    if (Normalizer) {
-      const normalizeSubContext = Normalizer({
-        incomingEventName,
-        incomingEventArguments
-      });
-
-      ({ timestamp, normalizedData } = normalizeSubContext);
-    } else {
-      console.warn("!!!!!!!!! NOT NORMALIZED (We shouldn't be seeing this)", incomingEventName, incomingEventArguments);
-      timestamp = Date.now();
-      normalizedData = incomingEventArguments;
+    if (!Normalizer) {
+      throw new Error('Normalizer missing! If you want to simply proxy this event, use the ProxyNormalizer.');
     }
+
+    const normalizeSubContext = Normalizer({
+      incomingEventName,
+      incomingEventArguments
+    });
+
+    ({ timestamp, normalizedData } = normalizeSubContext);
 
     return {
       timestamp,

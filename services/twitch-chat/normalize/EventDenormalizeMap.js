@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 const EventNormalizeMap = require('./EventNormalizeMap');
 
 module.exports = Object.entries(EventNormalizeMap).reduce((_map, [twitchEventName, normalizeMapping]) => {

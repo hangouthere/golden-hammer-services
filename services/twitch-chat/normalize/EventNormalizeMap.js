@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 const AdministrationNormalizerClass = require('./AdministrationNormalizer');
 const MonetizationNormalizerClass = require('./MonetizationNormalizer');
 const ProxyNormalizerClass = require('./ProxyNormalizer');
