@@ -3,8 +3,7 @@ const { Context, Service, Cachers } = require('moleculer');
 const TMIjsEventClassificationMap = require('./normalize/EventNormalizeMap');
 const Normalizer = require('./normalize');
 const SERVICE_META = require('./service.meta');
-const { toggleEventTypesByClassifications } = require('./RegisterCache');
-const { hasListener } = require('./RegisterCache');
+const { hasListener, toggleEventTypesByClassifications } = require('./RegisterCache');
 
 module.exports = {
   name: 'twitch-chat',
@@ -34,7 +33,7 @@ module.exports = {
     this.tmijs.connect().catch(console.error);
 
     Object.keys(TMIjsEventClassificationMap).forEach(eventName => {
-      this.tmijs.on(eventName, this.delegateIRCEvent.bind(this, eventName));
+      this.tmijs.on(eventName, this.eventIRCEvent.bind(this, eventName));
     });
 
     // Notify log that we're connected
@@ -70,7 +69,7 @@ module.exports = {
           this.logger.info(`Joined Channel: ${connectTarget}`);
         } catch (err) {
           this.logger.error(err);
-          throw err;
+          // throw err;
         }
 
         return true;
@@ -80,7 +79,6 @@ module.exports = {
     partChannel: {
       /** @param {Context<{connectTarget:string}>} ctx */
       async handler(ctx) {
-        const cacher = /**@type {Cachers.Redis<import('ioredis').Redis>} */ (ctx.broker.cacher);
         const { connectTarget } = ctx.params;
 
         try {
@@ -124,14 +122,14 @@ module.exports = {
       async handler(ctx) {
         const { connectTarget, platformEventName, platformEventData } = ctx.params;
 
-        this.delegateIRCEvent.call(this, platformEventName, `#${connectTarget}`, ...platformEventData);
+        this.eventIRCEvent.call(this, platformEventName, `#${connectTarget}`, ...platformEventData);
       }
     }
   },
 
   methods: {
     /** @this Service */
-    async delegateIRCEvent(nativeEventName, channel, ...incomingEventArguments) {
+    async eventIRCEvent(nativeEventName, channel, ...incomingEventArguments) {
       const cacher = /**@type {Cachers.Redis<import('ioredis').Redis>} */ (this.broker.cacher);
       const connectTarget = channel.replace('#', '');
 

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Twitch Chat: Service Helper Methods should normalize and emit into the system 1`] = `
+Object {
+  "connectTarget": "channel",
+  "eventClassification": "testEventClassification",
+  "eventData": Object {
+    "lotsOfData": true,
+  },
+  "platform": Object {
+    "eventData": Array [
+      "",
+    ],
+    "eventName": "nativeEventName",
+    "name": "twitch",
+  },
+  "pubSubMsgId": "INVALID_MSG_ID",
+  "timestamp": "now",
+}
+`;

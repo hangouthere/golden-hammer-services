@@ -1,22 +1,29 @@
-const Clazz = require('@/services/twitch-chat/normalize');
-
-jest.mock('@/services/twitch-chat/normalize/EventNormalizeMap', () => ({
-  TestEvent_No_Normalizer: {
-    EventClassification: 'TestEvent1.FullyClassified'
-  },
-  TestEvent_Normalizer: {
-    EventClassification: 'TestEvent2.FullyClassified',
-    Normalizer: jest.fn(() => ({
-      timestamp: 'testTimeStampe',
-      normalizedData: 'testNormlizedData'
-    }))
-  }
-}));
-
 describe('Twitch Chat Normalize', () => {
   let clazz;
 
   beforeEach(() => {
+    const mockNormalizerImpl = jest.fn(() => ({
+      timestamp: 'testTimeStamp',
+      normalizedData: 'testNormlizedData'
+    }));
+
+    // Mock Implementations must be defined beforeEach, since we're utilizing the
+    // resetMocks/resetModules options in jest config
+    jest.mock('@/services/twitch-chat/normalize/EventNormalizeMap', () => {
+      return {
+        TestEvent_No_Normalizer: {
+          EventClassification: 'TestEvent1.FullyClassified'
+        },
+        TestEvent_Normalizer: {
+          EventClassification: 'TestEvent2.FullyClassified',
+          Normalizer: mockNormalizerImpl
+        }
+      };
+    });
+
+    // Re-require our class module to get the cleaned mock impl after resetMock
+    const Clazz = require('@/services/twitch-chat/normalize');
+
     clazz = new Clazz();
   });
 
@@ -32,6 +39,7 @@ describe('Twitch Chat Normalize', () => {
 
   it('should delegate normalizing and extract sub-context', () => {
     const map = require('@/services/twitch-chat/normalize/EventNormalizeMap');
+
     const incomingEventArguments = {
       foo: true,
       bar: false,
