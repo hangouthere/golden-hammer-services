@@ -1,6 +1,8 @@
-docker-compose.env
-docker-compose.yml
+.git
+.vscode
+dist
+docker-compose*
 Dockerfile
 node_modules
+README.md
 test
-.vscode

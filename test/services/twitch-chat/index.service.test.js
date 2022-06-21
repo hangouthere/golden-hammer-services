@@ -1,3 +1,4 @@
+jest.mock('tmi.js');
 jest.mock('@/services/twitch-chat/normalize');
 jest.mock('@/services/twitch-chat/normalize/EventNormalizeMap', () => ({
   testNativeEventName: true
@@ -13,8 +14,6 @@ describe('Twitch Chat: Service', () => {
   let tmijs, tmiClient, service;
 
   beforeEach(() => {
-    jest.mock('tmi.js');
-
     tmijs = require('tmi.js');
     tmiClient = new tmijs.Client();
 
@@ -76,7 +75,7 @@ describe('Twitch Chat: Service', () => {
     });
   });
 
-  describe('Actions', () => {
+  describe('Service Actions', () => {
     it('should delegate to RegisterCache when trying to unregister', async () => {
       const { toggleEventTypesByClassifications } = require('@/services/twitch-chat/RegisterCache');
 

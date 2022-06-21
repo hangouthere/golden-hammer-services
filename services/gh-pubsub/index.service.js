@@ -191,10 +191,6 @@ module.exports = {
           twitch: 'twitch-chat'
         }[platformName];
 
-        if (!delegateService) {
-          throw new Error('Invalid Platform: ${platformName}');
-        }
-
         this.broker.emit(`${delegateService}.simulate`, { connectTarget, platformEventName, platformEventData });
       }
     }
@@ -204,8 +200,10 @@ module.exports = {
     // Unregister evented, usually from api socket.io gateway on detecting a disconnect
     // (see config-io.js)
     /** @this Service */
-    async 'gh-pubsub.unregisterAll'(ctx) {
-      await this.actions.unregisterAll(ctx.params);
+    'gh-pubsub.unregisterAll': {
+      async handler(ctx) {
+        await this.actions.unregisterAll(ctx.params);
+      }
     },
 
     /**

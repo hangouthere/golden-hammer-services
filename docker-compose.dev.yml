@@ -10,6 +10,7 @@ x-dev-mode: &dev-mode
   volumes:
     - './:/app'
     - ../golden-hammer-shared:/golden-hammer-shared
+    - /dev/null:/app/.git # For git submodules
   ports:
     - '9229:9229'
 
