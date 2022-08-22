@@ -36,6 +36,7 @@ module.exports = {
           eventClassifications
         });
 
+        //FIXME: Consider moving this logic to the twitch service, and make this dumb
         // No sockets for the connectTarget yet, let's try to connect before we do anything else!
         if (1 === numConnected) {
           try {

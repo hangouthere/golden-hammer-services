@@ -1,0 +1,10 @@
+{
+  "extends": "@nfg/util/tsconfig",
+
+  "include": ["src/**/*", "tests/**/*"],
+  "exclude": ["node_modules", "dist", "__mocks__/**/*"],
+
+  "compilerOptions": {
+    "outDir": "./dist"
+  }
+}

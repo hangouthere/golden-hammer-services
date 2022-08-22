@@ -1,7 +1,7 @@
 version: '3.7'
 
 x-dev-mode: &dev-mode
-  command: ['npm', 'run', 'dev']
+  command: "sh -c 'sleep 1 && npm run withnfgutil'"
   stdin_open: true
   tty: true
   environment:
@@ -13,6 +13,7 @@ x-dev-mode: &dev-mode
     # - /app/node_modules
     - /dev/null:/app/.git # For git submodules
     - ../golden-hammer-shared:/golden-hammer-shared
+    - ../../../general/nfg-util/:/nfg-util
   ports:
     - '9229:9229'
 

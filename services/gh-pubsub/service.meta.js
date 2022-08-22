@@ -1,4 +1,4 @@
-const { EventClassifications, PossibleEventClassifications } = require('golden-hammer-shared');
+const { PossibleEventClassifications } = require('golden-hammer-shared');
 
 const VALIDATOR_PLATFORMS = { type: 'string', enum: ['twitch'] };
 
