@@ -14,7 +14,6 @@
     "clean": "rimraf ./dist",
     "dev": "NODE_ENV=development concurrently -r 'npm:dev:normal:*'",
     "dev:normal:moleculer": "node --inspect=0.0.0.0:9229 node_modules/moleculer/bin/moleculer-runner --repl --hot",
-    "dev:linked": "npm run link:shared && npm run dev",
     "dev:debug": "node --inspect-brk=0.0.0.0:9229 node_modules/moleculer/bin/moleculer-runner --repl --hot",
     "start": "moleculer-runner",
     "cli": "moleculer connect NATS",

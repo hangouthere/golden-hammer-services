@@ -1,7 +1,6 @@
 version: '3.7'
 
 x-dev-mode: &dev-mode
-  command: ['npm', 'run', 'dev:linked']
   volumes:
     - ../.docker/.npmrc-localRegistry:/app/.npmrc
   networks:

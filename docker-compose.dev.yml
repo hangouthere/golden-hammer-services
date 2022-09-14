@@ -10,6 +10,9 @@ x-dev-mode: &dev-mode
 services:
   api:
     <<: *dev-mode
+    # volumes: # We don't mount the unnamed adhoc volume as below, because we want
+    #            in-editor/lsp processing available for libs, etc.
+    ##
     ports:
       - '9229:9229'
 
