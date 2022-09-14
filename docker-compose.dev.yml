@@ -15,15 +15,24 @@ services:
 
   gh-pubsub:
     <<: *dev-mode
+    volumes:
+      # Create unnamed adhoc volume to avoid fs collision
+      - /app/node_modules
     ports:
       - '9230:9229'
 
   gh-messaging:
     <<: *dev-mode
+    volumes:
+      # Create unnamed adhoc volume to avoid fs collision
+      - /app/node_modules
     ports:
       - '9240:9229'
 
   twitch-chat:
     <<: *dev-mode
+    volumes:
+      # Create unnamed adhoc volume to avoid fs collision
+      - /app/node_modules
     ports:
       - '9241:9229'

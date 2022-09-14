@@ -11,7 +11,6 @@
     "preprod": "NODE_ENV=development npm i && npm run clean && npm run link:shared",
     "docker-compose": "npm i && npx nfg-compose",
     "link:shared": "npx -y link --deep /golden-hammer-shared",
-    "link:shared:full": "npm run link:shared && npx -y install-peerdeps -nox --no-save github:nerdfoundry/golden-hammer-shared",
     "clean": "rimraf ./dist",
     "dev": "NODE_ENV=development concurrently -r 'npm:dev:normal:*'",
     "dev:normal:moleculer": "node --inspect=0.0.0.0:9229 node_modules/moleculer/bin/moleculer-runner --repl --hot",
