@@ -1,0 +1,31 @@
+version: '3.7'
+
+x-moleculer-microservice: &moleculer-microservice
+  build:
+    context: .
+  image: golden-hammer-service
+  restart: unless-stopped
+  env_file: .env
+
+services:
+  test:
+    image: golden-hammer-service
+    command: ['npm', 'run', 'test']
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    environment:
+      - NODE_ENV=development
+      - REQUESTTIMEOUT=0
+      - NODE_OPTIONS=--enable-source-maps --trace-warnings
+    volumes:
+      - .:/app
+      # - /app/node_modules
+      # Overlays git config to avoid accessing submodules in container
+      - /dev/null:/app/.git
+      # Include gh-shared to link in container
+      - ../golden-hammer-shared:/golden-hammer-shared
+    ports:
+      - '11111:9229'
+    networks:
+      - internal

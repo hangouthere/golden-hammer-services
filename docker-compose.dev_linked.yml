@@ -1,0 +1,22 @@
+version: '3.7'
+
+x-dev-mode: &dev-mode
+  command: ['npm', 'run', 'dev:linked']
+
+services:
+  api:
+    <<: *dev-mode
+
+  gh-pubsub:
+    <<: *dev-mode
+
+  gh-messaging:
+    <<: *dev-mode
+
+  twitch-chat:
+    <<: *dev-mode
+
+networks:
+  internal:
+  nfg-util_registry:
+    external: true

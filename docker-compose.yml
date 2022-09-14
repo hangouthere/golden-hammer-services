@@ -5,7 +5,16 @@ x-moleculer-microservice: &moleculer-microservice
     context: .
   image: golden-hammer-service
   restart: unless-stopped
+  stdin_open: true
+  tty: true
   env_file: .env
+  volumes:
+    - .:/app
+    # - /app/node_modules
+    # Overlays git config to avoid accessing submodules in container
+    - /dev/null:/app/.git
+    # Include gh-shared to link in container
+    - ../golden-hammer-shared:/golden-hammer-shared
   depends_on:
     - nats
     - redis
