@@ -1,9 +1,9 @@
 /* istanbul ignore file */
 
-const AdministrationNormalizerClass = require('./AdministrationNormalizer');
-const MonetizationNormalizerClass = require('./MonetizationNormalizer');
-const ProxyNormalizerClass = require('./ProxyNormalizer');
-const UserChatMessageNormalizer = require('./UserChatMessageNormalizer');
+import AdministrationNormalizerClass from './AdministrationNormalizer.mjs';
+import MonetizationNormalizerClass from './MonetizationNormalizer.mjs';
+import ProxyNormalizerClass from './ProxyNormalizer.mjs';
+import UserChatMessageNormalizer from './UserChatMessageNormalizer.mjs';
 
 const AdministrationNormalizer = new AdministrationNormalizerClass();
 const MonetizationNormalizer = new MonetizationNormalizerClass();
@@ -31,7 +31,7 @@ const Message = {
   Normalizer: new UserChatMessageNormalizer().normalize
 };
 
-module.exports = {
+export default {
   //! ///////////////////////////////////////////////////////
   //! UserChat
   // 'message', // Preferring action/chat/whisper independently

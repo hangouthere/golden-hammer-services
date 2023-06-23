@@ -4,18 +4,20 @@
  * @property {string[]} eventClassifications
  */
 
-const EventDenormalizeMap = require('./normalize/EventDenormalizeMap');
+import EventDenormalizeMap from './normalize/EventDenormalizeMap.mjs';
 
 const KEY_PREFIX = 'twitchFilter';
 
 /**
+ * Based on classification, we toggle an event type (or explicitly set)
+ *
  * @param {import('moleculer').Cachers.Redis<import('ioredis').Redis>} cacher
  * @param {object} options
  * @param {string} options.connectTarget
  * @param {string[]} options.eventClassifications
  * @returns {Promise<any>}
  */
-const toggleEventTypesByClassifications = async (cacher, { connectTarget, eventClassifications }, adding = true) => {
+export const toggleEventTypesByClassifications = async (cacher, { connectTarget, eventClassifications }, adding = true) => {
   const key = `${cacher.prefix}${KEY_PREFIX}:${connectTarget}`;
 
   let nativeEventNames;
@@ -36,15 +38,10 @@ const toggleEventTypesByClassifications = async (cacher, { connectTarget, eventC
  * @param {string} options.nativeEventName
  * @returns {Promise<boolean>}
  */
-const hasListener = async (cacher, { connectTarget, nativeEventName }) => {
+export const hasListener = async (cacher, { connectTarget, nativeEventName }) => {
   const key = `${cacher.prefix}${KEY_PREFIX}:${connectTarget}`;
 
   const numListeningToEvent = Number(await cacher.client.hget(key, nativeEventName));
 
   return numListeningToEvent > 0;
-};
-
-module.exports = {
-  hasListener,
-  toggleEventTypesByClassifications
 };

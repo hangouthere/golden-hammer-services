@@ -1,16 +1,22 @@
-const ApiGateway = require('moleculer-web');
+import Moleculer from 'moleculer';
+import molecularIo from 'moleculer-io';
+import ApiGateway from 'moleculer-web';
 
-module.exports = {
-  name: 'api',
-  mixins: [
+import nodeRestartOnDisconnect from '../mixin-nodeRestartOnDisconnect.mjs';
+
+import mixinIo from './mixin-io.mjs';
+import mixinWeb from './mixin-web.mjs';
+
+export default {
+  name : 'api',
+  mixins : [
     ApiGateway,
-    require('moleculer-io'),
-    require('./mixin-web'),
-    require('./mixin-io'),
-    require('../mixin-nodeRestartOnDisconnect')
+    molecularIo,
+    mixinWeb,
+    mixinIo,
+    nodeRestartOnDisconnect
   ],
 
-  // More info about settings: https://moleculer.services/docs/0.14/moleculer-web.html
   settings: {
     // Exposed port
     port: process.env.PORT || 3000
@@ -21,8 +27,12 @@ module.exports = {
      * Authenticate the request. It check the `Authorization` token value in the request header.
      * Check the token value & resolve the user by the token.
      * The resolved user will be available in `ctx.meta.user`
+     *
+     * @param {Moleculer.Context} _ctx
+     * @param {any} _route
+     * @param {any} req
      */
-    async authenticate(ctx, route, req) {
+    async authenticate(_ctx, _route, req) {
       // Read the token from header
       const auth = req.headers['authorization'];
 
@@ -36,27 +46,32 @@ module.exports = {
         } else {
           // Invalid token
           //@ts-ignore
-          throw new ApiGateway.Errors.UnAuthorizedError(ApiGateway.Errors.ERR_INVALID_TOKEN);
+          throw new ApiGatewayService.Errors.UnAuthorizedError(Errors.ERR_INVALID_TOKEN);
         }
       } else {
         // No token. Throw an error or do nothing if anonymous access is allowed.
-        // throw new E.UnAuthorizedError(E.ERR_NO_TOKEN);
+        // throw new E.ApiGatewayService.Errors.UnAuthorizedError(E.ERR_NO_TOKEN);
         return null;
       }
     },
 
     /**
      * Authorize the request. Check that the authenticated user has right to access the resource.
+     *
+     * @param {Moleculer.Context} ctx
+     * @param {any} _route
+     * @param {any} req
      */
-    async authorize(ctx, route, req) {
+
+    async authorize(ctx, _route, req) {
       // Get the authenticated user.
       const user = ctx.meta.user;
 
       // It check the `auth` property in action schema.
       if (req.$action.auth == 'required' && !user) {
         //@ts-ignore
-        throw new ApiGateway.Errors.UnAuthorizedError('NO_RIGHTS');
+        throw new ApiGatewayService.Errors.UnAuthorizedError('NO_RIGHTS');
       }
     }
   }
-};
+}

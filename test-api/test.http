@@ -1,0 +1,8 @@
+
+@version = {{getVersion.response.body.requestResult.responseData.obsVersion}}
+https://postman-echo.com/get?gotVersion={{version}}
+
+###
+
+@version2 = {{getVersion.response.body.requestResult.responseData.obsVersion}}
+https://postman-echo.com/get?anotherVersion={{version2}}&someVal={{$guid}}

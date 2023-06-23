@@ -1,25 +1,58 @@
 version: '3.7'
 
 x-dev-mode: &dev-mode
-  volumes:
-    - ../.docker/.npmrc-localRegistry:/app/.npmrc
+  command: sh -c "npm i && npx ghsvc-dev-linked"
+  # command: tail -f /dev/null
+  depends_on:
+    # Wait for the ownership to change
+    change-vol-ownership:
+      condition: service_completed_successfully
   networks:
-    - nfg-util_registry
+    - hh-util_registry
 
 services:
+  change-vol-ownership:
+    image: node:18-alpine3.18
+    command: chown -R 1000:1000 /_triggers
+    group_add:
+      - '1000'
+    volumes:
+      - hh-triggers:/_triggers
+
   api:
     <<: *dev-mode
+    volumes:
+      - ../.docker/.npmrc-localRegistry:/app/.npmrc
+      - hh-triggers:/_triggers
 
   gh-pubsub:
     <<: *dev-mode
+    volumes:
+      - node_modules_pubsub:/app/node_modules
+      - ../.docker/.npmrc-localRegistry:/app/.npmrc
+      - hh-triggers:/_triggers
 
   gh-messaging:
     <<: *dev-mode
+    volumes:
+      - node_modules_messaging:/app/node_modules
+      - ../.docker/.npmrc-localRegistry:/app/.npmrc
+      - hh-triggers:/_triggers
 
   twitch-chat:
     <<: *dev-mode
+    volumes:
+      - node_modules_chat:/app/node_modules
+      - ../.docker/.npmrc-localRegistry:/app/.npmrc
+      - hh-triggers:/_triggers
+
+volumes:
+  hh-triggers:
+    external: true
+  node_modules_pubsub:
+  node_modules_messaging:
+  node_modules_chat:
 
 networks:
-  internal:
-  nfg-util_registry:
+  hh-util_registry:
     external: true

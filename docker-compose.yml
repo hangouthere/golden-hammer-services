@@ -3,24 +3,23 @@ version: '3.7'
 x-moleculer-microservice: &moleculer-microservice
   build:
     context: .
-  image: golden-hammer-service
+  image: hangouthere/golden-hammer-service
   restart: unless-stopped
   stdin_open: true
   tty: true
+  user: '1000'
   env_file: .env
   volumes:
     - .:/app
     # - /app/node_modules
     # Overlays git config to avoid accessing submodules in container
-    - /dev/null:/app/.git
-    # Include gh-shared to link in container
-    - ../golden-hammer-shared:/golden-hammer-shared
+    # - /dev/null:/app/.git
   depends_on:
     - nats
     - redis
     - api
   networks:
-    - internal
+    - gh-services
 
 services:
   api:
@@ -30,7 +29,7 @@ services:
       - redis
     environment:
       SERVICES: api
-      PORT: 3000
+      PORT: 3000 #TODO: Determine if we really need to specify this
     labels:
       - 'traefik.enable=true'
       - 'traefik.http.routers.api.rule=PathPrefix(`/`)'
@@ -54,26 +53,28 @@ services:
   #mongo:
   #  image: mongo:4
   #  volumes:
-  #    - data:/data/db
+  #    - mongo-db:/data/db
   #  networks:
-  #    - internal
+  #    - gh-services
 
   nats:
     image: nats:2
     networks:
-      - internal
+      - gh-services
 
   redis:
     image: redis:alpine
+    volumes:
+      - redis_cache:/data
     networks:
-      - internal
+      - gh-services
 
   redis-gui:
     image: rediscommander/redis-commander
     stdin_open: true
     tty: true
     networks:
-      - internal
+      - gh-services
     environment:
       - REDIS_HOSTS=gh:redis:6379
     ports:
@@ -89,18 +90,24 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
-      - internal
+      - gh-services
       - default
 
   jaeger:
     image: jaegertracing/all-in-one:latest
     ports:
       - '9999:16686'
+    volumes:
+      - jaeger:/tmp
     networks:
-      - internal
+      - gh-services
 
 networks:
-  internal:
+  gh-services:
+    name: gh-services
 
 volumes:
-  data:
+  redis_cache:
+  jaeger:
+#   mongo-db:
+#     name: mongo-db

@@ -1,0 +1,12 @@
+version: '3.7'
+
+x-dev-mode: &prod-mode
+  # command: npx ghsvc-dev
+  environment:
+    - NODE_ENV=production
+
+services:
+  api:
+    <<: *prod-mode
+    ports:
+      - '9229:9229'

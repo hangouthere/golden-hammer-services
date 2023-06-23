@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   settings: {
     // Exposed IP
     ip: '0.0.0.0',

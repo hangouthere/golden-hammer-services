@@ -1,19 +1,23 @@
-const { v4: uuidv4 } = require('uuid');
-const { Cachers, Context, Service } = require('moleculer');
-const SERVICE_META = require('./service.meta');
-const {
+import { Cachers, Context, Service } from 'moleculer';
+import { v4 as uuidv4 } from 'uuid';
+
+import nodeRestartOnDisconnect from '../mixin-nodeRestartOnDisconnect.mjs';
+
+import SERVICE_META from './service.meta.mjs';
+
+import {
   KEY_REGISTERED,
+  cacheTargetForSocket,
+  checkIfSocketRegisteredForTarget,
   getRegistrationsForTargetByKey,
   getSocketDataCacheAwaitingEventForConnectTarget,
-  checkIfSocketRegisteredForTarget,
-  uncacheTargetForSocket,
-  cacheTargetForSocket
-} = require('./RegisterCache');
+  uncacheTargetForSocket
+} from './RegisterCache.mjs';
 
-module.exports = {
+export default {
   name: 'gh-pubsub',
 
-  mixins: [require('../mixin-nodeRestartOnDisconnect'), SERVICE_META.MIXIN],
+  mixins: [nodeRestartOnDisconnect, SERVICE_META.MIXIN],
 
   actions: {
     register: {

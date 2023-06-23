@@ -1,4 +1,4 @@
-module.exports = class ProxyNormalizer {
+export default class ProxyNormalizer {
   _ts = Date.now();
 
   normalize = (...args) => {

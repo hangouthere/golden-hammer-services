@@ -1,4 +1,4 @@
-const { PossibleEventClassifications } = require('golden-hammer-shared');
+import { PossibleEventClassifications } from 'golden-hammer-shared';
 
 const VALIDATOR_PLATFORMS = { type: 'string', enum: ['twitch'] };
 
@@ -7,7 +7,7 @@ const TAGS = {
   meta: true
 };
 
-module.exports = {
+export default {
   MIXIN: {
     actions: {
       register: {

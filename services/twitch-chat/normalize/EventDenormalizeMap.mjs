@@ -1,8 +1,8 @@
 /* istanbul ignore file */
 
-const EventNormalizeMap = require('./EventNormalizeMap');
+import EventNormalizeMap from './EventNormalizeMap.mjs';
 
-module.exports = Object.entries(EventNormalizeMap).reduce((_map, [twitchEventName, normalizeMapping]) => {
+export default Object.entries(EventNormalizeMap).reduce((_map, [twitchEventName, normalizeMapping]) => {
   _map[normalizeMapping.EventClassification] = _map[normalizeMapping.EventClassification] || [];
 
   if (!_map[normalizeMapping.EventClassification].includes(twitchEventName)) {

@@ -5,10 +5,10 @@
  * @property {string[]} eventClassifications
  */
 
+export const KEY_REGISTERED = 'registered'; //FIXME: Should probably be moved to a helper function to avoid silly export
 const MAX_KEY_FIND = 100; //!FIXME - Need to test limits in conjunction with APIs/integrations (ie, twitch has connectivity limits)
 const KEY_COUNTER_PLATFORM = 'connectedPlatform';
 const KEY_COUNTER_TARGET = 'connectedTarget';
-const KEY_REGISTERED = 'registered';
 
 /**
  * @param {import('moleculer').Cachers.Redis<import('ioredis').Redis>} cacher
@@ -18,7 +18,7 @@ const KEY_REGISTERED = 'registered';
  * @param {string} options.searchKey
  * @returns {Promise<SocketDataCache[]>}
  */
-const getRegistrationsForTargetByKey = async (cacher, { platformName, connectTarget, searchKey }) => {
+export const getRegistrationsForTargetByKey = async (cacher, { platformName, connectTarget, searchKey }) => {
   return new Promise((resolve, reject) => {
     const sockets = [];
     const stream = cacher.client.scanStream({
@@ -70,7 +70,7 @@ const _onScanComplete = async (cacher, socketKeys, { platformName, connectTarget
  * @param {function} getRegistrationsForTargetByKey
  * @returns {Promise<SocketDataCache[]>}
  */
-const getSocketDataCacheAwaitingEventForConnectTarget = async (
+export const getSocketDataCacheAwaitingEventForConnectTarget = async (
   cacher,
   { eventClassification, platformName, connectTarget },
   getRegistrationsForTargetByKey
@@ -98,7 +98,7 @@ const getSocketDataCacheAwaitingEventForConnectTarget = async (
  * @param {string} options.socketId
  * @returns {Promise<import('golden-hammer-shared').PubSubConnectionResponse | null>}
  */
-const checkIfSocketRegisteredForTarget = async (cacher, { connectTarget, platformName, socketId }) => {
+export const checkIfSocketRegisteredForTarget = async (cacher, { connectTarget, platformName, socketId }) => {
   const isSocketRegisteredForTarget = await cacher.get(
     `${KEY_REGISTERED}:${platformName}-${connectTarget}-${socketId}`
   );
@@ -130,7 +130,7 @@ const checkIfSocketRegisteredForTarget = async (cacher, { connectTarget, platfor
  * @param {any} options.eventClassifications
  * @returns {Promise<number>}
  */
-const cacheTargetForSocket = async (cacher, { target, socketId, eventClassifications }) => {
+export const cacheTargetForSocket = async (cacher, { target, socketId, eventClassifications }) => {
   await cacher.set(`${KEY_REGISTERED}:${target}-${socketId}`, eventClassifications);
   await cacher.client.incr(`${cacher.prefix}${KEY_COUNTER_PLATFORM}:${target.split('-')[0]}`);
 
@@ -144,7 +144,7 @@ const cacheTargetForSocket = async (cacher, { target, socketId, eventClassificat
  * @param {string} options.socketId
  * @returns {Promise<{numConnected:number, eventClassifications: string[]}>}
  */
-const uncacheTargetForSocket = async (cacher, { target, socketId }) => {
+export const uncacheTargetForSocket = async (cacher, { target, socketId }) => {
   const numConnected = await cacher.client.decr(`${cacher.prefix}${KEY_COUNTER_TARGET}:${target}`);
   const eventClassifications = /** @type {string[]} */ (await cacher.get(`${KEY_REGISTERED}:${target}-${socketId}`));
   await cacher.del(`${KEY_REGISTERED}:${target}-${socketId}`);
@@ -156,14 +156,4 @@ const uncacheTargetForSocket = async (cacher, { target, socketId }) => {
   }
 
   return { numConnected, eventClassifications };
-};
-
-// Exports!
-module.exports = {
-  KEY_REGISTERED,
-  cacheTargetForSocket,
-  checkIfSocketRegisteredForTarget,
-  getRegistrationsForTargetByKey,
-  getSocketDataCacheAwaitingEventForConnectTarget,
-  uncacheTargetForSocket
 };

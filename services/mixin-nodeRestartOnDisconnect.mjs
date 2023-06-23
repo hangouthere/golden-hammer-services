@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   events: {
     '$node.disconnected'(ctx) {
       const {

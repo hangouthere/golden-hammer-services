@@ -28,4 +28,4 @@ services:
     ports:
       - '11111:9229'
     networks:
-      - internal
+      - gh-services

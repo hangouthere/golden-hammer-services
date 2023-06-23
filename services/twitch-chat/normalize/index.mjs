@@ -1,6 +1,6 @@
-const EventNormalizeMap = require('./EventNormalizeMap');
+import EventNormalizeMap from './EventNormalizeMap.mjs';
 
-module.exports = class Normalizer {
+export default class Normalizer {
   normalize(incomingEventName, incomingEventArguments) {
     /** @type {import('golden-hammer-shared').EventDataTypes} */
     let normalizedData, timestamp;

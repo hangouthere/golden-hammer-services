@@ -1,6 +1,6 @@
-node_modules
-dist
-package-lock.json
-.npmrc
 .env
+.npmrc
 coverage
+dist
+node_modules
+package-lock.json

@@ -1,14 +1,17 @@
-const tmijs = require('tmi.js');
-const { Context, Service, Cachers } = require('moleculer');
-const TMIjsEventClassificationMap = require('./normalize/EventNormalizeMap');
-const Normalizer = require('./normalize');
-const SERVICE_META = require('./service.meta');
-const { hasListener, toggleEventTypesByClassifications } = require('./RegisterCache');
+import { Cachers, Context, Service } from 'moleculer';
+import tmijs from 'tmi.js';
 
-module.exports = {
+import nodeRestartOnDisconnect from '../mixin-nodeRestartOnDisconnect.mjs';
+
+import { hasListener, toggleEventTypesByClassifications } from './RegisterCache.mjs';
+import TMIjsEventClassificationMap from './normalize/EventNormalizeMap.mjs';
+import Normalizer from './normalize/index.mjs';
+import SERVICE_META from './service.meta.mjs';
+
+export default {
   name: 'twitch-chat',
 
-  mixins: [require('../mixin-nodeRestartOnDisconnect'), SERVICE_META.MIXIN],
+  mixins: [nodeRestartOnDisconnect, SERVICE_META.MIXIN],
 
   created() {
     const client = new tmijs.Client({

@@ -1,10 +1,12 @@
-const { v4: uuidv4 } = require('uuid');
-const { match } = require('moleculer').Utils;
+
+
+import { v4 as uuidv4 } from 'uuid';
+import Moleculer from 'moleculer';
 
 const TTL_SOCKET_UNREGISTERED = 15 * 1000;
 const TimeoutMap = {};
 
-module.exports = {
+export default {
   settings: {
     io: {
       cors: {
@@ -71,10 +73,9 @@ module.exports = {
     },
 
     disconnectSocket(socket) {
-      const _this = this;
-      _this.logger.info(`Auto Disconnecting Socket Due to Inactivity: ${socket.id}`);
+      this.logger.info(`Auto Disconnecting Socket Due to Inactivity: ${socket.id}`);
 
-      _this.broker.call('api.broadcast', {
+      this.broker.call('api.broadcast', {
         event: 'gh-pubsub.rejected',
         args: [{ reason: 'Did not register for any PubSub services within the alloted time', pubSubMsgId: uuidv4() }],
         rooms: [socket.id]

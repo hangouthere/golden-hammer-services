@@ -3,6 +3,5 @@
   "workbench.colorCustomizations": {
     "activityBar.activeBorder": "#48d7a5"
   },
-  "peacock.remoteColor": "825f1d",
-  "thunder-client.loadFromProject": true
+  "peacock.remoteColor": "825f1d"
 }

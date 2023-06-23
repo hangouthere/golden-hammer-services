@@ -2,42 +2,33 @@
   "name": "golden-hammer-services",
   "version": "1.0.0",
   "description": "My Moleculer-based microservices project",
-  "author": "nfgCodex <nfg.codex@outlook.com>",
+  "author": "CodexHere <codexhere@outlook.com>",
   "license": "MIT",
   "type": "module",
-  "prettier": "@nfg/util/prettier",
+  "prettier": "@hangouthere/util/prettier",
+  "engines": {
+    "node": "=18"
+  },
   "scripts": {
-    "predev": "npm i && npm run clean && npm run link:shared",
-    "preprod": "NODE_ENV=development npm i && npm run clean && npm run link:shared",
-    "docker-compose": "npm i && npx nfg-compose",
-    "link:shared": "npx -y link --deep /golden-hammer-shared",
-    "clean": "rimraf ./dist",
-    "dev": "NODE_ENV=development concurrently -r 'npm:dev:normal:*'",
-    "dev:normal:moleculer": "node --inspect=0.0.0.0:9229 node_modules/moleculer/bin/moleculer-runner --repl --hot",
-    "dev:debug": "node --inspect-brk=0.0.0.0:9229 node_modules/moleculer/bin/moleculer-runner --repl --hot",
-    "start": "moleculer-runner",
-    "cli": "moleculer connect NATS",
-    "test": "npx jest -- --watchAll --coverage",
-    "testBrk": "node --inspect-brk=0.0.0.0:9229 ./node_modules/.bin/jest --runInBand --watchAll --coverage",
-    "lint": "eslint services"
+    "start": "echo \"You should use the included hh-util Docker Compose scripts located in './node_modules/.bin/hh-compose*' to start this project\"",
+    "_start": "moleculer-runner",
+    "_cli": "moleculer connect"
   },
   "keywords": [
     "microservices",
     "moleculer"
   ],
   "devDependencies": {
+    "@hangouthere/util": "^0.0.1-4",
     "@types/ioredis": "^4.28.10",
     "@types/jest": "^28.1.1",
-    "@types/socket.io-client": "^3.0.0",
     "@types/tmi.js": "^1.8.1",
     "@types/uuid": "^8.3.4",
-    "golden-hammer-shared": "github:nerdfoundry/golden-hammer-shared",
-    "jest": "^28.1.1",
-    "jest-cli": "^28.1.1",
+    "golden-hammer-shared": "^0.0.1-13",
+    "moleculer-cli": "^0.8.1",
     "moleculer-repl": "^0.7.1"
   },
   "dependencies": {
-    "@nfg/util": "^0.0.2-7",
     "ioredis": "^4.28.5",
     "jaeger-client": "^3.19.0",
     "moleculer": "^0.14.21",
@@ -49,10 +40,7 @@
     "tmi.js": "^1.8.5",
     "uuid": "^8.3.2"
   },
-  "engines": {
-    "node": ">= 16.x.x"
-  },
-  "jest": {
+  "__NEEDS_PORTING_TOVITEST__jest": {
     "resetModules": true,
     "resetMocks": true,
     "moduleNameMapper": {
@@ -63,5 +51,8 @@
       "!<rootDir>/test/helpers/**",
       "!<rootDir>/node_modules/**"
     ]
+  },
+  "peerDependencies": {
+    "golden-hammer-shared": "^0.0.1-1"
   }
 }

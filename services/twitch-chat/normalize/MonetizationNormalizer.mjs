@@ -1,4 +1,4 @@
-module.exports = class MonetizationNormalizer {
+export default class MonetizationNormalizer {
   _ts = us => +us['tmi-sent-ts'];
 
   normalizeCheer = ({ incomingEventArguments }) => {

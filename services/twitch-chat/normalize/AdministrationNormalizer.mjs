@@ -1,4 +1,4 @@
-module.exports = class AdministrationNormalizer {
+export default class AdministrationNormalizer {
   _ts = us => +us['tmi-sent-ts'];
 
   normalizeTimeout = ({ incomingEventArguments }) => {

@@ -1,9 +1,20 @@
-FROM node:18-alpine3.15
+FROM node:18-alpine3.18
 
 ENV NODE_ENV=production
 
-RUN apk add git openssh-client --no-cache && \
-    mkdir /app && chown -R node.node /app
+# TODO: Determine if we actually need any/all of these dependencies
+
+RUN apk add --no-cache \
+  g++ \
+  gcc \
+  git \
+  libgcc \
+  libstdc++ \
+  linux-headers \
+  make \
+  python3 \
+  sqlite && \
+  mkdir /app && chown -R node.node /app
 
 WORKDIR /app
 

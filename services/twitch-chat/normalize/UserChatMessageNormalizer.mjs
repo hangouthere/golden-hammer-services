@@ -1,6 +1,6 @@
 const genEmoteId = emoteId => `https://static-cdn.jtvnw.net/emoticons/v2/${emoteId}/default/dark/3.0`;
 
-module.exports = class UserChatMessageNormalizer {
+export default class UserChatMessageNormalizer {
   _ts = us => +us['tmi-sent-ts'];
 
   normalize = ({ incomingEventArguments }) => {
