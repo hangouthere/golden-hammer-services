@@ -1,7 +1,7 @@
 version: '3.7'
 
 x-dev-mode: &dev-mode
-  command: sh -c "npm i && npx ghsvc-dev-linked"
+  command: npx ghsvc-dev-linked
   # command: tail -f /dev/null
   depends_on:
     # Wait for the ownership to change

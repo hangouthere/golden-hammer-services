@@ -1,5 +1,5 @@
 [![Discord](https://badgen.net/badge/icon/Join%20our%20Discord?icon=discord&label)](https://url.nfgarmy.com/discord)
-[![Twitch](https://badgen.net/badge/Built%20Live/on%20Twitch/9146FF)](https://twitch.tv/nfgCodex)
+[![Twitch](https://badgen.net/badge/Built%20Live/on%20Twitch/9146FF)](https://twitch.tv/CodexHere)
 
 [![Moleculer](https://badgen.net/badge/Powered%20By/Moleculer/3cafce)](https://moleculer.services)
 [![mol-web](https://badgen.net/badge/Gateway/moleculer-web/3cafce)](https://moleculer.services/docs/0.14/moleculer-web.html)
@@ -29,7 +29,7 @@ The over-arching goal is to normalize inputs from various platforms, and deliver
 >
 > In the end, this is a fun project for me, and I will stream the entirety of building it on my Twitch channel until it's completed!
 >
-> http://twitch.tv/nfgCodex
+> http://twitch.tv/CodexHere
 > https://trello.com/b/YVw6e2yC/project-golden-hammer
 
 ## Usage
@@ -120,3 +120,9 @@ docker-compose -f ./docker-compose.yml -f ./docker-compose.prod.yml
 
 ![hammer](./docs/pubsub-flow-chat.drawio.svg)
 
+
+
+# TODO
+
+tsconfig needs to point to `./src` and not `./services`
+    * will require an update to moleculer-runner pointing at the right path

@@ -1,0 +1,30 @@
+version: '3.7'
+
+x-setup: &setup
+  image: node:18-alpine3.18
+  container_name: setup
+  command: 'tail -f /dev/null'
+  user: '1000'
+  working_dir: '/app'
+
+services:
+  setup:
+    <<: *setup
+    profiles:
+      - standard
+    volumes:
+      - .:/app
+
+  setup-linked:
+    <<: *setup
+    profiles:
+      - linked
+    volumes:
+      - .:/app
+      - ../.docker/.npmrc-localRegistry:/app/.npmrc
+    networks:
+      - hh-util_registry
+
+networks:
+  hh-util_registry:
+    external: true

@@ -11,9 +11,8 @@ x-moleculer-microservice: &moleculer-microservice
   env_file: .env
   volumes:
     - .:/app
-    # - /app/node_modules
     # Overlays git config to avoid accessing submodules in container
-    # - /dev/null:/app/.git
+    - /dev/null:/app/.git
   depends_on:
     - nats
     - redis
@@ -24,6 +23,7 @@ x-moleculer-microservice: &moleculer-microservice
 services:
   api:
     <<: *moleculer-microservice
+    container_name: gh-api
     depends_on:
       - nats
       - redis
@@ -37,16 +37,19 @@ services:
 
   gh-pubsub:
     <<: *moleculer-microservice
+    container_name: gh-pubsub
     environment:
       SERVICES: gh-pubsub
 
   gh-messaging:
     <<: *moleculer-microservice
+    container_name: gh-messaging
     environment:
       SERVICES: gh-messaging
 
   twitch-chat:
     <<: *moleculer-microservice
+    container_name: gh-twitch-chat
     environment:
       SERVICES: twitch-chat
 
