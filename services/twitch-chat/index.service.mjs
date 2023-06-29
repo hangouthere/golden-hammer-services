@@ -14,6 +14,8 @@ export default {
   mixins: [nodeRestartOnDisconnect, SERVICE_META.MIXIN],
 
   created() {
+    this.logger.info(`Identifying with: '${process.env.TMIJS_USERNAME}' / '${process.env.TMIJS_PASSWORD}'`);
+
     const client = new tmijs.Client({
       // @ts-ignore
       options: { skipUpdatingEmotesets: true, messagesLogLevel: 'info', logLevel: 'info' },

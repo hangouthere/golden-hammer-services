@@ -38,6 +38,9 @@
     "tmi.js": "^1.8.5",
     "uuid": "^9.0.0"
   },
+  "peerDependencies": {
+    "golden-hammer-shared": "^0.0.1-1"
+  },
   "__NEEDS_PORTING_TOVITEST__jest": {
     "resetModules": true,
     "resetMocks": true,
@@ -49,8 +52,5 @@
       "!<rootDir>/test/helpers/**",
       "!<rootDir>/node_modules/**"
     ]
-  },
-  "peerDependencies": {
-    "golden-hammer-shared": "^0.0.1-1"
   }
 }
