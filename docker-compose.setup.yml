@@ -19,9 +19,12 @@ services:
       - standard
     volumes:
       - .:/app
+      # Volumes to act on in _setup_helper.sh
       - node_modules_chat:/_vols/1
       - node_modules_messaging:/_vols/2
       - node_modules_pubsub:/_vols/3
+      # Overlays git config to avoid accessing submodules in container
+      - /dev/null:/app/.git
 
   setup-linked:
     <<: *setup
@@ -29,10 +32,13 @@ services:
       - linked
     volumes:
       - .:/app
+      - ../.docker/.npmrc-localRegistry:/app/.npmrc
+      # Overlays git config to avoid accessing submodules in container
+      - /dev/null:/app/.git
+      # Volumes to act on in _setup_helper.sh
       - node_modules_chat:/_vols/1
       - node_modules_messaging:/_vols/2
       - node_modules_pubsub:/_vols/3
-      - ../.docker/.npmrc-localRegistry:/app/.npmrc
     networks:
       - hh-util_registry
 

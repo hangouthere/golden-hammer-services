@@ -2,7 +2,6 @@ version: '3.7'
 
 x-dev-mode: &dev-mode
   command: npx ghsvc-dev-linked
-  # command: tail -f /dev/null
   depends_on:
     # Wait for the ownership to change
     change-vol-ownership:
