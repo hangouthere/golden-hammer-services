@@ -1,10 +1,15 @@
 version: '3.7'
 
 x-setup: &setup
-  image: node:18-alpine3.18
+  build:
+    context: .
+  image: hangouthere/golden-hammer-service
   container_name: setup
+  stdin_open: true
+  tty: true
+  env_file: .env
   command: 'tail -f /dev/null'
-  user: '1000'
+  user: '0'
   working_dir: '/app'
 
 services:
@@ -14,6 +19,9 @@ services:
       - standard
     volumes:
       - .:/app
+      - node_modules_chat:/_vols/1
+      - node_modules_messaging:/_vols/2
+      - node_modules_pubsub:/_vols/3
 
   setup-linked:
     <<: *setup
@@ -21,9 +29,17 @@ services:
       - linked
     volumes:
       - .:/app
+      - node_modules_chat:/_vols/1
+      - node_modules_messaging:/_vols/2
+      - node_modules_pubsub:/_vols/3
       - ../.docker/.npmrc-localRegistry:/app/.npmrc
     networks:
       - hh-util_registry
+
+volumes:
+  node_modules_chat:
+  node_modules_messaging:
+  node_modules_pubsub:
 
 networks:
   hh-util_registry:

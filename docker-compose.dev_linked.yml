@@ -49,9 +49,6 @@ services:
 volumes:
   hh-triggers:
     external: true
-  node_modules_pubsub:
-  node_modules_messaging:
-  node_modules_chat:
 
 networks:
   hh-util_registry:

@@ -11,15 +11,14 @@
   },
   "scripts": {
     "start": "echo \"You should use the included hh-util Docker Compose scripts located in './node_modules/.bin/hh-compose*' to start this project\"",
-    "_start": "moleculer-runner",
-    "_cli": "moleculer connect"
+    "repl": "moleculer connect",
+    "_start": "moleculer-runner"
   },
   "keywords": [
     "microservices",
     "moleculer"
   ],
   "devDependencies": {
-    "@hangouthere/util": "^0.0.1-1",
     "@types/ioredis": "^4.28.10",
     "@types/jest": "^29.5.2",
     "@types/tmi.js": "^1.8.3",

@@ -21,6 +21,7 @@ services:
     volumes:
       # Create unnamed adhoc volume to avoid fs collision
       - /app/node_modules
+      - node_modules_pubsub:/app/node_modules
     ports:
       - '9230:9229'
 
@@ -29,6 +30,7 @@ services:
     volumes:
       # Create unnamed adhoc volume to avoid fs collision
       - /app/node_modules
+      - node_modules_messaging:/app/node_modules
     ports:
       - '9240:9229'
 
@@ -37,5 +39,11 @@ services:
     volumes:
       # Create unnamed adhoc volume to avoid fs collision
       - /app/node_modules
+      - node_modules_chat:/app/node_modules
     ports:
       - '9241:9229'
+
+volumes:
+  node_modules_pubsub:
+  node_modules_messaging:
+  node_modules_chat:

@@ -17,7 +17,7 @@ installDeps() {
     -f ./docker-compose.setup.yml \
     up -d
 
-  docker exec -it setup sh -c "npm i"
+  docker exec -it setup ./.scripts/compose/_setup_helper.sh
 
   eval docker compose \
     "${PROFILE}" \
