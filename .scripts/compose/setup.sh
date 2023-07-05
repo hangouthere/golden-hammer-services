@@ -5,6 +5,7 @@
 PROFILE="--profile standard"
 PROFILE_LINKED="--profile registry --profile linked"
 
+SUBTLE=$(tput dim)
 WARN=$(tput setaf 3)
 RESET=$(tput sgr0)
 
@@ -40,8 +41,9 @@ upgradeDeps() {
 }
 
 showHelp() {
+  clear
   figlet -f small -w "$(tput cols)" "hh-util Setup Script"
-  printf "\nOptions:\n\t-l: Linked development includes a local npm registry and sets up compose with appropriate volumes\n\t-f: Force Installing depdencies %s(This will also delete node_modules and package-lock.json)%s\n\n\n\n" "${WARN}" "${RESET}"
+  printf "\nOptions:\n\t-l: Linked development includes a local npm registry and sets up compose with appropriate volumes\n\t-f: Force Installing depdencies %s(This will also delete node_modules and package-lock.json)%s\n\t-h: This help screen!\n\nIf %s./node_modules/.package-lock.json%s doesn't exist, this script will perform an %snpm install%s,\notherwise it will walk the user through updating dependencies.\n\nUse the %s-f%s flag to force installing depenencies which will first delete them all.\n\n\n\n" "${WARN}" "${RESET}" "${SUBTLE}" "${RESET}" "${WARN}" "${RESET}" "${WARN}" "${RESET}"
 }
 
 start() {
