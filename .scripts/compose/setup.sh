@@ -32,12 +32,14 @@ upgradeDeps() {
     -f ./docker-compose.setup.yml \
     up -d
 
-  docker exec -it setup sh -c "npx -y npm-upgrade && npm i"
+  docker exec -it setup sh -c "npx -y npm-upgrade"
 
   eval docker compose \
     "${PROFILE}" \
     -f ./docker-compose.setup.yml \
     down
+
+  installDeps
 }
 
 showHelp() {

@@ -1,7 +1,7 @@
 {
   "extends": "@hangouthere/util/tsconfig",
 
-  "include": ["services/**/*", "tests/**/*"],
+  "include": ["src/**/*", "tests/**/*"],
   "exclude": ["node_modules", "dist", "__mocks__/**/*"],
 
   "compilerOptions": {

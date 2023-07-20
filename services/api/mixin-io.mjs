@@ -1,7 +1,5 @@
-
-
-import { v4 as uuidv4 } from 'uuid';
 import Moleculer from 'moleculer';
+import { v4 as uuidv4 } from 'uuid';
 
 const TTL_SOCKET_UNREGISTERED = 15 * 1000;
 const TimeoutMap = {};
@@ -87,5 +85,5 @@ export default {
 };
 
 function checkWhitelist(action, whitelist) {
-  return whitelist.some(mask => match(action, mask));
+  return whitelist.some(mask => Moleculer.match(action, mask));
 }

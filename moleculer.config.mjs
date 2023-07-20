@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Moleculer ServiceBroker configuration file
  *
@@ -32,6 +30,8 @@ export default {
   nodeID: null,
   // Custom metadata store. Store here what you want. Accessing: `this.broker.metadata`
   metadata: {},
+
+  serviceDir: 'dist',
 
   // Enable/disable logging or use custom logger. More info: https://moleculer.services/docs/0.14/logging.html
   // Available logger types: "Console", "File", "Pino", "Winston", "Bunyan", "debug", "Log4js", "Datadog"

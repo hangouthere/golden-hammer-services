@@ -86,6 +86,7 @@ services:
   traefik:
     image: traefik:v2.1
     command:
+      - '--log.level=debug'
       - '--providers.docker=true'
       - '--providers.docker.exposedbydefault=false'
     ports:
