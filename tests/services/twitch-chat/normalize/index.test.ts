@@ -2,14 +2,14 @@ describe('Twitch Chat Normalize', () => {
   let clazz;
 
   beforeEach(() => {
-    const mockNormalizerImpl = jest.fn(() => ({
+    const mockNormalizerImpl = vitest.fn(() => ({
       timestamp: 'testTimeStamp',
       normalizedData: 'testNormlizedData'
     }));
 
     // Mock Implementations must be defined beforeEach, since we're utilizing the
-    // resetMocks/resetModules options in jest config
-    jest.mock('@/services/twitch-chat/normalize/EventNormalizeMap', () => {
+    // resetMocks/resetModules options in vitest config
+    vitest.mock('@/services/twitch-chat/normalize/EventNormalizeMap', () => {
       return {
         TestEvent_No_Normalizer: {
           EventClassification: 'TestEvent1.FullyClassified'

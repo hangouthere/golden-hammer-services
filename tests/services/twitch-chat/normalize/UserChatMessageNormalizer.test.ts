@@ -155,7 +155,7 @@ describe('Twitch Chat: Normalizer - UserChatMessageNormalizer', () => {
 
   describe('Message Iteration', () => {
     it('should operate on every possible word', () => {
-      normalizer._determineChunk = jest.fn();
+      normalizer._determineChunk = vitest.fn();
 
       normalizer._iterateMessage({
         message: 'Possible 👨‍👨‍👧‍👧 Words',
@@ -177,10 +177,10 @@ describe('Twitch Chat: Normalizer - UserChatMessageNormalizer', () => {
 
   describe('Normalizing', () => {
     it('should return the standard data structure format', () => {
-      normalizer._getUriRanges = jest.fn();
-      normalizer._getEmoteRanges = jest.fn();
-      normalizer._iterateMessage = jest.fn();
-      normalizer._extractUserAndRoles = jest.fn().mockReturnValue({
+      normalizer._getUriRanges = vitest.fn();
+      normalizer._getEmoteRanges = vitest.fn();
+      normalizer._iterateMessage = vitest.fn();
+      normalizer._extractUserAndRoles = vitest.fn().mockReturnValue({
         userName: 'mockUser',
         roles: []
       });

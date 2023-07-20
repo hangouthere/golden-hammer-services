@@ -5,12 +5,12 @@ describe('Twitch Chat: Register Cache', () => {
     cacherMock = {
       prefix: 'testPrefix',
       client: {
-        hget: jest.fn(),
-        hincrby: jest.fn()
+        hget: vitest.fn(),
+        hincrby: vitest.fn()
       }
     };
 
-    jest.mock('@/services/twitch-chat/normalize/EventDenormalizeMap', () => ({
+    vitest.mock('@/services/twitch-chat/normalize/EventDenormalizeMap', () => ({
       testNormalized: ['testDenormalize']
     }));
 

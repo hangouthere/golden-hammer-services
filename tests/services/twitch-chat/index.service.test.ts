@@ -1,10 +1,10 @@
-jest.mock('tmi.js');
-jest.mock('@/services/twitch-chat/normalize');
-jest.mock('@/services/twitch-chat/normalize/EventNormalizeMap', () => ({
+vitest.mock('tmi.js');
+vitest.mock('@/services/twitch-chat/normalize');
+vitest.mock('@/services/twitch-chat/normalize/EventNormalizeMap', () => ({
   testNativeEventName: true
 }));
-jest.mock('@/services/twitch-chat/service.meta');
-jest.mock('@/services/twitch-chat/RegisterCache');
+vitest.mock('@/services/twitch-chat/service.meta');
+vitest.mock('@/services/twitch-chat/RegisterCache');
 
 const brokerMixin = require('../../helpers/brokerMixin');
 const loggerMixin = require('../../helpers/loggerMixin');
@@ -39,7 +39,7 @@ describe('Twitch Chat: Service', () => {
       hasListener.mockReturnValue(true);
 
       service.methods.normalizer = {
-        normalize: jest.fn().mockReturnValue({
+        normalize: vitest.fn().mockReturnValue({
           timestamp: 'now',
           eventClassification: 'testEventClassification',
           normalizedData: { lotsOfData: true }
@@ -57,7 +57,7 @@ describe('Twitch Chat: Service', () => {
 
   describe('Events', () => {
     it('should delegate the simulated event to our helper method', async () => {
-      service.events['twitch-chat.simulate'].eventIRCEvent = jest.fn();
+      service.events['twitch-chat.simulate'].eventIRCEvent = vitest.fn();
 
       await service.events['twitch-chat.simulate'].handler({
         params: {
@@ -141,14 +141,14 @@ describe('Twitch Chat: Service', () => {
     let tmiMock;
     beforeEach(() => {
       tmiMock = {
-        disconnect: jest.fn(),
-        removeAllListeners: jest.fn(),
-        on: jest.fn((_eventName, cb) => cb()),
-        connect: jest.fn().mockResolvedValue(true)
+        disconnect: vitest.fn(),
+        removeAllListeners: vitest.fn(),
+        on: vitest.fn((_eventName, cb) => cb()),
+        connect: vitest.fn().mockResolvedValue(true)
       };
 
       service.tmijs = tmiMock;
-      service.eventIRCEvent = jest.fn();
+      service.eventIRCEvent = vitest.fn();
     });
 
     it('should clean up the TMIjs instance when stopped', async () => {

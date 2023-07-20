@@ -31,7 +31,7 @@ describe('Twitch Chat: Normalizer - Monetization', () => {
 
   describe('Normalizing', () => {
     beforeEach(() => {
-      normalizer._estimateValue = jest.fn().mockReturnValue(4.2);
+      normalizer._estimateValue = vitest.fn().mockReturnValue(4.2);
     });
 
     it('should normalize a Cheer', () => {

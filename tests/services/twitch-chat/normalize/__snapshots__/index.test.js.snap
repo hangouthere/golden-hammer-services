@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Twitch Chat Normalize should delegate normalizing and extract sub-context 1`] = `
-Object {
-  "eventClassification": "TestEvent2.FullyClassified",
-  "normalizedData": "testNormlizedData",
-  "timestamp": "testTimeStamp",
-}
-`;

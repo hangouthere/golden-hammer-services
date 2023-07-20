@@ -1,6 +1,6 @@
-jest.mock('@/services/mixin-nodeRestartOnDisconnect');
-jest.mock('@/services/gh-pubsub/service.meta');
-jest.mock('@/services/gh-pubsub/RegisterCache');
+vitest.mock('@/services/mixin-nodeRestartOnDisconnect');
+vitest.mock('@/services/gh-pubsub/service.meta');
+vitest.mock('@/services/gh-pubsub/RegisterCache');
 
 const brokerMixin = require('../../helpers/brokerMixin');
 const loggerMixin = require('../../helpers/loggerMixin');
@@ -10,7 +10,7 @@ describe('GH PubSub: Service', () => {
   let service;
 
   beforeEach(() => {
-    jest.mock('uuid', () => ({ v4: jest.fn().mockReturnValue('someFakeUUID') }));
+    vitest.mock('uuid', () => ({ v4: vitest.fn().mockReturnValue('someFakeUUID') }));
 
     service = require('@/services/gh-pubsub/index.service');
 
@@ -53,7 +53,7 @@ describe('GH PubSub: Service', () => {
     describe('Unregistering All Events', () => {
       it('should delegate an unregisterAll to related/internal Action by same name', async () => {
         const event = service.events['gh-pubsub.unregisterAll'];
-        event.actions = { unregisterAll: jest.fn() };
+        event.actions = { unregisterAll: vitest.fn() };
 
         await event.handler({ params: {} });
 
@@ -112,7 +112,7 @@ describe('GH PubSub: Service', () => {
 
     beforeEach(() => {
       ctx = {
-        call: jest.fn(),
+        call: vitest.fn(),
         params: {
           platformName: 'twitch',
           connectTarget: 'testConnectTarget',
@@ -178,8 +178,8 @@ describe('GH PubSub: Service', () => {
 
         ({ checkIfSocketRegisteredForTarget, uncacheTargetForSocket } = require('@/services/gh-pubsub/RegisterCache'));
 
-        service.actions.unregister.unregisterWithPlatform = jest.fn();
-        service.actions.unregister.disconnectFromTarget = jest.fn();
+        service.actions.unregister.unregisterWithPlatform = vitest.fn();
+        service.actions.unregister.disconnectFromTarget = vitest.fn();
       });
 
       it('should return the error object from RegisterCache upon an error or no registered clients found', async () => {
@@ -236,8 +236,8 @@ describe('GH PubSub: Service', () => {
         ({ cacheTargetForSocket } = require('@/services/gh-pubsub/RegisterCache'));
         cacheTargetForSocket.mockReturnValue(99);
 
-        service.actions.register.registerWithPlatform = jest.fn();
-        service.actions.register.connectToTarget = jest.fn();
+        service.actions.register.registerWithPlatform = vitest.fn();
+        service.actions.register.connectToTarget = vitest.fn();
       });
 
       it('should cache the target for the socket ID with the RegisterCache', async () => {

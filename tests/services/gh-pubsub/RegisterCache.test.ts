@@ -1,5 +1,5 @@
-jest.mock('ioredis');
-jest.mock('moleculer');
+vitest.mock('ioredis');
+vitest.mock('moleculer');
 
 const moleculer = require('moleculer');
 const ioredis = require('ioredis');
@@ -102,7 +102,7 @@ describe('Service: gh-pubsub: RegisterCache', () => {
           },
           // override functional injection for
           // getRegistrationsForTargetByKey
-          jest.fn().mockResolvedValue([MOCKDATA.regData])
+          vitest.fn().mockResolvedValue([MOCKDATA.regData])
         )
       )
         .resolves // Should return the id's matching, aka [1]
@@ -120,7 +120,7 @@ describe('Service: gh-pubsub: RegisterCache', () => {
           },
           // override functional injection for
           // getRegistrationsForTargetByKey
-          jest.fn().mockResolvedValue([MOCKDATA.regData])
+          vitest.fn().mockResolvedValue([MOCKDATA.regData])
         )
       )
         .resolves // Should return the id's matching, aka []

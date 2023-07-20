@@ -1,8 +1,8 @@
-jest.mock('moleculer-web');
-jest.mock('moleculer-io');
-jest.mock('@/services/api/mixin-web');
-jest.mock('@/services/api/mixin-io');
-jest.mock('@/services/mixin-nodeRestartOnDisconnect');
+vitest.mock('moleculer-web');
+vitest.mock('moleculer-io');
+vitest.mock('@/services/api/mixin-web');
+vitest.mock('@/services/api/mixin-io');
+vitest.mock('@/services/mixin-nodeRestartOnDisconnect');
 
 describe.skip('Service: API Gateway', () => {
   describe('authenticate', () => {

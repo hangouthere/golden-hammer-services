@@ -7,9 +7,9 @@ describe('Mixin: nodeRestartOnDisconnect', () => {
     eventDisconnect = mixin.events['$node.disconnected'];
 
     // Disable console logging during test suite
-    jest.spyOn(console, 'log').mockImplementation(jest.fn());
+    vitest.spyOn(console, 'log').mockImplementation(vitest.fn());
 
-    procSpy = jest.spyOn(process, 'exit');
+    procSpy = vitest.spyOn(process, 'exit');
     procSpy.mockReturnValue(0);
   });
 
