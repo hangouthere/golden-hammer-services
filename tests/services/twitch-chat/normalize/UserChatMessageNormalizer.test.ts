@@ -1,4 +1,4 @@
-const normalizerClass = require('@/services/twitch-chat/normalize/UserChatMessageNormalizer');
+const normalizerClass = require('-/twitch-chat/normalize/UserChatMessageNormalizer');
 
 const MOCK_DATA = {
   uriIndices: [

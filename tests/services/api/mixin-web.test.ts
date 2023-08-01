@@ -1,4 +1,4 @@
-const mixin = require('@/services/api/mixin-web');
+const mixin = require('-/api/mixin-web');
 
 describe('Service: API Gateway - Mixin: Web', () => {
   it('should import without error', () => {

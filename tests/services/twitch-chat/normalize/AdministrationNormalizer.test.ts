@@ -1,4 +1,4 @@
-const normalizerClass = require('@/services/twitch-chat/normalize/AdministrationNormalizer');
+import normalizerClass from '-/twitch-chat/normalize/AdministrationNormalizer';
 
 const MOCK_DATA = {
   duration: 99,

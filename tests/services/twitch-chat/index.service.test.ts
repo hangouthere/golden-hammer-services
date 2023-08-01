@@ -1,10 +1,10 @@
 vitest.mock('tmi.js');
-vitest.mock('@/services/twitch-chat/normalize');
-vitest.mock('@/services/twitch-chat/normalize/EventNormalizeMap', () => ({
+vitest.mock('-/twitch-chat/normalize');
+vitest.mock('-/twitch-chat/normalize/EventNormalizeMap', () => ({
   testNativeEventName: true
 }));
-vitest.mock('@/services/twitch-chat/service.meta');
-vitest.mock('@/services/twitch-chat/RegisterCache');
+vitest.mock('-/twitch-chat/service.meta');
+vitest.mock('-/twitch-chat/RegisterCache');
 
 const brokerMixin = require('../../helpers/brokerMixin');
 const loggerMixin = require('../../helpers/loggerMixin');
@@ -17,7 +17,7 @@ describe('Twitch Chat: Service', () => {
     tmijs = require('tmi.js');
     tmiClient = new tmijs.Client();
 
-    service = require('@/services/twitch-chat/index.service');
+    service = require('-/twitch-chat/index.service');
 
     mixinHelper(service, loggerMixin);
     mixinHelper(service.methods, loggerMixin);
@@ -26,7 +26,7 @@ describe('Twitch Chat: Service', () => {
 
   describe('Helper Methods', () => {
     it('should break early if there are no listeners expecting to hear from a native event', () => {
-      const { hasListener } = require('@/services/twitch-chat/RegisterCache');
+      const { hasListener } = require('-/twitch-chat/RegisterCache');
 
       hasListener.mockReturnValue(false);
 
@@ -34,7 +34,7 @@ describe('Twitch Chat: Service', () => {
     });
 
     it('should normalize and emit into the system', async () => {
-      const { hasListener } = require('@/services/twitch-chat/RegisterCache');
+      const { hasListener } = require('-/twitch-chat/RegisterCache');
 
       hasListener.mockReturnValue(true);
 
@@ -77,7 +77,7 @@ describe('Twitch Chat: Service', () => {
 
   describe('Service Actions', () => {
     it('should delegate to RegisterCache when trying to unregister', async () => {
-      const { toggleEventTypesByClassifications } = require('@/services/twitch-chat/RegisterCache');
+      const { toggleEventTypesByClassifications } = require('-/twitch-chat/RegisterCache');
 
       await service.actions.unregister.handler({ ...brokerMixin });
 
@@ -85,7 +85,7 @@ describe('Twitch Chat: Service', () => {
     });
 
     it('should delegate to RegisterCache when trying to register', async () => {
-      const { toggleEventTypesByClassifications } = require('@/services/twitch-chat/RegisterCache');
+      const { toggleEventTypesByClassifications } = require('-/twitch-chat/RegisterCache');
 
       await service.actions.register.handler({ ...brokerMixin });
 
@@ -176,7 +176,7 @@ describe('Twitch Chat: Service', () => {
     });
 
     it('should create a new TMIjs client when the service is created', async () => {
-      const Normalizer = require('@/services/twitch-chat/normalize');
+      const Normalizer = require('-/twitch-chat/normalize');
 
       await service.created();
 

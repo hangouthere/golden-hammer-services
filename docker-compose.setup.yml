@@ -8,6 +8,9 @@ x-setup: &setup
   stdin_open: true
   tty: true
   env_file: .env
+  environment:
+    - NODE_ENV=development
+    - NODE_OPTIONS=--enable-source-maps --trace-warnings
   command: 'tail -f /dev/null'
   user: '0'
   working_dir: '/app'

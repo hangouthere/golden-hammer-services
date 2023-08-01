@@ -1,6 +1,6 @@
-vitest.mock('@/services/mixin-nodeRestartOnDisconnect');
-vitest.mock('@/services/gh-pubsub/service.meta');
-vitest.mock('@/services/gh-pubsub/RegisterCache');
+vitest.mock('-/mixin-nodeRestartOnDisconnect');
+vitest.mock('-/gh-pubsub/service.meta');
+vitest.mock('-/gh-pubsub/RegisterCache');
 
 const brokerMixin = require('../../helpers/brokerMixin');
 const loggerMixin = require('../../helpers/loggerMixin');
@@ -12,7 +12,7 @@ describe('GH PubSub: Service', () => {
   beforeEach(() => {
     vitest.mock('uuid', () => ({ v4: vitest.fn().mockReturnValue('someFakeUUID') }));
 
-    service = require('@/services/gh-pubsub/index.service');
+    service = require('-/gh-pubsub/index.service');
 
     mixinHelper(service, loggerMixin);
     mixinHelper(service.methods, loggerMixin);
@@ -77,7 +77,7 @@ describe('GH PubSub: Service', () => {
       });
 
       it('should not delegate any messaging into the system if no clients are expected to hear from the explicit event type', async () => {
-        const { getSocketDataCacheAwaitingEventForConnectTarget } = require('@/services/gh-pubsub/RegisterCache');
+        const { getSocketDataCacheAwaitingEventForConnectTarget } = require('-/gh-pubsub/RegisterCache');
         // Set up mock for empty return...
         getSocketDataCacheAwaitingEventForConnectTarget.mockReturnValue([]);
 
@@ -91,7 +91,7 @@ describe('GH PubSub: Service', () => {
       });
 
       it('should delegate messaging into the system if clients are expected to hear from the explicit event type', async () => {
-        const { getSocketDataCacheAwaitingEventForConnectTarget } = require('@/services/gh-pubsub/RegisterCache');
+        const { getSocketDataCacheAwaitingEventForConnectTarget } = require('-/gh-pubsub/RegisterCache');
         // Set up mock for empty return...
         getSocketDataCacheAwaitingEventForConnectTarget.mockReturnValue(['someClientId']);
 
@@ -144,7 +144,7 @@ describe('GH PubSub: Service', () => {
       let getRegistrationsForTargetByKey;
 
       beforeEach(() => {
-        ({ getRegistrationsForTargetByKey } = require('@/services/gh-pubsub/RegisterCache'));
+        ({ getRegistrationsForTargetByKey } = require('-/gh-pubsub/RegisterCache'));
 
         mixinHelper(service.actions.unregisterAll, loggerMixin);
       });
@@ -176,7 +176,7 @@ describe('GH PubSub: Service', () => {
       beforeEach(() => {
         mixinHelper(service.actions.unregister, loggerMixin);
 
-        ({ checkIfSocketRegisteredForTarget, uncacheTargetForSocket } = require('@/services/gh-pubsub/RegisterCache'));
+        ({ checkIfSocketRegisteredForTarget, uncacheTargetForSocket } = require('-/gh-pubsub/RegisterCache'));
 
         service.actions.unregister.unregisterWithPlatform = vitest.fn();
         service.actions.unregister.disconnectFromTarget = vitest.fn();
@@ -233,7 +233,7 @@ describe('GH PubSub: Service', () => {
       beforeEach(() => {
         mixinHelper(service.actions.register, loggerMixin);
 
-        ({ cacheTargetForSocket } = require('@/services/gh-pubsub/RegisterCache'));
+        ({ cacheTargetForSocket } = require('-/gh-pubsub/RegisterCache'));
         cacheTargetForSocket.mockReturnValue(99);
 
         service.actions.register.registerWithPlatform = vitest.fn();

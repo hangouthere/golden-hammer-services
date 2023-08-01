@@ -1,7 +1,7 @@
 vitest.mock('uuid');
 vitest.useFakeTimers();
 
-import mixin, { settings, methods, events } from '@/services/api/mixin-io';
+import mixin, { events, methods, settings } from '-/api/mixin-io';
 import brokerMixin from '../../helpers/brokerMixin.js';
 import loggerMixin from '../../helpers/loggerMixin.js';
 import mixinHelper from '../../helpers/mixinHelper.js';

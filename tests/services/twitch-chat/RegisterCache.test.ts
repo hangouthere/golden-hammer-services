@@ -10,11 +10,11 @@ describe('Twitch Chat: Register Cache', () => {
       }
     };
 
-    vitest.mock('@/services/twitch-chat/normalize/EventDenormalizeMap', () => ({
+    vitest.mock('-/twitch-chat/normalize/EventDenormalizeMap', () => ({
       testNormalized: ['testDenormalize']
     }));
 
-    registerCache = require('@/services/twitch-chat/RegisterCache');
+    registerCache = require('-/twitch-chat/RegisterCache');
   });
 
   it('should determine if there are listeners for a connectTarget, and nativeEventName', async () => {

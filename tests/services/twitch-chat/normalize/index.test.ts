@@ -9,7 +9,7 @@ describe('Twitch Chat Normalize', () => {
 
     // Mock Implementations must be defined beforeEach, since we're utilizing the
     // resetMocks/resetModules options in vitest config
-    vitest.mock('@/services/twitch-chat/normalize/EventNormalizeMap', () => {
+    vitest.mock('-/twitch-chat/normalize/EventNormalizeMap', () => {
       return {
         TestEvent_No_Normalizer: {
           EventClassification: 'TestEvent1.FullyClassified'
@@ -22,7 +22,7 @@ describe('Twitch Chat Normalize', () => {
     });
 
     // Re-require our class module to get the cleaned mock impl after resetMock
-    const Clazz = require('@/services/twitch-chat/normalize');
+    const Clazz = require('-/twitch-chat/normalize');
 
     clazz = new Clazz();
   });
@@ -38,7 +38,7 @@ describe('Twitch Chat Normalize', () => {
   });
 
   it('should delegate normalizing and extract sub-context', () => {
-    const map = require('@/services/twitch-chat/normalize/EventNormalizeMap');
+    const map = require('-/twitch-chat/normalize/EventNormalizeMap');
 
     const incomingEventArguments = {
       foo: true,

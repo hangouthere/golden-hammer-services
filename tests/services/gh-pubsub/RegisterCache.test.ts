@@ -4,7 +4,7 @@ vitest.mock('moleculer');
 const moleculer = require('moleculer');
 const ioredis = require('ioredis');
 
-const RegisterCache = require('@/services/gh-pubsub/RegisterCache');
+const RegisterCache = require('-/gh-pubsub/RegisterCache');
 
 let {
   cacheTargetForSocket,

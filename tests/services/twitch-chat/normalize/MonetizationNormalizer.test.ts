@@ -1,4 +1,4 @@
-const normalizerClass = require('@/services/twitch-chat/normalize/MonetizationNormalizer');
+const normalizerClass = require('-/twitch-chat/normalize/MonetizationNormalizer');
 
 const MOCK_DATA = {
   userState: {

@@ -1,31 +1,31 @@
 version: '3.7'
 
-x-moleculer-microservice: &moleculer-microservice
-  build:
-    context: .
-  image: golden-hammer-service
-  restart: unless-stopped
-  env_file: .env
+x-test-mode: &test-mode
+  image: hangouthere/golden-hammer-service
+  command: tail -f /dev/null
 
 services:
-  test:
-    image: golden-hammer-service
-    command: ['npm', 'run', 'test']
-    restart: unless-stopped
-    stdin_open: true
-    tty: true
-    environment:
-      - NODE_ENV=development
-      - REQUESTTIMEOUT=0
-      - NODE_OPTIONS=--enable-source-maps --trace-warnings
-    volumes:
-      - .:/app
-      # - /app/node_modules
-      # Overlays git config to avoid accessing submodules in container
-      - /dev/null:/app/.git
-      # Include gh-shared to link in container
-      - ../golden-hammer-shared:/golden-hammer-shared
+  api:
+    <<: *test-mode
+    command: npx hh-test
+    # command: npx hh-test-debug
     ports:
       - '11111:9229'
-    networks:
-      - gh-services
+
+  # Make sure no other service containers start, we'll run tests in `api`
+  gh-pubsub:
+    <<: *test-mode
+  gh-messaging:
+    <<: *test-mode
+  twitch-chat:
+    <<: *test-mode
+  nats:
+    <<: *test-mode
+  redis:
+    <<: *test-mode
+  redis-gui:
+    <<: *test-mode
+  traefik:
+    <<: *test-mode
+  jaeger:
+    <<: *test-mode

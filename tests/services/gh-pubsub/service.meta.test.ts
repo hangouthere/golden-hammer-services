@@ -1,4 +1,4 @@
-const meta = require('@/services/gh-pubsub/service.meta');
+const meta = require('-/gh-pubsub/service.meta');
 
 describe('Service: gh-pubsub - Service Meta', () => {
   it('should import and exist', () => {

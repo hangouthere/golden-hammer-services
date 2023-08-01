@@ -1,4 +1,4 @@
-const normalizerClass = require('@/services/twitch-chat/normalize/ProxyNormalizer');
+const normalizerClass = require('-/twitch-chat/normalize/ProxyNormalizer');
 
 describe('Twitch Chat: Normalizer - Proxy', () => {
   let normalizer;

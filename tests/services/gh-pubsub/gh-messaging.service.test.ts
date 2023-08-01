@@ -1,4 +1,4 @@
-const service = require('@/services/gh-messaging.service');
+const service = require('-/gh-messaging.service');
 
 //Bogus test for now, will expand when the service is built out
 // Note: some of this functionality will come from existing impl in gh-pubsub
