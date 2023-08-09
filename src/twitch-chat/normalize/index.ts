@@ -1,17 +1,14 @@
-import type { PubSubEvent } from 'golden-hammer-shared';
-import type { NormalizeParams } from './AbstractNormalizer.js';
+import type { PlatformEvent } from 'golden-hammer-shared';
 import AbstractNormalizer from './AbstractNormalizer.js';
 import EventNormalizeMap from './EventNormalizeMap.js';
 
-export default class NormalizerFacade extends AbstractNormalizer<Partial<PubSubEvent>> {
-  override normalize({ incomingEventName, incomingEventArguments }: NormalizeParams) {
+export default class NormalizerFacade extends AbstractNormalizer {
+  override normalize({ eventName, eventData }: Partial<PlatformEvent>) {
     // Get our Classification mapping and build the object
-    const MappingInfo = EventNormalizeMap[incomingEventName];
+    const MappingInfo = EventNormalizeMap[eventName as string];
 
     if (!MappingInfo) {
-      throw new Error(
-        'Invalid Event Type for Processing: ' + incomingEventName + ' ' + JSON.stringify(incomingEventArguments)
-      );
+      throw new Error('Invalid Event Type for Processing: ' + eventName + ' ' + JSON.stringify(eventData));
     }
 
     const { EventClassification, Normalizer } = MappingInfo;
@@ -21,8 +18,8 @@ export default class NormalizerFacade extends AbstractNormalizer<Partial<PubSubE
     }
 
     const normalizeSubContext = Normalizer({
-      incomingEventName,
-      incomingEventArguments
+      eventName,
+      eventData
     });
 
     const { timestamp, normalizedData } = normalizeSubContext;

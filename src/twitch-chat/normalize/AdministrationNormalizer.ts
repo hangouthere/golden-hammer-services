@@ -1,10 +1,10 @@
-import type { AdministrationNormalizedData } from 'golden-hammer-shared';
+import type { AdministrationNormalizedData, PlatformEvent, PubSubEvent } from 'golden-hammer-shared';
 import { type Events } from 'tmi.js';
-import AbstractNormalizer, { type NormalizedEvent, type NormalizeParams } from './AbstractNormalizer.js';
+import AbstractNormalizer from './AbstractNormalizer.js';
 
-export class AdministrationTimeoutNormalizer extends AbstractNormalizer {
-  override normalize = ({ incomingEventArguments }: NormalizeParams): NormalizedEvent<AdministrationNormalizedData> => {
-    const [_channel, userName, _reason, duration, userState] = incomingEventArguments as Parameters<Events['timeout']>;
+export class AdministrationTimeoutNormalizer extends AbstractNormalizer<AdministrationNormalizedData> {
+  override normalize = ({ eventData }: PlatformEvent) => {
+    const [_channel, userName, _reason, duration, userState] = eventData as Parameters<Events['timeout']>;
 
     return {
       timestamp: this._ts(userState),
@@ -17,9 +17,9 @@ export class AdministrationTimeoutNormalizer extends AbstractNormalizer {
   };
 }
 
-export class AdministrationBanNormalizer extends AbstractNormalizer {
-  override normalize = ({ incomingEventArguments }: NormalizeParams): NormalizedEvent<AdministrationNormalizedData> => {
-    const [_channel, userName, _reason, userState] = incomingEventArguments as Parameters<Events['ban']>;
+export class AdministrationBanNormalizer extends AbstractNormalizer<AdministrationNormalizedData> {
+  override normalize({ eventData }: PlatformEvent): Partial<PubSubEvent<AdministrationNormalizedData>> {
+    const [_channel, userName, _reason, userState] = eventData as Parameters<Events['ban']>;
 
     return {
       timestamp: this._ts(userState),
@@ -28,14 +28,12 @@ export class AdministrationBanNormalizer extends AbstractNormalizer {
         targetId: userState['target-user-id']
       }
     };
-  };
+  }
 }
 
-export class AdministrationMsgRemovalNormalizer extends AbstractNormalizer {
-  override normalize = ({ incomingEventArguments }: NormalizeParams): NormalizedEvent<AdministrationNormalizedData> => {
-    const [_channel, userName, removedMessage, userState] = incomingEventArguments as Parameters<
-      Events['messagedeleted']
-    >;
+export class AdministrationMsgRemovalNormalizer extends AbstractNormalizer<AdministrationNormalizedData> {
+  override normalize = ({ eventData }: PlatformEvent): Partial<PubSubEvent<AdministrationNormalizedData>> => {
+    const [_channel, userName, removedMessage, userState] = eventData as Parameters<Events['messagedeleted']>;
 
     return {
       timestamp: this._ts(userState),

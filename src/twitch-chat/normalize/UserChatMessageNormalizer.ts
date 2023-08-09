@@ -2,19 +2,24 @@ import type {
   EmoteRange,
   MessageChunk,
   MessageIterateMetaData,
+  PlatformEvent,
+  PubSubEvent,
   URIRange,
   UserChatMessageNormalizedData,
   UserRoles,
   WordChunkIterateMetaData
 } from 'golden-hammer-shared';
 import type { ChatUserstate, Events } from 'tmi.js';
-import AbstractNormalizer, { type NormalizeParams, type NormalizedEvent } from './AbstractNormalizer.js';
+import AbstractNormalizer from './AbstractNormalizer.js';
 
 const genEmoteId = (emoteId: string) => `https://static-cdn.jtvnw.net/emoticons/v2/${emoteId}/default/dark/3.0`;
 
-export class JoinPartNormalizer extends AbstractNormalizer {
-  override normalize = ({incomingEventName: presence, incomingEventArguments}: NormalizeParams): NormalizedEvent<UserChatMessageNormalizedData> => {
-    const [_channel, userName, _self] = incomingEventArguments as (Parameters<Events['join']> | Parameters<Events['part']>);
+export class JoinPartNormalizer extends AbstractNormalizer<UserChatMessageNormalizedData> {
+  override normalize = ({
+    eventName: presence,
+    eventData
+  }: PlatformEvent): Partial<PubSubEvent<UserChatMessageNormalizedData>> => {
+    const [_channel, userName, _self] = eventData as Parameters<Events['join']> | Parameters<Events['part']>;
 
     return {
       timestamp: Date.now(),
@@ -23,15 +28,12 @@ export class JoinPartNormalizer extends AbstractNormalizer {
         presence
       }
     };
-  }
+  };
 }
 
-
-export class UserChatMessageNormalizer extends AbstractNormalizer {
-  override normalize = ({
-    incomingEventArguments
-  }: NormalizeParams): NormalizedEvent<UserChatMessageNormalizedData> => {
-    const [_channel, userState, message] = incomingEventArguments as Parameters<Events['chat']>;
+export class UserChatMessageNormalizer extends AbstractNormalizer<UserChatMessageNormalizedData> {
+  override normalize = ({ eventData }: PlatformEvent): Partial<PubSubEvent<UserChatMessageNormalizedData>> => {
+    const [_channel, userState, message] = eventData as Parameters<Events['chat']>;
     const { userName, roles } = this._extractUserAndRoles(userState);
 
     // Get URL Indices before any modification

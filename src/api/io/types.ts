@@ -10,6 +10,7 @@ type IOEventCallbackList = { name?: string; params: any }[];
 
 type IOServiceMethods = IOServiceSchema['methods'] & {
   SocketAutoTimeoutMiddleware: SocketMiddleware;
+  disconnectSocket: SocketMiddleware;
 };
 
 export type IOEventCallback = (nullInput: null, callback: IOEventCallbackList) => void;

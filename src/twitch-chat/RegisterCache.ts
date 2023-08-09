@@ -5,7 +5,7 @@ import EventDenormalizeMap from './normalize/EventDenormalizeMap.js';
 
 export type HasListenerMap = {
   connectTarget: string;
-  nativeEventName: string;
+  eventName: string;
 };
 
 const KEY_PREFIX = 'twitchFilter';
@@ -29,10 +29,10 @@ export const toggleEventTypesByClassifications = async (
   }
 };
 
-export const hasListener = async (cacher: Cachers.Redis<Redis>, { connectTarget, nativeEventName }: HasListenerMap) => {
+export const hasListener = async (cacher: Cachers.Redis<Redis>, { connectTarget, eventName }: HasListenerMap) => {
   const key = `${cacher.prefix}${KEY_PREFIX}:${connectTarget}`;
 
-  const numListeningToEvent = Number(await cacher.client.hget(key, nativeEventName));
+  const numListeningToEvent = Number(await cacher.client.hget(key, eventName));
 
   return numListeningToEvent > 0;
 };

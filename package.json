@@ -36,6 +36,7 @@
     "tmi.js": "^1.8.5"
   },
   "peerDependencies": {
+    "@hangouthere/util": "^0.0.1-1",
     "golden-hammer-shared": "^0.0.1-1"
   },
   "__NEEDS_PORTING_TOVITEST__jest": {

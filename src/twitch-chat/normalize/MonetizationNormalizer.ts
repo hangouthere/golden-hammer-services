@@ -1,6 +1,6 @@
-import type { MonetizationNormalizedData } from 'golden-hammer-shared';
+import type { MonetizationNormalizedData, PlatformEvent, PubSubEvent } from 'golden-hammer-shared';
 import type { Events, SubMethod } from 'tmi.js';
-import AbstractNormalizer, { type NormalizeParams, type NormalizedEvent } from './AbstractNormalizer.js';
+import AbstractNormalizer from './AbstractNormalizer.js';
 
 const estimateValue = (type: SubMethod, duration: number) => {
   const valueMap: Record<SubMethod, number> = {
@@ -19,9 +19,9 @@ const estimateValue = (type: SubMethod, duration: number) => {
   return rate * duration;
 };
 
-export class MonetizationCheerNormalizer extends AbstractNormalizer {
-  override normalize({ incomingEventArguments }: NormalizeParams): NormalizedEvent<MonetizationNormalizedData> {
-    const [_channel, userState, message] = incomingEventArguments as Parameters<Events['cheer']>;
+export class MonetizationCheerNormalizer extends AbstractNormalizer<MonetizationNormalizedData> {
+  override normalize({ eventData }: PlatformEvent): Partial<PubSubEvent<MonetizationNormalizedData>> {
+    const [_channel, userState, message] = eventData as Parameters<Events['cheer']>;
     const sourceUserName = userState['display-name'] as string;
     const bitValue = +(userState.bits as string) / 100;
 
@@ -36,11 +36,9 @@ export class MonetizationCheerNormalizer extends AbstractNormalizer {
   }
 }
 
-export class MonetizationSubcriptionNormalizer extends AbstractNormalizer {
-  override normalize({ incomingEventArguments }: NormalizeParams): NormalizedEvent<MonetizationNormalizedData> {
-    const [_channel, sourceUserName, planInfo, message, userState] = incomingEventArguments as Parameters<
-      Events['subscription']
-    >;
+export class MonetizationSubcriptionNormalizer extends AbstractNormalizer<MonetizationNormalizedData> {
+  override normalize({ eventData }: PlatformEvent): Partial<PubSubEvent<MonetizationNormalizedData>> {
+    const [_channel, sourceUserName, planInfo, message, userState] = eventData as Parameters<Events['subscription']>;
     const duration = (planInfo.prime ? 1 : +userState['msg-param-months']) || 1;
     const subPlan = userState['msg-param-sub-plan'] as SubMethod;
 
@@ -56,11 +54,9 @@ export class MonetizationSubcriptionNormalizer extends AbstractNormalizer {
   }
 }
 
-export class MonetizationReSubcriptionNormalizer extends AbstractNormalizer {
-  override normalize({ incomingEventArguments }: NormalizeParams): NormalizedEvent<MonetizationNormalizedData> {
-    const [_channel, sourceUserName, _streak, message, userState, planInfo] = incomingEventArguments as Parameters<
-      Events['resub']
-    >;
+export class MonetizationReSubcriptionNormalizer extends AbstractNormalizer<MonetizationNormalizedData> {
+  override normalize({ eventData }: PlatformEvent): Partial<PubSubEvent<MonetizationNormalizedData>> {
+    const [_channel, sourceUserName, _streak, message, userState, planInfo] = eventData as Parameters<Events['resub']>;
     const duration = (planInfo.prime ? 1 : +userState['msg-param-months']) || 1;
     const subPlan = userState['msg-param-sub-plan'] as SubMethod;
 
@@ -76,9 +72,9 @@ export class MonetizationReSubcriptionNormalizer extends AbstractNormalizer {
   }
 }
 
-export class MonetizationSubGiftSendNormalizer extends AbstractNormalizer {
-  override normalize({ incomingEventArguments }: NormalizeParams): NormalizedEvent<MonetizationNormalizedData> {
-    const [_channel, sourceUserName, numbOfSubs, subMethods, userState] = incomingEventArguments as Parameters<
+export class MonetizationSubGiftSendNormalizer extends AbstractNormalizer<MonetizationNormalizedData> {
+  override normalize({ eventData }: PlatformEvent): Partial<PubSubEvent<MonetizationNormalizedData>> {
+    const [_channel, sourceUserName, numbOfSubs, subMethods, userState] = eventData as Parameters<
       Events['submysterygift']
     >;
 
@@ -95,10 +91,11 @@ export class MonetizationSubGiftSendNormalizer extends AbstractNormalizer {
   }
 }
 
-export class MonetizationSubGiftRecieveNormalizer extends AbstractNormalizer {
-  override normalize({ incomingEventArguments }: NormalizeParams): NormalizedEvent<MonetizationNormalizedData> {
-    const [_channel, sourceUserName, _streak, targetUserName, subMethods, userState] =
-      incomingEventArguments as Parameters<Events['subgift']>;
+export class MonetizationSubGiftRecieveNormalizer extends AbstractNormalizer<MonetizationNormalizedData> {
+  override normalize({ eventData }: PlatformEvent): Partial<PubSubEvent<MonetizationNormalizedData>> {
+    const [_channel, sourceUserName, _streak, targetUserName, subMethods, userState] = eventData as Parameters<
+      Events['subgift']
+    >;
     const message = userState['system-msg'];
     const duration = (subMethods.prime ? 1 : +(userState['msg-param-months'] as string)) || 1;
 
